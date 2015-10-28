@@ -32,7 +32,7 @@ var StoryScreen = React.createClass({
       return (
         <View style={[styles.container, styles.center]}>
           <Text>
-            正在加载...
+            正在加载...{this.props.story}
           </Text>
 
         </View>
