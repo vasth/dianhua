@@ -22,6 +22,34 @@ var BASE_URL = 'http://news.at.zhihu.com/api/4/news/';
 var REF_HEADER = 'header';
 var PIXELRATIO = PixelRatio.get();
 var HEADER_SIZE = 200;
+var API_KEY = 'AIzaSyCBWSkIpo37W3jsJD2g7NY8sSSzKZXo6iw';
+
+var GooglePlacesAutocomplete = require('./Autocomplate').create({
+  placeholder: 'Search',
+  minLength: 2, // minimum length of text to search
+  autoFocus: true,
+  fetchDetails: true,
+  onPress(data, details = null) { // details is provided when fetchDetails = true
+    console.log(data);
+    console.log(details);
+  },
+  getDefaultValue() {
+    return ''; // text input default value
+  },
+  query: {
+    // available options: https://developers.google.com/places/web-service/autocomplete
+    key: API_KEY,
+    language: 'en', // language of the results
+    types: '(cities)', // default: 'geocode'
+  },
+  styles: {
+    description: {
+      fontWeight: 'bold',
+    }
+  }
+});
+
+
 
 var SearchScreen = React.createClass({
   getInitialState: function() {
@@ -30,6 +58,9 @@ var SearchScreen = React.createClass({
       searchtext:"",
     };
   },
+  back:function(){
+    this.props.navigator.pop();
+  },
   render: function() {
 
    // var toolbar = <DetailToolbar navigator={this.props.navigator} style={styles.toolbar}
@@ -37,36 +68,59 @@ var SearchScreen = React.createClass({
       return (
           <View style={styles.container}>
             <View style={styles.searchbar}>
+              <TouchableHighlight  underlayColor="#d0d0d0" onPress={this.back}>
+                <View style={styles.backText}  ><Text style={{color:'#fff'}}>返回</Text></View>
+              </TouchableHighlight>
               <TextInput
-                  style={{height: 40, borderColor: 'gray', borderWidth: 1,flex: 1}}
+                  style={{height: 40,color:'#fff', borderColor: 'gray', borderWidth: 1,flex: 1}}
                   onChangeText={(text) => this.setState({searchtext:text})}
                   value={this.state.searchtext}
                   autoFocus={true}
+                  underlineColorAndroid={'#fff'}
+                  placeholderTextColor={'#fffaaa'}
                   placeholder="请输入搜索内容"
                   />
               <View style={styles.searchbtn}><Text style={{color:'#fff'}}>搜索</Text></View>
             </View>
+            <GooglePlacesAutocomplete />
             <ScrollView contentContainerStyle={styles.contentContainer}>
               <View style={styles.scrollist}>
+                <Text style={{color:'#000',fontSize: 18,}}>热门搜索</Text>
+                <View style={{height:1,marginTop:5,backgroundColor:'#d0d0d0'}}></View>
                 <View style={styles.searchbar1}>
-                  <View style={styles.searchbtn}><Text style={{color:'#fff'}}>搜索</Text></View>
-                  <View style={styles.searchbtn}><Text style={{color:'#fff'}}>搜索</Text></View>
-                  <View style={styles.searchbtn}><Text style={{color:'#fff'}}>搜索</Text></View>
-                  <View style={styles.searchbtn}><Text style={{color:'#fff'}}>搜索</Text></View>
-                  <View style={styles.searchbtn}><Text style={{color:'#fff'}}>搜索</Text></View>
-                  <View style={styles.searchbtn}><Text style={{color:'#fff'}}>搜索</Text></View>
-                  <View style={styles.searchbtn}><Text style={{color:'#fff'}}>搜索</Text></View>
-                  <View style={styles.searchbtn}><Text style={{color:'#fff'}}>搜索</Text></View>
-                  <View style={styles.searchbtn}><Text style={{color:'#fff'}}>搜索</Text></View>
-                  <View style={styles.searchbtn}><Text style={{color:'#fff'}}>搜索</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>热门搜索</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>美甲美容</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>搜索</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>梦里花落知多少</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>小巧流坠人家</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>古道西风瘦马</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>pname</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>微信</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>商标咨询</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>什么</Text></View>
+                </View>
+                <Text style={{color:'#000',fontSize: 18,}}>搜索历史</Text>
+                <View style={{height:1,marginTop:5,backgroundColor:'#d0d0d0'}}></View>
+                <View style={styles.searchhistory}>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>热门搜索</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>美甲美容</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>搜索</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>梦里花落知多少</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>小巧流坠人家</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>古道西风瘦马</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>pname</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>微信</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>商标咨询</Text></View>
+                  <View style={styles.searchbtntag}><Text style={{color:'#fff'}}>什么</Text></View>
                 </View>
               </View>
             </ScrollView>
+
           </View>
       );
   }
 });
-
+//<View style={{position: 'absolute', top: 50,height:200,width:200,backgroundColor:'#fffaaa'}}></View>
 var THUMBS = [
   {item1: "美甲", "item2": "SPA"},
   {item1: "美容", "item2": "按摩"},
@@ -118,9 +172,10 @@ var styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   searchbar:{
-    marginTop:10,
+    paddingTop:10,
     height: 56,
     flexDirection: 'row',
+    backgroundColor:'#00a2ed',
   },
   searchbar1:{
     marginTop:10,
@@ -143,8 +198,35 @@ var styles = StyleSheet.create({
     backgroundColor: '#00a2ed',
     borderRadius: 3,
   },
+  searchbtntag:{
+    height: 36,
+    marginBottom: 20,
+    marginRight:1,
+    marginLeft:10,
+    padding: 5,
+    paddingLeft:10,
+    paddingRight:10,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#00a2ed',
+    borderRadius: 3,
+  },
   scrollist:{
     marginTop:20,
+  },
+  backText:{
+    height: 36,
+    width:50,
+    marginRight:10,
+    paddingLeft: 5,
+    paddingTop:5,
+    alignItems: 'center',
+    justifyContent: 'center',
+  },
+  searchhistory:{
+    marginTop:20,
+    flex: 1,
+    flexDirection: 'column',
   },
 });
 

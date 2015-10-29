@@ -40,6 +40,32 @@ var ToolbarAndroid = require('ToolbarAndroid');
 //var MainScreen = require('./MainScreen.android');
 var StoryScreen = require('./StoryScreen');
 var SearchScreen = require('./SearchScreen');
+var API_KEY = 'AIzaSyCBWSkIpo37W3jsJD2g7NY8sSSzKZXo6iw';
+
+var GooglePlacesAutocomplete = require('./Autocomplate').create({
+    placeholder: 'Search',
+    minLength: 2, // minimum length of text to search
+    autoFocus: true,
+    fetchDetails: true,
+    onPress(data, details = null) { // details is provided when fetchDetails = true
+        console.log(data);
+        console.log(details);
+    },
+    getDefaultValue() {
+        return ''; // text input default value
+    },
+    query: {
+        // available options: https://developers.google.com/places/web-service/autocomplete
+        key: API_KEY,
+        language: 'en', // language of the results
+        types: '(cities)', // default: 'geocode'
+    },
+    styles: {
+        description: {
+            fontWeight: 'bold',
+        }
+    }
+});
 
 var _navigator;
 BackAndroid.addEventListener('hardwareBackPress', function() {
@@ -78,6 +104,7 @@ var dianhua = React.createClass({
                               <View style={styles.searchText}  ><Text style={{color:'#fff'}}>搜索</Text></View>
                             </TouchableHighlight>
                         </View>
+                        <GooglePlacesAutocomplete />
                         <ScrollView contentContainerStyle={styles.contentContainer}>
                             <View style={styles.scrollist}>
                                 {THUMBS.map(function(uri, index, array) {
