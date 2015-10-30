@@ -27,6 +27,7 @@ exports.create = function(options = {}) {
 
     var defaultStyles = {
         container: {
+
         },
         textInputContainer: {
             backgroundColor: '#C9C9CE',
@@ -118,7 +119,7 @@ exports.create = function(options = {}) {
             }
         },
         _disableRowLoaders() {
-            if (this.isMounted()) {
+            if (this.isMounted()) {//只有组件还处于挂载状态下，才有setState从而更新视图的意义。
                 for (let i = 0; i < this._results.length; i++) {
                     if (this._results[i].isLoading === true) {
                         this._results[i].isLoading = false;
@@ -177,11 +178,17 @@ exports.create = function(options = {}) {
                         console.warn("google places autocomplete: request could not be completed or has been aborted");
                     }
                 };
+                console.warn('https://maps.googleapis.com/maps/api/place/details/json?'+Qs.stringify({
+                        key: options.query.key,
+                        placeid: rowData.place_id,
+                        language: options.query.language,
+                    }));
                 request.open('GET', 'https://maps.googleapis.com/maps/api/place/details/json?'+Qs.stringify({
                         key: options.query.key,
                         placeid: rowData.place_id,
                         language: options.query.language,
                     }));
+                //request.open('GET', 'https://192.168.0.100/siipa/baojia/json.php?country='+encodeURI(text));
                 request.send();
             } else {
                 this.setState({
@@ -211,14 +218,20 @@ exports.create = function(options = {}) {
                     }
                     if (request.status === 200) {
                         var responseJSON = JSON.parse(request.responseText);
-                        if (typeof responseJSON.predictions !== 'undefined') {
+                        if (typeof responseJSON.predictions !== 'undefined'&& responseJSON.status == 'ok') {
                             if (this.isMounted()) {
                                 this._results = responseJSON.predictions;
                                 this.setState({
                                     dataSource: this.state.dataSource.cloneWithRows(responseJSON.predictions),
                                 });
                             }
+                        }else {
+                            this._results = [];
+                            this.setState({
+                                dataSource: this.state.dataSource.cloneWithRows([]),
+                            });
                         }
+
                         if (typeof responseJSON.error_message !== 'undefined') {
                             console.warn('google places autocomplete: '+responseJSON.error_message);
                         }
@@ -226,9 +239,12 @@ exports.create = function(options = {}) {
                         console.warn("google places autocomplete: request could not be completed or has been aborted");
                     }
                 };
-                console.warn('https://maps.googleapis.com/maps/api/place/autocomplete/json?&input='+encodeURI(text)+'&'+Qs.stringify(options.query));
 
-                request.open('GET', 'https://maps.googleapis.com/maps/api/place/autocomplete/json?&input='+encodeURI(text)+'&'+Qs.stringify(options.query));
+                //console.warn('https://maps.googleapis.com/maps/api/place/autocomplete/json?&input='+encodeURI(text)+'&'+Qs.stringify(options.query));
+                //request.open('GET', 'https://maps.googleapis.com/maps/api/place/autocomplete/json?&input='+encodeURI(text)+'&'+Qs.stringify(options.query));
+                console.warn('http://192.168.0.100/siipa/baojia/json.php?country='+encodeURI(text));
+                request.open('GET', 'http://192.168.0.100/siipa/baojia/json.php?country='+encodeURI(text));
+
                 request.send();
             } else {
                 this._results = [];

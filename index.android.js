@@ -44,7 +44,7 @@ var API_KEY = 'AIzaSyCBWSkIpo37W3jsJD2g7NY8sSSzKZXo6iw';
 
 var GooglePlacesAutocomplete = require('./Autocomplate').create({
     placeholder: 'Search',
-    minLength: 2, // minimum length of text to search
+    minLength: 1, // minimum length of text to search
     autoFocus: true,
     fetchDetails: true,
     onPress(data, details = null) { // details is provided when fetchDetails = true
@@ -61,6 +61,13 @@ var GooglePlacesAutocomplete = require('./Autocomplate').create({
         types: '(cities)', // default: 'geocode'
     },
     styles: {
+        textInput:{
+            height: 40,
+            color:'#fff',
+            borderColor: 'gray',
+            borderWidth: 1,
+            flex: 1
+        },
         description: {
             fontWeight: 'bold',
         }
@@ -149,7 +156,7 @@ var dianhua = React.createClass({
                 style={styles.container}
                 initialRoute={initialRoute}
                 //configureScene={() => Navigator.SceneConfigs.FadeAndroid}
-                configureScene={() => Navigator.SceneConfigs.FloatFromRight}
+                configureScene={(route) => Navigator.SceneConfigs.FloatFromBottom}
                 renderScene={this.RouteMapper}
                 />
         );

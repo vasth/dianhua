@@ -65,22 +65,24 @@ var SearchScreen = React.createClass({
 
    // var toolbar = <DetailToolbar navigator={this.props.navigator} style={styles.toolbar}
    //   story={this.props.story}/>;
+    /*
+    *   <TextInput
+     style={{height: 40,color:'#fff', borderColor: 'gray', borderWidth: 1,flex: 1}}
+     onChangeText={(text) => this.setState({searchtext:text})}
+     value={this.state.searchtext}
+     autoFocus={true}
+     underlineColorAndroid={'#fff'}
+     placeholderTextColor={'#fffaaa'}
+     placeholder="请输入搜索内容"
+     />
+     <View style={styles.searchbtn}><Text style={{color:'#fff'}}>搜索</Text></View>
+    * */
       return (
           <View style={styles.container}>
             <View style={styles.searchbar}>
               <TouchableHighlight  underlayColor="#d0d0d0" onPress={this.back}>
                 <View style={styles.backText}  ><Text style={{color:'#fff'}}>返回</Text></View>
               </TouchableHighlight>
-              <TextInput
-                  style={{height: 40,color:'#fff', borderColor: 'gray', borderWidth: 1,flex: 1}}
-                  onChangeText={(text) => this.setState({searchtext:text})}
-                  value={this.state.searchtext}
-                  autoFocus={true}
-                  underlineColorAndroid={'#fff'}
-                  placeholderTextColor={'#fffaaa'}
-                  placeholder="请输入搜索内容"
-                  />
-              <View style={styles.searchbtn}><Text style={{color:'#fff'}}>搜索</Text></View>
             </View>
             <GooglePlacesAutocomplete />
             <ScrollView contentContainerStyle={styles.contentContainer}>
