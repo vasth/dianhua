@@ -10,6 +10,7 @@
     "react-native-drawer": "^1.4.2",
     "extend": "^3.0.0",
     "qs": "^5.2.0",
-    "react-native": "^0.14.0-rc"
+    "react-native": "^0.13.2",
+    "react-timer-mixin":"^0.13.3"
   }
 }

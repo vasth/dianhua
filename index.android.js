@@ -38,7 +38,7 @@ var {
 var ToolbarAndroid = require('ToolbarAndroid');
 
 //var MainScreen = require('./MainScreen.android');
-var StoryScreen = require('./StoryScreen');
+var DianhuaList = require('./DianhuaList');
 var SearchScreen = require('./SearchScreen');
 var API_KEY = 'AIzaSyCBWSkIpo37W3jsJD2g7NY8sSSzKZXo6iw';
 
@@ -124,7 +124,7 @@ var dianhua = React.createClass({
             case "story":
                 return (
                     <View style={styles.container}>
-                        <StoryScreen
+                        <DianhuaList
                             style={{flex: 1}}
                             navigator={navigationOperations}
                             story={route.story} />
