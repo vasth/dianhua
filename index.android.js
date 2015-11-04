@@ -28,6 +28,7 @@ var {
     StyleSheet,
     ScrollView,
     ToolbarAndroid,
+    NativeModules,
     Image,
     ToastAndroid,
     TouchableNativeFeedback,
@@ -36,6 +37,9 @@ var {
     } = React;
 
 var ToolbarAndroid = require('ToolbarAndroid');
+
+var NRBaiduloc = NativeModules.RNBaiduloc;
+var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
 
 //var MainScreen = require('./MainScreen.android');
 var DianhuaList = require('./DianhuaList');
@@ -97,6 +101,13 @@ var dianhua = React.createClass({
     },
     componentDidMount: function() {
         console.log("dianhua-didmount");
+        NRBaiduloc.Initloc();
+        RCTDeviceEventEmitter.addListener('RNBaiduEvent', ev => {
+            ToastAndroid.show(ev.locationdescribe, ToastAndroid.SHORT);
+            ToastAndroid.show(ev.error, ToastAndroid.SHORT);
+            //ToastAndroid.show(ev.latitude, ToastAndroid.SHORT);
+            //ToastAndroid.show(ev.lontitude, ToastAndroid.SHORT);
+        });
     },
     RouteMapper: function(route, navigationOperations) {//这里应该没有第三个参数
         _navigator = navigationOperations;

@@ -5,7 +5,7 @@ android {
     buildToolsVersion "22.0.1"
 
     defaultConfig {
-        applicationId "com.dianhua"
+        applicationId "com.dian400.dianhua"
         minSdkVersion 16
         targetSdkVersion 22
         versionCode 1
@@ -20,10 +20,16 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    sourceSets {
+        main {
+            jniLibs.srcDirs = ['libs']
+        }
+    }
 }
 
 dependencies {
     compile fileTree(dir: 'libs', include: ['*.jar'])
     compile 'com.android.support:appcompat-v7:23.0.1'
     compile 'com.facebook.react:react-native:0.12.+'
+    compile files('libs/locSDK_6.13.jar')
 }
