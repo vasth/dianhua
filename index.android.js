@@ -20,6 +20,7 @@ var React = require('react-native');
 
 var {
     AppRegistry,
+    AsyncStorage,
     BackAndroid,
     Text,
     TextInput,
@@ -40,11 +41,39 @@ var ToolbarAndroid = require('ToolbarAndroid');
 
 var NRBaiduloc = NativeModules.RNBaiduloc;
 var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
+var Storage = require('react-native-storage');
 
 //var MainScreen = require('./MainScreen.android');
 var DianhuaList = require('./DianhuaList');
 var SearchScreen = require('./SearchScreen');
 var API_KEY = 'AIzaSyCBWSkIpo37W3jsJD2g7NY8sSSzKZXo6iw';
+
+var KEY_BAIDULOC_LAT = '@Latitude:';
+var KEY_BAIDULOC_LON = '@Lontitude:';
+var KEY_BAIDULOC_CITYCODE = '@Citycode:';
+
+var storage = new Storage({
+    //maximum capacity, default 1000
+    //最大容量，默认值1000条数据循环存储
+    size: 1000,
+    //expire time, default 1 day(1000 * 3600 * 24 secs)
+    //数据过期时间，默认一整天（1000 * 3600 * 24秒）
+    defaultExpires: 1000 * 3600 * 24,
+
+    //cache data in the memory. default is true.
+    //读写时在内存中缓存数据。默认启用。
+    enableCache: true,
+    //if data was not found in storage or expired,
+    //the corresponding sync method will be invoked and return
+    //the latest data.
+    //如果storage中没有相应数据，或数据已过期，
+    //则会调用相应的sync同步方法，无缝返回最新数据。
+    sync : {
+        //we'll talk about the details later.
+        //同步方法的具体说明会在后文提到
+    }
+});
+global.storage = storage;
 
 var GooglePlacesAutocomplete = require('./Autocomplate').create({
     placeholder: 'Search',
@@ -70,7 +99,7 @@ var GooglePlacesAutocomplete = require('./Autocomplate').create({
             color:'#fff',
             borderColor: 'gray',
             borderWidth: 1,
-            flex: 1
+            flex: 1,
         },
         description: {
             fontWeight: 'bold',
@@ -96,18 +125,37 @@ BackAndroid.addEventListener('hardwareBackPress', function() {
 var dianhua = React.createClass({
     getInitialState: function() {
         return {
-            splashed: false
+            splashed: false,
+            errortext:''
         };
     },
     componentDidMount: function() {
         console.log("dianhua-didmount");
         NRBaiduloc.Initloc();
         RCTDeviceEventEmitter.addListener('RNBaiduEvent', ev => {
-            ToastAndroid.show(ev.locationdescribe, ToastAndroid.SHORT);
-            ToastAndroid.show(ev.error, ToastAndroid.SHORT);
+            //ToastAndroid.show(ev.locationdescribe, ToastAndroid.SHORT);
+            //ToastAndroid.show(ev.error, ToastAndroid.SHORT);
+            //ToastAndroid.show(ev.city, ToastAndroid.SHORT);
+            //ToastAndroid.show(ev.citycode, ToastAndroid.SHORT);
             //ToastAndroid.show(ev.latitude, ToastAndroid.SHORT);
             //ToastAndroid.show(ev.lontitude, ToastAndroid.SHORT);
+            storage.save({
+                key: 'NRBaiduloc',
+                rawData: {
+                    latitude: ev.latitude,
+                    lontitude:ev.lontitude,
+                    citycode: ev.citycode
+                },
+                //if not specified, the defaultExpires will be applied instead.
+                //if set to null, then it will never expires.
+                //如果不指定过期时间，则会使用defaultExpires参数
+                //如果设为null，则永不过期
+                expires: null
+            });
         });
+    },
+    _appendMessage:function(message){
+        this.setState({errortext: message});
     },
     RouteMapper: function(route, navigationOperations) {//这里应该没有第三个参数
         _navigator = navigationOperations;
@@ -122,8 +170,15 @@ var dianhua = React.createClass({
                               <View style={styles.searchText}  ><Text style={{color:'#fff'}}>搜索</Text></View>
                             </TouchableHighlight>
                         </View>
-                        <GooglePlacesAutocomplete />
+                        <View style={styles.searchpress}>
+                            <TouchableHighlight  underlayColor="#d0d0d0" onPress={this.search}>
+                                <View style={styles.searchpressText}  >
+                                    <Text style={{color:'#d0d0d0'}}>搜索</Text>
+                                </View>
+                            </TouchableHighlight>
+                        </View>
                         <ScrollView contentContainerStyle={styles.contentContainer}>
+                            <Text>{this.state.errortext}</Text>
                             <View style={styles.scrollist}>
                                 {THUMBS.map(function(uri, index, array) {
                                     return <Thumb key={index}  item1={uri.item1} item2={uri.item2} navigator={navigationOperations} />
@@ -311,6 +366,23 @@ var styles = StyleSheet.create({
         justifyContent: 'center',
         backgroundColor: '#00a2ed',
         borderRadius: 3,
+    },
+    searchpress:{
+        backgroundColor: '#D9D9D9',
+        height:46,
+        flexDirection: 'column',
+    },
+    searchpressText:{
+        flex: 1,
+        height: 36,
+        margin:5,
+        padding: 5,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#fff',
+        borderRadius: 3,
+        color:'#fff',
+        flexDirection: 'column',
     },
     scrollist:{
         marginTop:20,

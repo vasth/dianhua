@@ -3,6 +3,7 @@
 var React = require('react-native');
 var {
     ActivityIndicatorIOS,
+    AsyncStorage,
     ListView,
     Platform,
     ProgressBarAndroid,
@@ -26,9 +27,12 @@ var MovieCell = require('./MovieCell');
  * create an account at http://developer.rottentomatoes.com/
  */
 var API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/';
-var API_KEYS = [
+//http://api.map.baidu.com/place/v2/eventsearch?query=%E6%8C%89%E6%91%A9&event=groupon&region=131&location=39.915,116.404&output=json&page_size=1&ak=KWQ2cAN6rQV6NdRP7uFXBiBi
+ var API_KEYS = [
     '7waqfqbprs7pajbz28mqf6vz',
 ];
+//var APP_URL = 'http://api.map.baidu.com/place/v2/eventsearch?';
+var APP_URL = 'http://api.map.baidu.com/place/v2/search';
 
 // Results should be cached keyed by the query
 // with values of null meaning "being fetched"
@@ -41,6 +45,9 @@ var resultsCache = {
 };
 
 var LOADING = {};
+var KEY_BAIDULOC_LAT = '@Latitude:';
+var KEY_BAIDULOC_LON = '@Lontitude:';
+var KEY_BAIDULOC_CITYCODE = '@Citycode:';
 
 var DianhuaList = React.createClass({
     mixins: [TimerMixin],
@@ -54,21 +61,62 @@ getInitialState: function() {
         dataSource: new ListView.DataSource({
             rowHasChanged: (row1, row2) => row1 !== row2,
         }),
-        filter: '',
+        filter: this.props.story,
         queryNumber: 0,
+        querystr:this.props.story,
+        region:0,
+        location:'39.915,116.404',// latitude : 39.909251 lontitude : 116.582697
+        page_size:1,
+        errortext:'',
     };
 },
-
+async _loadInitialState() {
+    console.log('_loadInitialState');
+    storage.load({
+        key: 'NRBaiduloc',
+        //autoSync(default true) means if data not found or expired,
+        //then invoke the corresponding sync method
+        //autoSync(默认为true)意味着在没有找到数据或数据过期时自动调用相应的同步方法
+        autoSync: true,
+        //syncInBackground(default true) means if data expired,
+        //return the outdated data first while invoke the sync method.
+        //It can be set to false to always return data provided by sync method when expired.(Of course it's slower)
+        //syncInBackground(默认为true)意味着如果数据过期，
+        //在调用同步方法的同时先返回已经过期的数据。
+        //设置为false的话，则始终强制返回同步方法提供的最新数据(当然会需要更多等待时间)。
+        syncInBackground: false
+    }).then( ret => {                   //found data goes to then()
+        this.setState({location: ""+ret.latitude+","+ret.lontitude});
+        this.setState({region: ret.citycode});
+        console.log(""+ret.latitude+","+ret.lontitude);
+        console.log(ret.lontitude);
+        console.log(ret.citycode);        //如果找到数据，则在then方法中返回
+        this.searchMovies(this.props.story);//找到数据后在搜索
+    }).catch( err => {                  //any exception including data not found
+        console.warn(err);              //goes to catch()
+                                        //如果没有找到数据且没有同步方法，
+                                        //或者有其他异常，则在catch中返回
+    });
+},
+_appendMessage:function(message){
+    this.setState({errortext: message});
+},
 componentDidMount: function() {
-    this.searchMovies('');
+    this._loadInitialState().done();
+    //this.searchMovies(this.props.story);
 },
 
 _urlForQueryAndPage: function(query: string, pageNumber: number): string {
-    var apiKey = API_KEYS[this.state.queryNumber % API_KEYS.length];
+   // var apiKey = API_KEYS[this.state.queryNumber % API_KEYS.length];
+ //http://api.map.baidu.com/place/v2/eventsearch?query=%E6%8C%89%E6%91%A9&event=groupon&region=131&location=39.915,116.404&output=json&page_size=1&ak=KWQ2cAN6rQV6NdRP7uFXBiBi
+//http://api.map.baidu.com/place/v2/search?ak=KWQ2cAN6rQV6NdRP7uFXBiBi&output=json&query=%E7%BE%8E%E5%AE%B9%E7%BE%8E%E5%8F%91&page_size=10&page_num=0&scope=2&location=39.915,116.404&radius=20000
     if (query) {
         return (
-            API_URL + 'movies.json?apikey=' + apiKey + '&q=' +
-            encodeURIComponent(query) + '&page_limit=20&page=' + pageNumber
+            //API_URL + 'movies.json?apikey=' + apiKey + '&q=' +
+            //encodeURIComponent(query) + '&page_limit=20&page=' + pageNumber
+            APP_URL + '?query='+ encodeURIComponent(query) + '&region=' + this.state.region +
+            '&location='+this.state.location + '&page_num='+ pageNumber +
+            '&scope=2&page_size=20&ak=KWQ2cAN6rQV6NdRP7uFXBiBi&output=json&radius=20000'
         );
     } else {
         // With no query, load latest movies
@@ -104,7 +152,7 @@ searchMovies: function(query: string) {
         queryNumber: this.state.queryNumber + 1,
         isLoadingTail: false,
     });
-
+    console.log(this._urlForQueryAndPage(query, 1));
     fetch(this._urlForQueryAndPage(query, 1))
         .then((response) => response.json())
         .catch((error) => {
@@ -119,7 +167,7 @@ searchMovies: function(query: string) {
         .then((responseData) => {
             LOADING[query] = false;
             resultsCache.totalForQuery[query] = responseData.total;
-            resultsCache.dataForQuery[query] = responseData.movies;
+            resultsCache.dataForQuery[query] = responseData.results;
             resultsCache.nextPageNumberForQuery[query] = 2;
 
             if (this.state.filter !== query) {
@@ -129,7 +177,7 @@ searchMovies: function(query: string) {
 
             this.setState({
                 isLoading: false,
-                dataSource: this.getDataSource(responseData.movies),
+                dataSource: this.getDataSource(responseData.results),
             });
         })
         .done();
@@ -165,6 +213,7 @@ onEndReached: function() {
 
     var page = resultsCache.nextPageNumberForQuery[query];
     invariant(page != null, 'Next page number for "%s" is missing', query);
+    console.log(this._urlForQueryAndPage(query, page));
     fetch(this._urlForQueryAndPage(query, page))
         .then((response) => response.json())
         .catch((error) => {
@@ -179,11 +228,11 @@ onEndReached: function() {
 
             LOADING[query] = false;
             // We reached the end of the list before the expected number of results
-            if (!responseData.movies) {
+            if (!responseData.results) {
                 resultsCache.totalForQuery[query] = moviesForQuery.length;
             } else {
-                for (var i in responseData.movies) {
-                    moviesForQuery.push(responseData.movies[i]);
+                for (var i in responseData.results) {
+                    moviesForQuery.push(responseData.results[i]);
                 }
                 resultsCache.dataForQuery[query] = moviesForQuery;
                 resultsCache.nextPageNumberForQuery[query] += 1;
@@ -234,6 +283,10 @@ renderFooter: function() {
     if (!this.hasMore() || !this.state.isLoadingTail) {
         return <View style={styles.scrollSpinner} />;
     }
+
+
+
+
     if (Platform.OS === 'ios') {
         return <ActivityIndicatorIOS style={styles.scrollSpinner} />;
     } else {
@@ -266,8 +319,8 @@ renderRow: function(
     highlightRowFunc: (sectionID: ?number | string, rowID: ?number | string) => void,
 ) {
     return (
-        <MovieCell
-            key={movie.id}
+        <MovieCell style={{margin:5}}
+            key={movie.uid}
             onSelect={() => this.selectMovie(movie)}
             onHighlight={() => highlightRowFunc(sectionID, rowID)}
             onUnhighlight={() => highlightRowFunc(null, null)}
@@ -283,6 +336,9 @@ render: function() {
                 <TouchableHighlight  underlayColor="#d0d0d0" onPress={this.back}>
                     <View style={styles.backText}  ><Text style={{color:'#fff'}}>返回</Text></View>
                 </TouchableHighlight>
+                <Text>{this.state.errortext}</Text>
+                <Text>{this.state.region}</Text>
+                <Text>{this.state.location}</Text>
             </View>
             <NoMovies
                 filter={this.state.filter}
@@ -307,6 +363,7 @@ render: function() {
                 keyboardDismissMode="on-drag"
                 keyboardShouldPersistTaps={true}
                 showsVerticalScrollIndicator={false}
+                style={styles.dianhuaList}
                 />
         </View>;
 
@@ -368,6 +425,7 @@ var styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white',
+        //  backgroundColor: 'rgba(0, 0, 0, 0.1)',
     },
     centerText: {
         alignItems: 'center',
@@ -379,7 +437,11 @@ var styles = StyleSheet.create({
         marginTop: 10,
         color: '#888888',
     },
-    separator: {
+    dianhuaList:{
+        padding:5,
+        backgroundColor: 'rgba(0, 0, 0, 0.1)',
+    },
+    separator: {//无listview是的界面
         height: 1,
         backgroundColor: '#eeeeee',
     },
@@ -387,8 +449,8 @@ var styles = StyleSheet.create({
         marginVertical: 20,
     },
     rowSeparator: {
-        backgroundColor: 'rgba(0, 0, 0, 0.1)',
-        height: 1,
+        //backgroundColor: 'rgba(0, 0, 0, 0)',
+        height:5,
         marginLeft: 4,
     },
     rowSeparatorHide: {

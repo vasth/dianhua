@@ -54,6 +54,7 @@ public class Commonloc {
         option.SetIgnoreCacheException(false);//可选，默认false，设置是否收集CRASH信息，默认收集
         option.setEnableSimulateGps(false);//可选，默认false，设置是否需要过滤gps仿真结果，默认需要
         mLocationClient.setLocOption(option);
+        Log.i("BaiduLocationApiDem", "start");
         mLocationClient.start();
     }
 
@@ -62,6 +63,7 @@ public class Commonloc {
 
         @Override
         public void onReceiveLocation(BDLocation location) {
+            Log.i("BaiduLocationApiDem", "onReceiveLocation");
             WritableMap params = Arguments.createMap();
 
             //Receive Location
@@ -78,6 +80,8 @@ public class Commonloc {
             params.putDouble("lontitude", location.getLongitude());
             sb.append("\nradius : ");
             sb.append(location.getRadius());
+
+
             if (location.getLocType() == BDLocation.TypeGpsLocation) {// GPS定位结果
                 sb.append("\nspeed : ");
                 sb.append(location.getSpeed());// 单位：公里每小时
@@ -91,7 +95,6 @@ public class Commonloc {
                 sb.append(location.getAddrStr());
                 sb.append("\ndescribe : ");
                 sb.append("gps定位成功");
-
             } else if (location.getLocType() == BDLocation.TypeNetWorkLocation) {// 网络定位结果
                 sb.append("\naddr : ");
                 sb.append(location.getAddrStr());
@@ -100,6 +103,7 @@ public class Commonloc {
                 sb.append(location.getOperators());
                 sb.append("\ndescribe : ");
                 sb.append("网络定位成功");
+
             } else if (location.getLocType() == BDLocation.TypeOffLineLocation) {// 离线定位结果
                 sb.append("\ndescribe : ");
                 sb.append("离线定位成功，离线定位结果也是有效的");
@@ -128,6 +132,14 @@ public class Commonloc {
 //                sb.append(p.getId() + " " + p.getName() + " " + p.getRank());
 //            }
 //        }
+            //获取城市信息
+            sb.append("\ncitycode : ");
+            sb.append(location.getCityCode());
+            params.putString("citycode", location.getCityCode());
+            sb.append("\ncity : ");
+            sb.append(location.getCity());
+            params.putString("city", location.getCity());
+
             sendEvent("RNBaiduEvent", params);
             Log.i("BaiduLocationApiDem", sb.toString());
         }
