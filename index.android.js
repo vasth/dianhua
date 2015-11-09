@@ -38,6 +38,8 @@ var {
     } = React;
 
 var ToolbarAndroid = require('ToolbarAndroid');
+var TimerMixin = require('react-timer-mixin');
+var tweenState = require('react-tween-state');
 
 var NRBaiduloc = NativeModules.RNBaiduloc;
 var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
@@ -107,6 +109,57 @@ var GooglePlacesAutocomplete = require('./Autocomplate').create({
     }
 });
 
+//提示text的独立控件
+var Tipstext = React.createClass({
+    mixins: [TimerMixin],
+    _handle: (null : any),
+    getInitialState() {
+        return {
+            timenum:10,
+            iself:"false",
+        }
+    },
+    componentWillReceiveProps:function(nextProps){
+        if(nextProps.isbegin ==="true"){
+            this._handle = this.setInterval(
+                () => {
+                    var timenum =  this.state.timenum - 1 ;
+                    this.setState({
+                        timenum: timenum,
+                        iself:"true",
+                    });
+                }, 1000
+            );
+        }else{
+            this.clearInterval(this._handle);
+        }
+    },
+    componentWillUpdate: function ( nextProps,  nextState) {
+        console.log("tipstext");
+        console.log(nextProps);
+        console.log(nextState);
+        if(nextState.timenum < 0){
+            this.setState({
+                timenum: 10,
+            });
+           // this.clearInterval();
+            this.clearInterval(this._handle);
+            this.props.updatefunc();
+        }
+    },
+    componentDidMount: function() {
+        console.log("Tipstextdidmount");
+    },
+    render: function() {
+        var coment = this.state.timenum === 0 ?
+            <Text >正在更新关键字......</Text>
+            :
+            <Text>距离更新关键字还有{this.state.timenum}秒</Text>;
+
+        return    coment ;
+    }
+});
+
 var _navigator;
 BackAndroid.addEventListener('hardwareBackPress', function() {
     console.log("BackAndroid");
@@ -123,10 +176,12 @@ BackAndroid.addEventListener('hardwareBackPress', function() {
 });
 
 var dianhua = React.createClass({
+    mixins: [TimerMixin],
     getInitialState: function() {
         return {
             splashed: false,
-            errortext:''
+            errortext:'',
+            timethumbs:THUMBS,
         };
     },
     componentDidMount: function() {
@@ -153,6 +208,10 @@ var dianhua = React.createClass({
                 expires: null
             });
         });
+
+    },
+    updatekeyword:function(){
+        this.setState({timethumbs: THUMBS1});
     },
     _appendMessage:function(message){
         this.setState({errortext: message});
@@ -177,10 +236,11 @@ var dianhua = React.createClass({
                                 </View>
                             </TouchableHighlight>
                         </View>
+                        <Tipstext updatefunc={this.updatekeyword} isbegin="false"/>
                         <ScrollView contentContainerStyle={styles.contentContainer}>
                             <Text>{this.state.errortext}</Text>
                             <View style={styles.scrollist}>
-                                {THUMBS.map(function(uri, index, array) {
+                                {this.state.timethumbs.map(function(uri, index, array) {
                                     return <Thumb key={index}  item1={uri.item1} item2={uri.item2} navigator={navigationOperations} />
                                 })}
                             </View>
@@ -242,11 +302,32 @@ var dianhua = React.createClass({
  </View>
  */
 var Thumb = React.createClass({
-    shouldComponentUpdate: function(nextProps, nextState) {
-        return false;
+    mixins:[tweenState.Mixin],
+    getInitialState() {
+        return { opacity: 0.2 }
+    },
+    _animateOpacity() {
+        this.tweenState('opacity', {
+            easing: tweenState.easingTypes.easeOutQuint,
+            duration: 1000,
+            endValue: this.state.opacity === 0.2 ? 1 : 0.2,
+        });
+    },
+    componentWillUpdate: function ( nextProps,  nextState) {
+        console.log(nextProps);
+        console.log(nextState);
+        console.log("WillUpdate");
+        //this._animateOpacity();
+    },
+    shouldComponentUpdate: function(nextProps, nextState) {//是否允许界面更新
+        return true;
     },
     componentDidMount: function() {
         console.log("didmount");
+        //this._animateOpacity();
+    },
+    componentWillUnmount:function(){
+        console.log("Unmount");
     },
     _onPressButton1:function(){
         console.log("onpress");
@@ -270,7 +351,7 @@ var Thumb = React.createClass({
                     <TouchableHighlight style={{flex: 1}} onPress={this._onPressButton1}>
                         <View  style={styles.list_item}>
                             <Text style={styles.list_item_text}>{this.props.item1}</Text>
-                        </View >
+                        </View>
                     </TouchableHighlight>
                     <View style={{height:39,width:0.5,marginTop:5,backgroundColor:'#d0d0d0'}}></View>
                     <TouchableHighlight style={{flex: 1}} onPress={this._onPressButton2}>
@@ -294,6 +375,18 @@ var THUMBS = [
     {item1: "专利", "item2": "版权"},
     {item1: "设计", "item2": "汽车美容"},
     {item1: "上门服务", "item2": "商标国际"},
+];
+
+var THUMBS1 = [
+    {item1: "美甲1", "item2": "SPA1"},
+    {item1: "美容1", "item2": "按摩1"},
+    {item1: "桑拿1", "item2": "洗浴1"},
+    {item1: "保养1", "item2": "微整形1"},
+    {item1: "宠物医院1", "item2": "狗粮1"},
+    {item1: "工商注册1", "item2": "商标1"},
+    {item1: "专利1", "item2": "版权1"},
+    {item1: "设计1", "item2": "汽车美容1"},
+    {item1: "上门服务1", "item2": "商标国际1"},
 ];
 
 //var THUMBS = ['https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.1997/p128x128/851549_767334479959628_274486868_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851561_767334496626293_1958532586_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.1997/p128x128/851579_767334503292959_179092627_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851589_767334513292958_1747022277_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851563_767334559959620_1193692107_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851593_767334566626286_1953955109_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851591_767334523292957_797560749_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851567_767334529959623_843148472_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851548_767334489959627_794462220_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851575_767334539959622_441598241_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.1997/p128x128/851573_767334549959621_534583464_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851583_767334573292952_1519550680_n.png'];

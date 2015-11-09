@@ -13,6 +13,7 @@
     "react-native-drawer": "^1.4.2",
     "react-native-storage": "0.0.9",
     "react-native-viewpager": "^0.1.0",
-    "react-timer-mixin": "^0.13.3"
+    "react-timer-mixin": "^0.13.3",
+    "react-tween-state": "^0.1.3"
   }
 }

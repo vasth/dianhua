@@ -82,6 +82,9 @@ var MovieCell = React.createClass({
                 <Text style={styles.rating} numberOfLines={1}>
                   {this.getrating(this.props.movie.detail_info.overall_rating)}
                 </Text>
+                <Text   numberOfLines={1}>
+                  距离: {this.props.movie.detail_info.distance / 1000} km
+                </Text>
               </Text>
               <Text style={styles.movieYear}numberOfLines={1}>
                 地址: {this.props.movie.address}
