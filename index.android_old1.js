@@ -1,4 +1,7 @@
 /**
+ * Created by Administrator on 15-11-10.
+ */
+/**
  * The examples provided by Facebook are for non-commercial testing and
  * evaluation purposes only.
  *
@@ -49,85 +52,49 @@ var Storage = require('react-native-storage');
 var DianhuaList = require('./DianhuaList');
 var SearchScreen = require('./SearchScreen');
 
-/**************************å­˜å‚¨**************************/
+/**************************´æ´¢**************************/
 var KEY_BAIDULOC_LAT = '@Latitude:';
 var KEY_BAIDULOC_LON = '@Lontitude:';
 var KEY_BAIDULOC_CITYCODE = '@Citycode:';
 
 var storage = new Storage({
     //maximum capacity, default 1000
-    //æœ€å¤§å®¹é‡ï¼Œé»˜è®¤å€¼1000æ¡æ•°æ®å¾ªç¯å­˜å‚¨
+    //×î´óÈİÁ¿£¬Ä¬ÈÏÖµ1000ÌõÊı¾İÑ­»·´æ´¢
     size: 1000,
     //expire time, default 1 day(1000 * 3600 * 24 secs)
-    //æ•°æ®è¿‡æœŸæ—¶é—´ï¼Œé»˜è®¤ä¸€æ•´å¤©ï¼ˆ1000 * 3600 * 24ç§’ï¼‰
+    //Êı¾İ¹ıÆÚÊ±¼ä£¬Ä¬ÈÏÒ»ÕûÌì£¨1000 * 3600 * 24Ãë£©
     defaultExpires: 1000 * 3600 * 24,
 
     //cache data in the memory. default is true.
-    //è¯»å†™æ—¶åœ¨å†…å­˜ä¸­ç¼“å­˜æ•°æ®ã€‚é»˜è®¤å¯ç”¨ã€‚
+    //¶ÁĞ´Ê±ÔÚÄÚ´æÖĞ»º´æÊı¾İ¡£Ä¬ÈÏÆôÓÃ¡£
     enableCache: true,
     //if data was not found in storage or expired,
     //the corresponding sync method will be invoked and return
     //the latest data.
-    //å¦‚æœstorageä¸­æ²¡æœ‰ç›¸åº”æ•°æ®ï¼Œæˆ–æ•°æ®å·²è¿‡æœŸï¼Œ
-    //åˆ™ä¼šè°ƒç”¨ç›¸åº”çš„syncåŒæ­¥æ–¹æ³•ï¼Œæ— ç¼è¿”å›æœ€æ–°æ•°æ®ã€‚
+    //Èç¹ûstorageÖĞÃ»ÓĞÏàÓ¦Êı¾İ£¬»òÊı¾İÒÑ¹ıÆÚ£¬
+    //Ôò»áµ÷ÓÃÏàÓ¦µÄsyncÍ¬²½·½·¨£¬ÎŞ·ì·µ»Ø×îĞÂÊı¾İ¡£
     sync : {
         //we'll talk about the details later.
-        //åŒæ­¥æ–¹æ³•çš„å…·ä½“è¯´æ˜ä¼šåœ¨åæ–‡æåˆ°
+        //Í¬²½·½·¨µÄ¾ßÌåËµÃ÷»áÔÚºóÎÄÌáµ½
     }
 });
 global.storage = storage;
-/**************************å­˜å‚¨end**************************/
+/**************************´æ´¢end**************************/
 
-//æç¤ºtextçš„ç‹¬ç«‹æ§ä»¶
+//ÌáÊ¾textµÄ¶ÀÁ¢¿Ø¼ş
 var Tipstext = React.createClass({
     mixins: [TimerMixin],
     _handle: (null : any),
-    getInitialState() {
-        return {
-            timenum:10,
-            iself:"false",
-        }
-    },
-    componentWillReceiveProps:function(nextProps){
-        console.log("Tipstext---WillReceiveProps");
-        console.log(nextProps);
-        if(nextProps.isbegin ==="true"){
-            this._handle = this.setInterval(
-                () => {
-                    var timenum =  this.state.timenum - 1 ;
-                    this.setState({
-                        timenum: timenum,
-                        iself:"true",
-                    });
-                }, 1000
-            );
-        }else{
-            this.clearInterval(this._handle);
-        }
-    },
-    componentWillUpdate: function ( nextProps,  nextState) {
-        console.log("tipstext--componentWillUpdate");
-        console.log(nextProps);
-        console.log(nextState);
-        if(10 < 0){
-            console.log("10 < 0");
-        }
-        if(nextState.timenum < 0){
-            console.log("<0");
-            console.log(nextState);
-            console.log("<0");
-        }
-        if(nextState.timenum === -1){
-            this.setState({
-                timenum: 10,
-            });
-           // this.clearInterval();
-            //this.clearInterval(this._handle);
-            this.props.updatefunc();
-        }
-    },
-    componentDidMount: function() {
-        console.log("Tipstextdidmount");
+getInitialState() {
+    return {
+        timenum:10,
+        iself:"false",
+    }
+},
+componentWillReceiveProps:function(nextProps){
+    console.log("Tipstext---WillReceiveProps");
+    console.log(nextProps);
+    if(nextProps.isbegin ==="true"){
         this._handle = this.setInterval(
             () => {
                 var timenum =  this.state.timenum - 1 ;
@@ -137,19 +104,55 @@ var Tipstext = React.createClass({
                 });
             }, 1000
         );
-    },
-    render: function() {
-        var coment = this.state.timenum === 0 ?
-            <Text >æ­£åœ¨æ›´æ–°å…³é”®å­—......</Text>
-            :
-            <Text>è·ç¦»æ›´æ–°å…³é”®å­—è¿˜æœ‰{this.state.timenum}ç§’</Text>;
-        return    coment ;
+    }else{
+        this.clearInterval(this._handle);
     }
+},
+componentWillUpdate: function ( nextProps,  nextState) {
+    console.log("tipstext--componentWillUpdate");
+    console.log(nextProps);
+    console.log(nextState);
+    if(10 < 0){
+        console.log("10 < 0");
+    }
+    if(nextState.timenum < 0){
+        console.log("<0");
+        console.log(nextState);
+        console.log("<0");
+    }
+    if(nextState.timenum === -1){
+        this.setState({
+            timenum: 10,
+        });
+        // this.clearInterval();
+        //this.clearInterval(this._handle);
+        this.props.updatefunc();
+    }
+},
+componentDidMount: function() {
+    console.log("Tipstextdidmount");
+    this._handle = this.setInterval(
+        () => {
+            var timenum =  this.state.timenum - 1 ;
+            this.setState({
+                timenum: timenum,
+                iself:"true",
+            });
+        }, 1000
+    );
+},
+render: function() {
+    var coment = this.state.timenum === 0 ?
+        <Text >ÕıÔÚ¸üĞÂ¹Ø¼ü×Ö......</Text>
+        :
+        <Text>¾àÀë¸üĞÂ¹Ø¼ü×Ö»¹ÓĞ{this.state.timenum}Ãë</Text>;
+    return    coment ;
+}
 });
 //<Tipstext updatefunc={this.updatekeyword} isbegin="false"/>
-//<Tipstext updatefunc={this.updatekeyword} isbegin={this.state.isbegin}/> æš‚æ—¶ä¸ç”¨å€’è®¡æ—¶
+//<Tipstext updatefunc={this.updatekeyword} isbegin={this.state.isbegin}/> ÔİÊ±²»ÓÃµ¹¼ÆÊ±
 
-//å…³é”®å­—å±•ç¤ºçš„æ§ä»¶
+//¹Ø¼ü×ÖÕ¹Ê¾µÄ¿Ø¼ş
 var KeywordsView = React.createClass({
     getInitialState() {
         return {
@@ -163,7 +166,7 @@ var KeywordsView = React.createClass({
             timethumbs: nextProps.timethumbs,
         });
     },
-    shouldComponentUpdate: function ( nextProps,  nextState) {//ç»„ä»¶æ˜¯å¦æ›´æ–°
+    shouldComponentUpdate: function ( nextProps,  nextState) {//×é¼şÊÇ·ñ¸üĞÂ
         return nextProps.isupdate;
     },
     componentWillUpdate: function ( nextProps,  nextState) {
@@ -173,11 +176,11 @@ var KeywordsView = React.createClass({
 
     },
     componentDidUpdate: function ( nextProps,  nextState) {
-         console.log("KeywordsView---DidUpdate");
-         console.log(nextProps);
-         console.log(nextState);
-         this.props.updatedkeyword();
-     },
+        console.log("KeywordsView---DidUpdate");
+        console.log(nextProps);
+        console.log(nextState);
+        this.props.updatedkeyword();
+    },
     componentDidMount: function() {
         console.log("Tipstextdidmount");
     },
@@ -213,7 +216,7 @@ var dianhua = React.createClass({
             errortext:'',
             isbegin:'true',
             timethumbs:THUMBS,
-            isupdate:true,//å…³é”®è¯ç•Œé¢æ˜¯å¦æ›´æ–°
+            isupdate:true,//¹Ø¼ü´Ê½çÃæÊÇ·ñ¸üĞÂ
         };
     },
     componentDidMount: function() {
@@ -235,32 +238,31 @@ var dianhua = React.createClass({
                 },
                 //if not specified, the defaultExpires will be applied instead.
                 //if set to null, then it will never expires.
-                //å¦‚æœä¸æŒ‡å®šè¿‡æœŸæ—¶é—´ï¼Œåˆ™ä¼šä½¿ç”¨defaultExpireså‚æ•°
-                //å¦‚æœè®¾ä¸ºnullï¼Œåˆ™æ°¸ä¸è¿‡æœŸ
+                //Èç¹û²»Ö¸¶¨¹ıÆÚÊ±¼ä£¬Ôò»áÊ¹ÓÃdefaultExpires²ÎÊı
+                //Èç¹ûÉèÎªnull£¬ÔòÓÀ²»¹ıÆÚ
                 expires: null
             });
         });
 
     },
-    updatekeyword:function(){//æ›´æ–°å…³é”®è¯
-        ToastAndroid.show("æ›´æ–°å…³é”®è¯", ToastAndroid.SHORT);
-        //this.setState({
-        //    isupdate:true,//æ›´æ–°å…³é”®è¯ç•Œé¢
-        //    timethumbs: THUMBS1,
-        //    isbegin:"false",//æ˜¯å¦å¼€å§‹è®¡æ—¶
-        //});
+    updatekeyword:function(){//¸üĞÂ¹Ø¼ü´Ê
+        this.setState({
+            isupdate:true,//¸üĞÂ¹Ø¼ü´Ê½çÃæ
+            timethumbs: THUMBS1,
+            isbegin:"false",//ÊÇ·ñ¿ªÊ¼¼ÆÊ±
+        });
     },
-    updatedkeyword:function(){//æ›´æ–°å®Œæˆå…³é”®è¯
+    updatedkeyword:function(){//¸üĞÂÍê³É¹Ø¼ü´Ê
         console.log("updatedkeyword");
         this.setState({
             isbegin:"true",
-            isupdate:false,//ä¸æ›´æ–°å…³é”®è¯ç•Œé¢
+            isupdate:false,//²»¸üĞÂ¹Ø¼ü´Ê½çÃæ
         });
     },
     _appendMessage:function(message){
         this.setState({errortext: message});
     },
-    RouteMapper: function(route, navigationOperations) {//è¿™é‡Œåº”è¯¥æ²¡æœ‰ç¬¬ä¸‰ä¸ªå‚æ•°
+    RouteMapper: function(route, navigationOperations) {//ÕâÀïÓ¦¸ÃÃ»ÓĞµÚÈı¸ö²ÎÊı
         _navigator = navigationOperations;
 
         switch (route.name) {
@@ -268,25 +270,25 @@ var dianhua = React.createClass({
                 return (
                     <View style={styles.container}>
                         <View style={styles.title}>
-                            <Text style={styles.titleText} numberOfLines={5}> åº—è¯ </Text>
-                            <TouchableNativeFeedback  underlayColor="#d0d0d0" onPress={this.search}>
-                              <View style={styles.searchText}  ><Text style={{color:'#fff'}}>æœç´¢</Text></View>
-                            </TouchableNativeFeedback>
+                            <Text style={styles.titleText} numberOfLines={5}> µê»° </Text>
+                            <TouchableHighlight  underlayColor="#d0d0d0" onPress={this.search}>
+                                <View style={styles.searchText}  ><Text style={{color:'#fff'}}>ËÑË÷</Text></View>
+                            </TouchableHighlight>
                         </View>
                         <View style={styles.searchpress}>
-                            <TouchableNativeFeedback  underlayColor="#d0d0d0" onPress={this.search}>
+                            <TouchableHighlight  underlayColor="#d0d0d0" onPress={this.search}>
                                 <View style={styles.searchpressText}  >
-                                    <Text style={{color:'#d0d0d0'}}>æœç´¢</Text>
+                                    <Text style={{color:'#d0d0d0'}}>ËÑË÷</Text>
                                 </View>
-                            </TouchableNativeFeedback>
+                            </TouchableHighlight>
                         </View>
                         <ScrollView contentContainerStyle={styles.contentContainer}>
                             <Text>{this.state.errortext}</Text>
-                            <TouchableNativeFeedback  underlayColor="#d0d0d0" onPress={this.updatekeyword}>
-                                <View style={styles.searchText}  ><Text style={{color:'#000'}}>æ¢ä¸€æ‰¹</Text></View>
-                            </TouchableNativeFeedback>
+                            <TouchableHighlight  underlayColor="#d0d0d0" onPress={this.updatekeyword}>
+                                <View style={styles.searchText}  ><Text style={{color:'#000'}}>»»Ò»Åú</Text></View>
+                            </TouchableHighlight>
                             <View style={styles.scrollist}>
-                               <KeywordsView timethumbs={this.state.timethumbs} isupdate={this.state.isupdate} navigator={navigationOperations} updatedkeyword={this.updatedkeyword}/>
+                                <KeywordsView timethumbs={this.state.timethumbs} isupdate={this.state.isupdate} navigator={navigationOperations} updatedkeyword={this.updatedkeyword}/>
                             </View>
                         </ScrollView>
                     </View>
@@ -325,7 +327,7 @@ var dianhua = React.createClass({
             <Navigator
                 style={styles.container}
                 initialRoute={initialRoute}
-                //configureScene={() => Navigator.SceneConfigs.FadeAndroid}
+                configureScene={() => Navigator.SceneConfigs.FadeAndroid}
                 //configureScene={(route) => Navigator.SceneConfigs.FloatFromRight}
                 renderScene={this.RouteMapper}
                 />
@@ -333,21 +335,21 @@ var dianhua = React.createClass({
     }
 });
 
-/*æœç´¢æ¡†view
-* <View style={styles.searchbar}>
+/*ËÑË÷¿òview
+ * <View style={styles.searchbar}>
  <TextInput
  style={{height: 40, borderColor: 'gray', borderWidth: 1,flex: 1}}
  onChangeText={(text) => this.setState({text})}
  value={this.state.text}
  onFocus={this.search}
- placeholder="è¯·è¾“å…¥æœç´¢å†…å®¹"
+ placeholder="ÇëÊäÈëËÑË÷ÄÚÈİ"
  />
- <View style={styles.searchbtn}><Text >æœç´¢</Text></View>
+ <View style={styles.searchbtn}><Text >ËÑË÷</Text></View>
  </View>
  */
 
 /*
-* getInitialState() {
+ * getInitialState() {
  return { opacity: 0.2 }
  },
  _animateOpacity() {
@@ -364,7 +366,7 @@ var dianhua = React.createClass({
  //this._animateOpacity();
  },*/
 var Thumb = React.createClass({
-    shouldComponentUpdate: function(nextProps, nextState) {//æ˜¯å¦å…è®¸ç•Œé¢æ›´æ–°
+    shouldComponentUpdate: function(nextProps, nextState) {//ÊÇ·ñÔÊĞí½çÃæ¸üĞÂ
         return true;
     },
     componentDidMount: function() {
@@ -393,17 +395,17 @@ var Thumb = React.createClass({
             <View style={styles.listitemcontent}>
                 <View style={{height:0.5,backgroundColor:'#d0d0d0'}}></View>
                 <View style={styles.listitem}>
-                    <TouchableNativeFeedback style={{flex: 1}} onPress={this._onPressButton1}>
+                    <TouchableHighlight style={{flex: 1}} onPress={this._onPressButton1}>
                         <View  style={styles.list_item}>
                             <Text style={styles.list_item_text}>{this.props.item1}</Text>
                         </View>
-                    </TouchableNativeFeedback>
+                    </TouchableHighlight>
                     <View style={{height:39,width:0.5,marginTop:5,backgroundColor:'#d0d0d0'}}></View>
-                    <TouchableNativeFeedback style={{flex: 1}} onPress={this._onPressButton2}>
+                    <TouchableHighlight style={{flex: 1}} onPress={this._onPressButton2}>
                         <View style={styles.list_item}>
                             <Text style={styles.list_item_text}>{this.props.item2}</Text>
                         </View>
-                    </TouchableNativeFeedback>
+                    </TouchableHighlight>
                 </View>
             </View>
         );
@@ -411,21 +413,21 @@ var Thumb = React.createClass({
 });
 
 var THUMBS = [
-    {item1: "ç¾ç”²", "item2": "SPA"},
-    {item1: "ç¾å®¹", "item2": "æŒ‰æ‘©"},
-    {item1: "æ¡‘æ‹¿", "item2": "æ´—æµ´"},
+    {item1: "ÃÀ¼×", "item2": "SPA"},
+    {item1: "ÃÀÈİ", "item2": "°´Ä¦"},
+    {item1: "É£ÄÃ", "item2": "Ï´Ô¡"},
 ];
 
 var THUMBS1 = [
-    {item1: "ä¿å…»", "item2": "å¾®æ•´å½¢"},
-    {item1: "å® ç‰©åŒ»é™¢", "item2": "ç‹—ç²®"},
-    {item1: "å·¥å•†æ³¨å†Œ", "item2": "å•†æ ‡"},
+    {item1: "±£Ñø", "item2": "Î¢ÕûĞÎ"},
+    {item1: "³èÎïÒ½Ôº", "item2": "¹·Á¸"},
+    {item1: "¹¤ÉÌ×¢²á", "item2": "ÉÌ±ê"},
 ];
 
 var THUMBS2 = [
-    {item1: "ä¸“åˆ©", "item2": "ç‰ˆæƒ"},
-    {item1: "è®¾è®¡", "item2": "æ±½è½¦ç¾å®¹"},
-    {item1: "ä¸Šé—¨æœåŠ¡", "item2": "å•†æ ‡å›½é™…"},
+    {item1: "×¨Àû", "item2": "°æÈ¨"},
+    {item1: "Éè¼Æ", "item2": "Æû³µÃÀÈİ"},
+    {item1: "ÉÏÃÅ·şÎñ", "item2": "ÉÌ±ê¹ú¼Ê"},
 ];
 
 
