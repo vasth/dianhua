@@ -40,8 +40,8 @@ var {
     } = React;
 
 var ToolbarAndroid = require('ToolbarAndroid');
-var TimerMixin = require('react-timer-mixin');
-var tweenState = require('react-tween-state');
+//var TimerMixin = require('react-timer-mixin');
+//var tweenState = require('react-tween-state');
 
 var NRBaiduloc = NativeModules.RNBaiduloc;
 var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
@@ -89,7 +89,6 @@ global.storage = storage;
 
 //关键字展示的控件
 var KeywordsView = React.createClass({
-    mixins: [tweenState.Mixin],
     _press:1,
     getInitialState() {
         //var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
@@ -132,7 +131,7 @@ var KeywordsView = React.createClass({
     //     //this.props.updatedkeyword();
     // },
     componentDidMount: function() {
-        console.log("Tipstextdidmount");
+        console.log("Keywordsdidmount");
         this.setState({
             timethumbs:this.getDataSource(THUMBS1),
         });
@@ -222,9 +221,12 @@ var KeywordsView = React.createClass({
         var navigator = this.props.navigator;
         return (
             <View>
+                <View style={{ flex: 1,flexDirection: 'row',}}>
+                 <View style={{ flex: 1}}></View>
                 <TouchableElement  underlayColor="#d0d0d0" onPress={this.updatekeyword}>
-                    <View style={styles.searchText}  ><Text style={{color:'#000'}}>换一批</Text></View>
+                       <View style={styles.searchText}  ><Text style={{color:'#000'}}>换一批</Text></View>
                 </TouchableElement>
+                </View>
                 <ListView
                     dataSource={this.state.timethumbs}
                     renderRow={this.randerow}
@@ -301,23 +303,28 @@ var dianhua = React.createClass({
     },
     RouteMapper: function(route, navigationOperations) {//这里应该没有第三个参数
         _navigator = navigationOperations;
-
+//<Text style={{color:'#d0d0d0'}}>搜索</Text>4876FF
         switch (route.name) {
             case "home":
                 return (
                     <View style={styles.container}>
-                        <View style={styles.title}>
-                            <Text style={styles.titleText} numberOfLines={5}> 店话 </Text>
-                            <TouchableElement  underlayColor="#d0d0d0" onPress={this.search}>
-                              <View style={styles.searchText}  ><Text style={{color:'#fff'}}>搜索</Text></View>
-                            </TouchableElement>
-                        </View>
-                        <View style={styles.searchpress}>
-                            <TouchableElement  underlayColor="#d0d0d0" onPress={this.search}>
-                                <View style={styles.searchpressText}  >
-                                    <Text style={{color:'#d0d0d0'}}>搜索</Text>
-                                </View>
-                            </TouchableElement>
+                        <View style={{backgroundColor:'#fff',paddingBottom:10}}>
+                            <View style={styles.title}>
+                                <Image source={require('./img/googlelogo.png')} />
+                                <Image style={{ width: 160,height: 56,}} source={{uri: 'http://192.168.0.100/siipa/googlelogo.png'}} />
+                            </View>
+                            <View style={styles.searchpress}>
+                                <TouchableElement  underlayColor="#d0d0d0" onPress={this.search}>
+                                    <View style={styles.searchpressText}  >
+                                        <TextInput
+                                            ref='textInput'　
+                                            style={styles.textInput}　　
+                                            placeholder="搜索"
+                                            clearButtonMode="while-editing"
+                                            />
+                                    </View>
+                                </TouchableElement>
+                            </View>
                         </View>
                         <ScrollView contentContainerStyle={styles.contentContainer}>
                             <Text>{this.state.errortext}</Text>
@@ -398,15 +405,10 @@ var styles = StyleSheet.create({
     container: {
         flex: 1,
         flexDirection: 'column',
+        backgroundColor: '#fff',
     },
     contentContainer:{
-        paddingVertical: 20
-    },
-    containerPage: {
-        height: 50,
-        width: 50,
-        backgroundColor: '#527FE4',
-        padding: 5,
+        paddingVertical: 10
     },
     text: {
         fontSize: 20,
@@ -420,16 +422,18 @@ var styles = StyleSheet.create({
         height: 64,
     },
     title:{
-        backgroundColor: '#00a2ed',
-        height: 56,
+        marginTop:56,
+        //backgroundColor: '#00a2ed',
+        height: 80,
         alignItems: 'center',
         justifyContent: 'center',
         flexDirection: 'row',
     },
     titleText: {
-        flex: 1,
-        fontSize: 20,
-        color: '#fff',
+        //flex: 1,
+        fontSize: 50,
+        color: '#00a2ed',
+        //color: '#fff',
         fontWeight: 'bold',
     },
     searchText:{
@@ -462,15 +466,29 @@ var styles = StyleSheet.create({
         borderRadius: 3,
     },
     searchpress:{
-        marginTop:56,
+        marginLeft:5,
+        marginRight:5,
+        marginTop:10,
         backgroundColor: '#D9D9D9',
         height:46,
         flexDirection: 'column',
     },
+    textInput: {
+        backgroundColor: '#FFFFFF',
+        height: 28,
+        borderRadius: 5,
+        paddingTop: 4.5,
+        paddingBottom: 4.5,
+        paddingLeft: 10,
+        paddingRight: 10,　
+        marginLeft: 8,
+        marginRight: 8,
+        fontSize: 15,
+    },
     searchpressText:{
         flex: 1,
         height: 36,
-        margin:5,
+        margin:1,
         padding: 5,
         alignItems: 'center',
         justifyContent: 'center',
