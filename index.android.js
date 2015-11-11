@@ -304,14 +304,15 @@ var dianhua = React.createClass({
     RouteMapper: function(route, navigationOperations) {//这里应该没有第三个参数
         _navigator = navigationOperations;
 //<Text style={{color:'#d0d0d0'}}>搜索</Text>4876FF
+
         switch (route.name) {
             case "home":
+                // <Image style={{ width: 160,height: 56,}} source={{uri: 'http://192.168.0.100/siipa/googlelogo.png'}} />
                 return (
                     <View style={styles.container}>
                         <View style={{backgroundColor:'#fff',paddingBottom:10}}>
                             <View style={styles.title}>
                                 <Image source={require('./img/googlelogo.png')} />
-                                <Image style={{ width: 160,height: 56,}} source={{uri: 'http://192.168.0.100/siipa/googlelogo.png'}} />
                             </View>
                             <View style={styles.searchpress}>
                                 <TouchableElement  underlayColor="#d0d0d0" onPress={this.search}>
