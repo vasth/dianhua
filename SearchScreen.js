@@ -24,6 +24,8 @@ var PIXELRATIO = PixelRatio.get();
 var HEADER_SIZE = 200;
 var API_KEY = 'AIzaSyCBWSkIpo37W3jsJD2g7NY8sSSzKZXo6iw';
 
+var InteractionManager = require('InteractionManager');
+
 var GooglePlacesAutocomplete = require('./Autocomplate').create({
   placeholder: 'Search',
   minLength: 2, // minimum length of text to search
@@ -55,14 +57,29 @@ var SearchScreen = React.createClass({
   getInitialState: function() {
     return {
       splashed: false,
+      renderPlaceholderOnly:true,
       searchtext:"",
     };
   },
   back:function(){
     this.props.navigator.pop();
   },
+  componentDidMount() {
+    InteractionManager.runAfterInteractions(() => {
+      this.setState({renderPlaceholderOnly: false});
+    });
+  },
+  _renderPlaceholderView() {
+    return (
+        <View>
+          <Text>Loading...</Text>
+        </View>
+    );
+  },
   render: function() {
-
+    if (this.state.renderPlaceholderOnly) {
+      return this._renderPlaceholderView();
+    }
    // var toolbar = <DetailToolbar navigator={this.props.navigator} style={styles.toolbar}
    //   story={this.props.story}/>;
     /*

@@ -21,6 +21,7 @@ var React = require('react-native');
 var {
     AppRegistry,
     AsyncStorage,
+    Animated,
     BackAndroid,
     Text,
     TextInput,
@@ -31,15 +32,16 @@ var {
     ToolbarAndroid,
     NativeModules,
     Image,
+    ListView,
+    Platform,
     ToastAndroid,
     TouchableNativeFeedback,
     TouchableHighlight,
-    TouchableOpacity,
     } = React;
 
 var ToolbarAndroid = require('ToolbarAndroid');
 var TimerMixin = require('react-timer-mixin');
-//var tweenState = require('react-tween-state');
+var tweenState = require('react-tween-state');
 
 var NRBaiduloc = NativeModules.RNBaiduloc;
 var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
@@ -48,6 +50,12 @@ var Storage = require('react-native-storage');
 //var MainScreen = require('./MainScreen.android');
 var DianhuaList = require('./DianhuaList');
 var SearchScreen = require('./SearchScreen');
+var dismissKeyboard = require('dismissKeyboard');
+
+var TouchableElement = TouchableHighlight;
+if (Platform.OS === 'android') {
+    TouchableElement = TouchableNativeFeedback;
+}
 
 /**************************存储**************************/
 var KEY_BAIDULOC_LAT = '@Latitude:';
@@ -78,117 +86,157 @@ var storage = new Storage({
 global.storage = storage;
 /**************************存储end**************************/
 
-//提示text的独立控件
-var Tipstext = React.createClass({
-    mixins: [TimerMixin],
-    _handle: (null : any),
-    getInitialState() {
-        return {
-            timenum:10,
-            iself:"false",
-        }
-    },
-    componentWillReceiveProps:function(nextProps){
-        console.log("Tipstext---WillReceiveProps");
-        console.log(nextProps);
-        if(nextProps.isbegin ==="true"){
-            this._handle = this.setInterval(
-                () => {
-                    var timenum =  this.state.timenum - 1 ;
-                    this.setState({
-                        timenum: timenum,
-                        iself:"true",
-                    });
-                }, 1000
-            );
-        }else{
-            this.clearInterval(this._handle);
-        }
-    },
-    componentWillUpdate: function ( nextProps,  nextState) {
-        console.log("tipstext--componentWillUpdate");
-        console.log(nextProps);
-        console.log(nextState);
-        if(10 < 0){
-            console.log("10 < 0");
-        }
-        if(nextState.timenum < 0){
-            console.log("<0");
-            console.log(nextState);
-            console.log("<0");
-        }
-        if(nextState.timenum === -1){
-            this.setState({
-                timenum: 10,
-            });
-           // this.clearInterval();
-            //this.clearInterval(this._handle);
-            this.props.updatefunc();
-        }
-    },
-    componentDidMount: function() {
-        console.log("Tipstextdidmount");
-        this._handle = this.setInterval(
-            () => {
-                var timenum =  this.state.timenum - 1 ;
-                this.setState({
-                    timenum: timenum,
-                    iself:"true",
-                });
-            }, 1000
-        );
-    },
-    render: function() {
-        var coment = this.state.timenum === 0 ?
-            <Text >正在更新关键字......</Text>
-            :
-            <Text>距离更新关键字还有{this.state.timenum}秒</Text>;
-        return    coment ;
-    }
-});
-//<Tipstext updatefunc={this.updatekeyword} isbegin="false"/>
-//<Tipstext updatefunc={this.updatekeyword} isbegin={this.state.isbegin}/> 暂时不用倒计时
 
 //关键字展示的控件
 var KeywordsView = React.createClass({
+    mixins: [tweenState.Mixin],
+    _press:1,
     getInitialState() {
+        //var ds = new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2});
         return {
-            timethumbs:this.props.timethumbs,
+            timethumbs:new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
+            fadeAnim: new Animated.Value(1), // opacity 0
         }
     },
-    componentWillReceiveProps:function(nextProps){
-        console.log("KeywordsView---WillReceiveProps");
-        console.log(nextProps);
-        this.setState({
-            timethumbs: nextProps.timethumbs,
-        });
+    getDataSource: function(keywords: Array<any>): ListView.DataSource {
+        return this.state.timethumbs.cloneWithRows(keywords);
     },
-    shouldComponentUpdate: function ( nextProps,  nextState) {//组件是否更新
-        return nextProps.isupdate;
-    },
-    componentWillUpdate: function ( nextProps,  nextState) {
-        console.log("KeywordsView---WillUpdate");
-        console.log(nextProps);
-        console.log(nextState);
-
-    },
-    componentDidUpdate: function ( nextProps,  nextState) {
-         console.log("KeywordsView---DidUpdate");
-         console.log(nextProps);
-         console.log(nextState);
-         this.props.updatedkeyword();
-     },
+    //_animateOpacity() {
+    //    this.tweenState('opacity', {
+    //        easing: tweenState.easingTypes.easeOutQuint,
+    //        duration: 1000,
+    //        endValue: this.state.opacity === 0.2 ? 1 : 0.2,
+    //    });
+    //},
+    //componentWillReceiveProps:function(nextProps){
+    //    console.log("KeywordsView---WillReceiveProps");
+    //    console.log(nextProps);
+    //    //this.setState({
+    //    //    timethumbs:this.getDataSource( nextProps.timethumbs),
+    //    //});
+    //},
+    //shouldComponentUpdate: function ( nextProps,  nextState) {//组件是否更新
+    //    //return nextProps.isupdate;
+    //    return true;
+    //},
+    //componentWillUpdate: function ( nextProps,  nextState) {
+    //    console.log("KeywordsView---WillUpdate");
+    //    console.log(nextProps);
+    //    console.log(nextState);
+    //    this._animatedtiming();
+    //},
+    //componentDidUpdate: function ( nextProps,  nextState) {
+    //     console.log("KeywordsView---DidUpdate");
+    //     console.log(nextProps);
+    //     console.log(nextState);
+    //     //this.props.updatedkeyword();
+    // },
     componentDidMount: function() {
         console.log("Tipstextdidmount");
+        this.setState({
+            timethumbs:this.getDataSource(THUMBS1),
+        });
+        //Animated.timing(       // Uses easing functions
+        //    this.state.fadeAnim, // The value to drive
+        //    {
+        //        toValue: 1,        // Target
+        //        duration: 1000,    // Configuration
+        //    },
+        //).start(0);             // Don't forget start!
+
+    },
+    updatekeyword:function(){//更新关键词
+        //ToastAndroid.show("更新关键词"+this._press, ToastAndroid.SHORT);
+        var datasource ;
+        if (this._press==1) {
+            datasource = this.getDataSource(THUMBS2);
+            this._press = 2;
+        }else if(this._press==2) {
+            datasource = this.getDataSource(THUMBS3);
+            this._press = 3;
+        }else{
+            datasource = this.getDataSource(THUMBS1);
+            this._press = 1;
+        }
+
+        this.setState({//也许接入网络就好多了，就不会感觉到跳动了
+            fadeAnim:new Animated.Value(0),
+            timethumbs: datasource,
+        });
+
+        Animated.timing(       // Uses easing functions
+            this.state.fadeAnim, // The value to drive
+            {
+                toValue: 1,        // Target
+                duration: 1000,    // Configuration
+            },
+        ).start();             // Don't forget start!
+        //Animated.timing(       // Uses easing functions
+        //    this.state.fadeAnim, // The value to drive
+        //    {
+        //        toValue: 1,        // Target
+        //        duration: 1000,    // Configuration
+        //    },
+        //).start();             // Don't forget start!
+    },
+    _onPressButtonshow:function(keyword){//这个是外部调用方法--暂时不用
+        this.setState({
+            timethumbs: this.getDataSource(THUMBS3),
+        });
+        ToastAndroid.show("点击关键词"+keyword, ToastAndroid.SHORT);
+    },
+    _onPressButton:function(keyword){
+        //ToastAndroid.show("点击关键词"+keyword, ToastAndroid.SHORT);
+        console.log("点击关键词");
+        dismissKeyboard();
+        //this.props.navigator.push
+        //this.props.navigator.push({
+        //    name: 'movie',
+        //    movie: keyword,
+        //});
+        console.log("push--beg");
+        this.props.navigator.push({
+            name: 'story',
+            story: keyword ,
+        });
+        console.log("push--end");
+    },
+    randerow:function(rowData){
+        return (
+            <View style={styles.listitem}>
+                    <TouchableElement style={{flex: 1}} onPress={() => this._onPressButton(rowData.item1)}>
+                        <View  style={styles.list_item}>
+                            <Animated.Text style={[styles.list_item_text,{opacity: this.state.fadeAnim}]}>{rowData.item1}</Animated.Text>
+                        </View>
+                    </TouchableElement>
+                    <View style={{height:39,width:0.5,marginTop:5,backgroundColor:'#d0d0d0'}}></View>
+                    <TouchableElement style={{flex: 1}} onPress={() => this._onPressButton(rowData.item2)}>
+                        <View style={styles.list_item}>
+                            <Animated.Text style={[styles.list_item_text,{opacity: this.state.fadeAnim}]}>{rowData.item2}</Animated.Text>
+                        </View>
+                    </TouchableElement>
+            </View>
+        );
     },
     render: function() {
         var navigator = this.props.navigator;
-
-        return <View>{this.state.timethumbs.map(function(uri, index, array) {
-            return <Thumb key={index}  item1={uri.item1} item2={uri.item2} navigator={navigator} />
-        })}</View>;
+        return (
+            <View>
+                <TouchableElement  underlayColor="#d0d0d0" onPress={this.updatekeyword}>
+                    <View style={styles.searchText}  ><Text style={{color:'#000'}}>换一批</Text></View>
+                </TouchableElement>
+                <ListView
+                    dataSource={this.state.timethumbs}
+                    renderRow={this.randerow}
+                    />
+            </View>
+        );
+        //return <View>{this.state.timethumbs.map(function(uri, index, array) {
+        //    return <Thumb key={index}  item1={uri.item1} item2={uri.item2} navigator={navigator} />
+        //})}</View>;
     }
 });
+
 
 var _navigator;
 BackAndroid.addEventListener('hardwareBackPress', function() {
@@ -206,13 +254,12 @@ BackAndroid.addEventListener('hardwareBackPress', function() {
 });
 
 var dianhua = React.createClass({
-    mixins: [TimerMixin],
     getInitialState: function() {
         return {
             splashed: false,
             errortext:'',
             isbegin:'true',
-            timethumbs:THUMBS,
+            //timethumbs:THUMBS,
             isupdate:true,//关键词界面是否更新
         };
     },
@@ -240,16 +287,8 @@ var dianhua = React.createClass({
                 expires: null
             });
         });
+    },
 
-    },
-    updatekeyword:function(){//更新关键词
-        ToastAndroid.show("更新关键词", ToastAndroid.SHORT);
-        //this.setState({
-        //    isupdate:true,//更新关键词界面
-        //    timethumbs: THUMBS1,
-        //    isbegin:"false",//是否开始计时
-        //});
-    },
     updatedkeyword:function(){//更新完成关键词
         console.log("updatedkeyword");
         this.setState({
@@ -269,29 +308,29 @@ var dianhua = React.createClass({
                     <View style={styles.container}>
                         <View style={styles.title}>
                             <Text style={styles.titleText} numberOfLines={5}> 店话 </Text>
-                            <TouchableNativeFeedback  underlayColor="#d0d0d0" onPress={this.search}>
+                            <TouchableElement  underlayColor="#d0d0d0" onPress={this.search}>
                               <View style={styles.searchText}  ><Text style={{color:'#fff'}}>搜索</Text></View>
-                            </TouchableNativeFeedback>
+                            </TouchableElement>
                         </View>
                         <View style={styles.searchpress}>
-                            <TouchableNativeFeedback  underlayColor="#d0d0d0" onPress={this.search}>
+                            <TouchableElement  underlayColor="#d0d0d0" onPress={this.search}>
                                 <View style={styles.searchpressText}  >
                                     <Text style={{color:'#d0d0d0'}}>搜索</Text>
                                 </View>
-                            </TouchableNativeFeedback>
+                            </TouchableElement>
                         </View>
                         <ScrollView contentContainerStyle={styles.contentContainer}>
                             <Text>{this.state.errortext}</Text>
-                            <TouchableNativeFeedback  underlayColor="#d0d0d0" onPress={this.updatekeyword}>
-                                <View style={styles.searchText}  ><Text style={{color:'#000'}}>换一批</Text></View>
-                            </TouchableNativeFeedback>
                             <View style={styles.scrollist}>
-                               <KeywordsView timethumbs={this.state.timethumbs} isupdate={this.state.isupdate} navigator={navigationOperations} updatedkeyword={this.updatedkeyword}/>
+                               <KeywordsView navigator={navigationOperations} />
                             </View>
                         </ScrollView>
                     </View>
                 );
             case "story":
+                //var kv =  new(KeywordsViewnew);
+                //kv._onPressButtonshow("text");
+                //kv.updatekeyword();
                 return (
                     <View style={styles.container}>
                         <DianhuaList
@@ -311,9 +350,6 @@ var dianhua = React.createClass({
                 );
         }
     },
-
-    onActionSelected: function(position) {
-    },
     search:function(){
         _navigator.push({
             name: 'search',
@@ -325,104 +361,29 @@ var dianhua = React.createClass({
             <Navigator
                 style={styles.container}
                 initialRoute={initialRoute}
-                //configureScene={() => Navigator.SceneConfigs.FadeAndroid}
+                 configureScene={(route) => Navigator.SceneConfigs.FadeAndroid }
                 //configureScene={(route) => Navigator.SceneConfigs.FloatFromRight}
                 renderScene={this.RouteMapper}
                 />
         );
     }
 });
+//<KeywordsView timethumbs={this.state.timethumbs} isupdate={this.state.isupdate} navigator={navigationOperations} updatedkeyword={this.updatedkeyword}/>
 
-/*搜索框view
-* <View style={styles.searchbar}>
- <TextInput
- style={{height: 40, borderColor: 'gray', borderWidth: 1,flex: 1}}
- onChangeText={(text) => this.setState({text})}
- value={this.state.text}
- onFocus={this.search}
- placeholder="请输入搜索内容"
- />
- <View style={styles.searchbtn}><Text >搜索</Text></View>
- </View>
- */
 
-/*
-* getInitialState() {
- return { opacity: 0.2 }
- },
- _animateOpacity() {
- this.tweenState('opacity', {
- easing: tweenState.easingTypes.easeOutQuint,
- duration: 1000,
- endValue: this.state.opacity === 0.2 ? 1 : 0.2,
- });
- },
- componentWillUpdate: function ( nextProps,  nextState) {
- console.log(nextProps);
- console.log(nextState);
- console.log("WillUpdate");
- //this._animateOpacity();
- },*/
-var Thumb = React.createClass({
-    shouldComponentUpdate: function(nextProps, nextState) {//是否允许界面更新
-        return true;
-    },
-    componentDidMount: function() {
-        console.log("didmount");
-        //this._animateOpacity();
-    },
-    componentWillUnmount:function(){
-        console.log("Unmount");
-    },
-    _onPressButton1:function(){
-        console.log("onpress");
-        this.props.navigator.push({
-            name: 'story',
-            story:  this.props.item1 ,
-        });
-    },
-    _onPressButton2:function(){
-        console.log("onpress");
-        this.props.navigator.push({
-            name: 'story',
-            story:  this.props.item2 ,
-        });
-    },
-    render: function() {
-        return (
-            <View style={styles.listitemcontent}>
-                <View style={{height:0.5,backgroundColor:'#d0d0d0'}}></View>
-                <View style={styles.listitem}>
-                    <TouchableNativeFeedback style={{flex: 1}} onPress={this._onPressButton1}>
-                        <View  style={styles.list_item}>
-                            <Text style={styles.list_item_text}>{this.props.item1}</Text>
-                        </View>
-                    </TouchableNativeFeedback>
-                    <View style={{height:39,width:0.5,marginTop:5,backgroundColor:'#d0d0d0'}}></View>
-                    <TouchableNativeFeedback style={{flex: 1}} onPress={this._onPressButton2}>
-                        <View style={styles.list_item}>
-                            <Text style={styles.list_item_text}>{this.props.item2}</Text>
-                        </View>
-                    </TouchableNativeFeedback>
-                </View>
-            </View>
-        );
-    }
-});
-
-var THUMBS = [
+var THUMBS1 = [
     {item1: "美甲", "item2": "SPA"},
     {item1: "美容", "item2": "按摩"},
     {item1: "桑拿", "item2": "洗浴"},
 ];
 
-var THUMBS1 = [
+var THUMBS2 = [
     {item1: "保养", "item2": "微整形"},
     {item1: "宠物医院", "item2": "狗粮"},
     {item1: "工商注册", "item2": "商标"},
 ];
 
-var THUMBS2 = [
+var THUMBS3 = [
     {item1: "专利", "item2": "版权"},
     {item1: "设计", "item2": "汽车美容"},
     {item1: "上门服务", "item2": "商标国际"},
@@ -431,7 +392,7 @@ var THUMBS2 = [
 
 //var THUMBS = ['https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.1997/p128x128/851549_767334479959628_274486868_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851561_767334496626293_1958532586_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.1997/p128x128/851579_767334503292959_179092627_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851589_767334513292958_1747022277_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851563_767334559959620_1193692107_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851593_767334566626286_1953955109_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851591_767334523292957_797560749_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851567_767334529959623_843148472_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851548_767334489959627_794462220_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851575_767334539959622_441598241_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.1997/p128x128/851573_767334549959621_534583464_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851583_767334573292952_1519550680_n.png'];
 // THUMBS = THUMBS.concat(THUMBS); // double length of THUMBS
-var createThumbRow = (uri, i) => <Thumb key={i}  item1={uri.item1} item2={uri.item2} />;
+//var createThumbRow = (uri, i) => <Thumb key={i}  item1={uri.item1} item2={uri.item2} />;
 
 var styles = StyleSheet.create({
     container: {
@@ -501,6 +462,7 @@ var styles = StyleSheet.create({
         borderRadius: 3,
     },
     searchpress:{
+        marginTop:56,
         backgroundColor: '#D9D9D9',
         height:46,
         flexDirection: 'column',
@@ -546,3 +508,242 @@ var styles = StyleSheet.create({
 });
 
 AppRegistry.registerComponent('dianhua', () => dianhua);
+
+/**********提示text的独立控件****** /
+ var Tipstext = React.createClass({
+    mixins: [TimerMixin],
+    _handle: (null : any),
+    getInitialState() {
+        return {
+            timenum:10,
+            iself:"false",
+        }
+    },
+    componentWillReceiveProps:function(nextProps){
+        console.log("Tipstext---WillReceiveProps");
+        console.log(nextProps);
+        if(nextProps.isbegin ==="true"){
+            this._handle = this.setInterval(
+                () => {
+                    var timenum =  this.state.timenum - 1 ;
+                    this.setState({
+                        timenum: timenum,
+                        iself:"true",
+                    });
+                }, 1000
+            );
+        }else{
+            this.clearInterval(this._handle);
+        }
+    },
+    componentWillUpdate: function ( nextProps,  nextState) {
+        console.log("tipstext--componentWillUpdate");
+        console.log(nextProps);
+        console.log(nextState);
+        if(10 < 0){
+            console.log("10 < 0");
+        }
+        if(nextState.timenum < 0){
+            console.log("<0");
+            console.log(nextState);
+            console.log("<0");
+        }
+        if(nextState.timenum === -1){
+            this.setState({
+                timenum: 10,
+            });
+           // this.clearInterval();
+            //this.clearInterval(this._handle);
+            this.props.updatefunc();
+        }
+    },
+    componentDidMount: function() {
+        console.log("Tipstextdidmount");
+        this._handle = this.setInterval(
+            () => {
+                var timenum =  this.state.timenum - 1 ;
+                this.setState({
+                    timenum: timenum,
+                    iself:"true",
+                });
+            }, 1000
+        );
+    },
+    render: function() {
+        var coment = this.state.timenum === 0 ?
+            <Text >正在更新关键字......</Text>
+            :
+            <Text>距离更新关键字还有{this.state.timenum}秒</Text>;
+        return    coment ;
+    }
+});
+ //<Tipstext updatefunc={this.updatekeyword} isbegin="false"/>
+ //<Tipstext updatefunc={this.updatekeyword} isbegin={this.state.isbegin}/> 暂时不用倒计时
+ / *****************************************/
+
+//new关键字展示的控件
+/********************************暂时用不了。。。 /
+ class KeywordsViewnew extends React.Component{
+    constructor(props){
+        super(props);
+        this._press = 1;
+        this.state = {
+            timethumbs:new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
+        };
+    }
+    getDataSource(keywords: Array<any>): ListView.DataSource {
+        return this.state.timethumbs.cloneWithRows(keywords);
+    }
+    componentDidMount() {
+        console.log("Tipstextdidmount");
+        this.setState({
+            timethumbs:this.getDataSource(THUMBS1),
+        });
+
+    }
+    updatekeyword(){//更新关键词
+        ToastAndroid.show("更新关键词"+this._press, ToastAndroid.SHORT);
+        //var datasource ;
+        //if (this._press==1) {
+        //    datasource = this.getDataSource(THUMBS2);
+        //    this._press = 2;
+        //}else if(this._press==2) {
+        //    datasource = this.getDataSource(THUMBS3);
+        //    this._press = 3;
+        //}else{
+        //    datasource = this.getDataSource(THUMBS1);
+        //    this._press = 1;
+        //}
+        //this.setState({
+        //    timethumbs: datasource,
+        //});
+    }
+    _onPressButtonshow(keyword){
+        this.setState({
+            timethumbs: this.getDataSource(THUMBS3),
+        });
+        ToastAndroid.show("点击关键词"+keyword, ToastAndroid.SHORT);
+    }
+    _onPressButton(keyword){
+        //ToastAndroid.show("点击关键词"+keyword, ToastAndroid.SHORT);
+        console.log("点击关键词");
+        dismissKeyboard();
+        console.log("push--beg");
+        this.props.navigator.push({
+            name: 'story',
+            story: keyword ,
+        });
+        console.log("push--end");
+    }
+    randerow(rowData){
+        var item1 = rowData.item1;
+        var item2 = rowData.item2;
+        return (
+            <View style={styles.listitem}>
+                <TouchableElement style={{flex: 1}} onPress={item1 => this._onPressButton(item1)}>
+                    <View  style={styles.list_item}>
+                        <Text style={styles.list_item_text}>{rowData.item1}</Text>
+                    </View>
+                </TouchableElement>
+                <View style={{height:39,width:0.5,marginTop:5,backgroundColor:'#d0d0d0'}}></View>
+                <TouchableElement style={{flex: 1}} onPress={item2 => this._onPressButton(item2)}>
+                    <View style={styles.list_item}>
+                        <Text style={styles.list_item_text}>{rowData.item2}</Text>
+                    </View>
+                </TouchableElement>
+            </View>
+        );
+    }
+    render() {
+        var navigator = this.props.navigator;
+        return (
+            <View>
+                <TouchableElement  underlayColor="#d0d0d0" onPress={()=>this.updatekeyword}>
+                    <View style={styles.searchText}  ><Text style={{color:'#000'}}>换一批</Text></View>
+                </TouchableElement>
+                <ListView
+                    dataSource={this.state.timethumbs}
+                    renderRow={this.randerow}
+                    />
+            </View>
+        );
+    }
+}
+ ************************/
+/*搜索框view
+ * <View style={styles.searchbar}>
+ <TextInput
+ style={{height: 40, borderColor: 'gray', borderWidth: 1,flex: 1}}
+ onChangeText={(text) => this.setState({text})}
+ value={this.state.text}
+ onFocus={this.search}
+ placeholder="请输入搜索内容"
+ />
+ <View style={styles.searchbtn}><Text >搜索</Text></View>
+ </View>
+ */
+
+/********
+ * getInitialState() {
+ return { opacity: 0.2 }
+ },
+ _animateOpacity() {
+ this.tweenState('opacity', {
+ easing: tweenState.easingTypes.easeOutQuint,
+ duration: 1000,
+ endValue: this.state.opacity === 0.2 ? 1 : 0.2,
+ });
+ },
+ componentWillUpdate: function ( nextProps,  nextState) {
+ console.log(nextProps);
+ console.log(nextState);
+ console.log("WillUpdate");
+ //this._animateOpacity();
+ },* /
+ var Thumb = React.createClass({
+    shouldComponentUpdate: function(nextProps, nextState) {//是否允许界面更新
+        return true;
+    },
+    componentDidMount: function() {
+        console.log("didmount");
+        //this._animateOpacity();
+    },
+    componentWillUnmount:function(){
+        console.log("Unmount");
+    },
+    _onPressButton1:function(){
+        console.log("onpress");
+        this.props.navigator.push({
+            name: 'story',
+            story:  this.props.item1 ,
+        });
+    },
+    _onPressButton2:function(){
+        console.log("onpress");
+        this.props.navigator.push({
+            name: 'story',
+            story:  this.props.item2 ,
+        });
+    },
+    render: function() {
+        return (
+            <View style={styles.listitemcontent}>
+                <View style={{height:0.5,backgroundColor:'#d0d0d0'}}></View>
+                <View style={styles.listitem}>
+                    <TouchableElement style={{flex: 1}} onPress={this._onPressButton1}>
+                        <View  style={styles.list_item}>
+                            <Text style={styles.list_item_text}>{this.props.item1}</Text>
+                        </View>
+                    </TouchableElement>
+                    <View style={{height:39,width:0.5,marginTop:5,backgroundColor:'#d0d0d0'}}></View>
+                    <TouchableElement style={{flex: 1}} onPress={this._onPressButton2}>
+                        <View style={styles.list_item}>
+                            <Text style={styles.list_item_text}>{this.props.item2}</Text>
+                        </View>
+                    </TouchableElement>
+                </View>
+            </View>
+        );
+    }
+});
+ */

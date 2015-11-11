@@ -53,7 +53,28 @@ var DianhuaList = React.createClass({
     mixins: [TimerMixin],
 
     timeoutID: (null: any),
-
+//componentWillReceiveProps:function(nextProps){
+//    console.log("DianhuaList---WillReceiveProps");
+//    console.log(nextProps);
+//    //this.setState({
+//    //    timethumbs:this.getDataSource( nextProps.timethumbs),
+//    //});
+//},
+//shouldComponentUpdate: function ( nextProps,  nextState) {//组件是否更新
+//    //return nextProps.isupdate;
+//    return true;
+//},
+//componentWillUpdate: function ( nextProps,  nextState) {
+//    console.log("DianhuaList---WillUpdate");
+//    console.log(nextProps);
+//    console.log(nextState);
+//},
+//componentDidUpdate: function ( nextProps,  nextState) {
+//    console.log("DianhuaList---DidUpdate");
+//    console.log(nextProps);
+//    console.log(nextState);
+//    //this.props.updatedkeyword();
+//},
 getInitialState: function() {
     return {
         isLoading: false,
@@ -91,7 +112,11 @@ async _loadInitialState() {
         console.log(""+ret.latitude+","+ret.lontitude);
         console.log(ret.lontitude);
         console.log(ret.citycode);        //如果找到数据，则在then方法中返回
-        this.searchMovies(this.props.story);//找到数据后在搜索
+        if (this.props.story!=null){
+            this.searchMovies(this.props.story);//找到数据后在搜索
+        }else{
+            this.searchMovies("美食");//找到数据后在搜索
+        }
     }).catch( err => {                  //any exception including data not found
         console.warn(err);              //goes to catch()
                                         //如果没有找到数据且没有同步方法，
@@ -266,9 +291,14 @@ selectMovie: function(movie: Object) {
         dismissKeyboard();
         this.props.navigator.push({
             title: movie.title,
-            name: 'movie',
-            movie: movie,
+            name: 'story',
+            story: movie.name,
         });
+    //this.props.navigator.push({
+    //    title: movie.title,
+    //    name: 'home',
+    //    story: movie.name,
+    //});
    // }
 },
 
@@ -283,9 +313,6 @@ renderFooter: function() {
     if (!this.hasMore() || !this.state.isLoadingTail) {
         return <View style={styles.scrollSpinner} />;
     }
-
-
-
 
     if (Platform.OS === 'ios') {
         return <ActivityIndicatorIOS style={styles.scrollSpinner} />;
