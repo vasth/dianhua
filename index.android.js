@@ -20,7 +20,7 @@ var React = require('react-native');
 
 var {
     AppRegistry,
-    AsyncStorage,
+    //AsyncStorage,
     Animated,
     BackAndroid,
     Text,
@@ -58,9 +58,9 @@ if (Platform.OS === 'android') {
 }
 
 /**************************存储**************************/
-var KEY_BAIDULOC_LAT = '@Latitude:';
-var KEY_BAIDULOC_LON = '@Lontitude:';
-var KEY_BAIDULOC_CITYCODE = '@Citycode:';
+//var KEY_BAIDULOC_LAT = '@Latitude:';
+//var KEY_BAIDULOC_LON = '@Lontitude:';
+//var KEY_BAIDULOC_CITYCODE = '@Citycode:';
 
 var storage = new Storage({
     //maximum capacity, default 1000
@@ -162,21 +162,14 @@ var KeywordsView = React.createClass({
             fadeAnim:new Animated.Value(0),
             timethumbs: datasource,
         });
-
+        //动画
         Animated.timing(       // Uses easing functions
             this.state.fadeAnim, // The value to drive
             {
                 toValue: 1,        // Target
                 duration: 1000,    // Configuration
-            },
+            }
         ).start();             // Don't forget start!
-        //Animated.timing(       // Uses easing functions
-        //    this.state.fadeAnim, // The value to drive
-        //    {
-        //        toValue: 1,        // Target
-        //        duration: 1000,    // Configuration
-        //    },
-        //).start();             // Don't forget start!
     },
     _onPressButtonshow:function(keyword){//这个是外部调用方法--暂时不用
         this.setState({
@@ -200,36 +193,94 @@ var KeywordsView = React.createClass({
         });
         console.log("push--end");
     },
-    randerow:function(rowData){
+    //renderSeparator: function(//listview的driver分割线
+    //    sectionID: number | string,
+    //    rowID: number | string,
+    //    adjacentRowHighlighted: boolean
+    //) {
+    //    var style = styles.rowSeparator;
+    //    if (adjacentRowHighlighted) {
+    //        style = [style, styles.rowSeparatorHide];
+    //    }
+    //    return (
+    //        <View key={'SEP_' + sectionID + '_' + rowID}  style={style}/>
+    //    );
+    //},
+    randerow:function(
+        rowData: Object,
+        sectionID: number | string,
+        rowID: number | string,
+        highlightRowFunc: (sectionID: ?number | string, rowID: ?number | string) => void,
+    ) {
+       var contents;
+       var style1 = styles.list_item;
+       var style2 = styles.list_item;
+       var styletext1 = styles.list_item_text;
+       var styletext2 = styles.list_item_text;
+
+        if (rowID==0){
+            style1 = [style1, {borderColor:'#e0bfe7', borderWidth:0.5}];
+            style2 = [style2, {borderColor:'#b2b5f1', borderWidth:0.5}];
+            styletext1 = [styletext1, {color:'#C990D5'}];
+            styletext2 = [styletext2, {color:'#868BE9'}];
+        }else if(rowID==1){
+            //contents = <View style={{height:0.5,backgroundColor:'#d0d0d0'}}></View>
+            style1 = [style1, {borderColor:'#ffa490', borderWidth:0.5}];
+            style2 = [style2, {borderColor:'#a8d79e', borderWidth:0.5}];
+            styletext1 = [styletext1, {color:'#FF7657'}];
+            styletext2 = [styletext2, {color:'#86C77A'}];
+        }else if(rowID==2){
+            //contents = <View style={{height:0.5,backgroundColor:'#d0d0d0'}}></View>
+            style1 = [style1, {borderColor:'#f4d988', borderWidth:0.5}];
+            style2 = [style2, {borderColor:'#f0c383', borderWidth:0.5}];
+            styletext1 = [styletext1, {color:'#EDC33B'}];
+            styletext2 = [styletext2, {color:'#E8A145'}];
+        }else{
+            style1 = [style1, {borderColor:'#abcae6', borderWidth:0.5}];
+            style2 = [style2, {borderColor:'#badea4', borderWidth:0.5}];
+            styletext1 = [styletext1, {color:'#89B8DC'}];
+            styletext2 = [styletext2, {color:'#AAD58B'}];
+
+        }
+
         return (
-            <View style={styles.listitem}>
+            <View style={styles.listitemcontent}>
+                <View style={styles.listitem}>
                     <TouchableElement style={{flex: 1}} onPress={() => this._onPressButton(rowData.item1)}>
-                        <View  style={styles.list_item}>
-                            <Animated.Text style={[styles.list_item_text,{opacity: this.state.fadeAnim}]}>{rowData.item1}</Animated.Text>
+                        <View  style={style1}>
+                            <Animated.Text style={[styletext1,{opacity: this.state.fadeAnim}]}>{rowData.item1}</Animated.Text>
                         </View>
                     </TouchableElement>
-                    <View style={{height:39,width:0.5,marginTop:5,backgroundColor:'#d0d0d0'}}></View>
+                    <View style={{height:39,width:5,marginTop:5,backgroundColor:'#fff'}}></View>
                     <TouchableElement style={{flex: 1}} onPress={() => this._onPressButton(rowData.item2)}>
-                        <View style={styles.list_item}>
-                            <Animated.Text style={[styles.list_item_text,{opacity: this.state.fadeAnim}]}>{rowData.item2}</Animated.Text>
+                        <View style={style2}>
+                            <Animated.Text style={[styletext2,{opacity: this.state.fadeAnim}]}>{rowData.item2}</Animated.Text>
                         </View>
                     </TouchableElement>
+                </View>
             </View>
         );
     },
     render: function() {
         var navigator = this.props.navigator;
+        /*<Animated.Text style={{color:'#000',flex: 1,
+         transform: [  // `transform` is an ordered array
+         {scaleX: 4},  // Map `bounceValue` to `scale`
+         ] }} > ⇋  </Animated.Text>*/
         return (
             <View>
                 <View style={{ flex: 1,flexDirection: 'row',}}>
                  <View style={{ flex: 1}}></View>
                 <TouchableElement  underlayColor="#d0d0d0" onPress={this.updatekeyword}>
-                       <View style={styles.searchText}  ><Text style={{color:'#000'}}>换一批</Text></View>
+                       <View style={styles.searchText}  >
+                           <Image style={{ width: 20,height: 20,}} source={require('./img/iconfont-301.png')} />
+                       </View>
                 </TouchableElement>
                 </View>
                 <ListView
                     dataSource={this.state.timethumbs}
                     renderRow={this.randerow}
+                    //renderSeparator={this.renderSeparator}
                     />
             </View>
         );
@@ -304,7 +355,19 @@ var dianhua = React.createClass({
     RouteMapper: function(route, navigationOperations) {//这里应该没有第三个参数
         _navigator = navigationOperations;
 //<Text style={{color:'#d0d0d0'}}>搜索</Text>4876FF
-
+/*
+<View style={styles.searchpress}>
+ <TouchableElement  underlayColor="#d0d0d0" onPress={this.search}>
+ <View style={styles.searchpressText}  >
+ <TextInput
+ ref='textInput'　
+ style={styles.textInput}　　
+ placeholder="搜索"
+ clearButtonMode="while-editing"
+ />
+ </View>
+ </TouchableElement>
+ </View>*/
         switch (route.name) {
             case "home":
                 // <Image style={{ width: 160,height: 56,}} source={{uri: 'http://192.168.0.100/siipa/googlelogo.png'}} />
@@ -312,19 +375,15 @@ var dianhua = React.createClass({
                     <View style={styles.container}>
                         <View style={{backgroundColor:'#fff',paddingBottom:10}}>
                             <View style={styles.title}>
-                                <Image source={require('./img/googlelogo.png')} />
+                                <Image style={{ width: 160,height: 56,}} source={require('./img/googlelogo.png')} />
                             </View>
                             <View style={styles.searchpress}>
-                                <TouchableElement  underlayColor="#d0d0d0" onPress={this.search}>
-                                    <View style={styles.searchpressText}  >
-                                        <TextInput
-                                            ref='textInput'　
-                                            style={styles.textInput}　　
-                                            placeholder="搜索"
-                                            clearButtonMode="while-editing"
-                                            />
-                                    </View>
-                                </TouchableElement>
+                                <TextInput
+                                    ref='textInput'　
+                                    style={styles.textInput}　　
+                                    placeholder="搜索"
+                                    clearButtonMode="while-editing"
+                                    />
                             </View>
                         </View>
                         <ScrollView contentContainerStyle={styles.contentContainer}>
@@ -383,18 +442,21 @@ var THUMBS1 = [
     {item1: "美甲", "item2": "SPA"},
     {item1: "美容", "item2": "按摩"},
     {item1: "桑拿", "item2": "洗浴"},
+    {item1: "桑拿", "item2": "洗浴"}
 ];
 
 var THUMBS2 = [
     {item1: "保养", "item2": "微整形"},
     {item1: "宠物医院", "item2": "狗粮"},
     {item1: "工商注册", "item2": "商标"},
+    {item1: "桑拿", "item2": "洗浴"}
 ];
 
 var THUMBS3 = [
     {item1: "专利", "item2": "版权"},
     {item1: "设计", "item2": "汽车美容"},
     {item1: "上门服务", "item2": "商标国际"},
+    {item1: "桑拿", "item2": "洗浴"}
 ];
 
 
@@ -409,7 +471,7 @@ var styles = StyleSheet.create({
         backgroundColor: '#fff',
     },
     contentContainer:{
-        paddingVertical: 10
+        paddingVertical: 2
     },
     text: {
         fontSize: 20,
@@ -467,16 +529,19 @@ var styles = StyleSheet.create({
         borderRadius: 3,
     },
     searchpress:{
-        marginLeft:5,
-        marginRight:5,
+        marginLeft:15,
+        marginRight:15,
         marginTop:10,
-        backgroundColor: '#D9D9D9',
+        //backgroundColor: '#D9D9D9',
         height:46,
         flexDirection: 'column',
+        borderColor:'#C2C2C2',
+        borderWidth:0.5,
     },
     textInput: {
+        flex: 1,
         backgroundColor: '#FFFFFF',
-        height: 28,
+       // height: 28,
         borderRadius: 5,
         paddingTop: 4.5,
         paddingBottom: 4.5,
@@ -502,27 +567,38 @@ var styles = StyleSheet.create({
         marginTop:2,
     },
     listitemcontent:{
-        marginLeft :10,
-        marginRight :10,
-        height: 51,
+        marginLeft :15,
+        marginRight :15,
+        height: 60,
         backgroundColor: '#fff',
         flexDirection: 'column',
     },
     listitem:{
-        height: 50,
+        height: 55,
+        marginTop:5,
         justifyContent: 'center',
         flexDirection: 'row',
     },
     list_item:{
         flex: 1,
-        height: 50,
+        height: 45,
         justifyContent: 'center',
         backgroundColor: '#fff',
+        //opacity:0.8,
     },
     list_item_text:{
         fontSize: 15,
         textAlign: 'center',
-        color:'#000',
+        //color:'#000',
+        //color:'#fff',
+    },
+    rowSeparator: {
+        backgroundColor: 'rgba(0, 0, 0, 0.1)',
+        height:1,
+        marginLeft: 4,
+    },
+    rowSeparatorHide: {
+        opacity: 0.0,
     },
 });
 
