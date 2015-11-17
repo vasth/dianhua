@@ -56,7 +56,42 @@ var TouchableElement = TouchableHighlight;
 if (Platform.OS === 'android') {
     TouchableElement = TouchableNativeFeedback;
 }
-
+/**************************首页搜索框***************************/
+var HomeAutocomplete = require('./HomeSearch.js' ).create({
+    placeholder: '在这里找你想要的',
+    minLength: 1, // minimum length of text to search
+    autoFocus: false,
+    fetchDetails: false,//这里是说点击搜索建议后是否执行事件
+    onPress(nav,data, details = null) { // details is provided when fetchDetails = true
+        console.log(data);
+        console.log(details);
+        //nav.push()
+        nav.push({
+            name: 'story',
+            story: data.keyword ,
+        });
+    },
+    onSub(nav,data) {
+        nav.push({
+            name: 'story',
+            story: data ,
+        });
+    },
+    getDefaultValue() {
+        return ''; // text input default value
+    },
+    //query: {
+    //    // available options: https://developers.google.com/places/web-service/autocomplete
+    //    key: API_KEY,
+    //    language: 'en', // language of the results
+    //    types: '(cities)', // default: 'geocode'
+    //},
+    styles: {
+        description: {
+            fontWeight: 'bold',
+        }
+    }
+});
 /**************************存储**************************/
 //var KEY_BAIDULOC_LAT = '@Latitude:';
 //var KEY_BAIDULOC_LON = '@Lontitude:';
@@ -377,6 +412,7 @@ var dianhua = React.createClass({
                             <View style={styles.title}>
                                 <Image style={{ width: 160,height: 56,}} source={require('./img/googlelogo.png')} />
                             </View>
+                            <HomeAutocomplete nav={navigationOperations} />
                             <View style={styles.searchpress}>
                                 <TextInput
                                     ref='textInput'　
