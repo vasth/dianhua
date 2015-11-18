@@ -32,7 +32,8 @@ var API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/';
     '7waqfqbprs7pajbz28mqf6vz',
 ];
 //var APP_URL = 'http://api.map.baidu.com/place/v2/eventsearch?';
-var APP_URL = 'http://api.map.baidu.com/place/v2/search';
+//var APP_URL = 'http://api.map.baidu.com/place/v2/search';
+var APP_URL = 'http://192.168.0.100:8080/sh';
 
 // Results should be cached keyed by the query
 // with values of null meaning "being fetched"
@@ -141,7 +142,7 @@ _urlForQueryAndPage: function(query: string, pageNumber: number): string {
             //encodeURIComponent(query) + '&page_limit=20&page=' + pageNumber
             APP_URL + '?query='+ encodeURIComponent(query) + '&region=' + this.state.region +
             '&location='+this.state.location + '&page_num='+ pageNumber +
-            '&scope=2&page_size=20&ak=KWQ2cAN6rQV6NdRP7uFXBiBi&output=json&radius=20000'
+            '&page_size=20'
         );
     } else {
         // With no query, load latest movies

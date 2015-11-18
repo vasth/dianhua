@@ -51,7 +51,7 @@ var MovieCell = React.createClass({
     return
   },
   render: function() {
-    var criticsScore = this.props.movie.detail_info.service_rating;
+    //var criticsScore = this.props.movie.detail_info.service_rating;
     var TouchableElement = TouchableHighlight;
     if (Platform.OS === 'android') {
       TouchableElement = TouchableNativeFeedback;
@@ -78,12 +78,12 @@ var MovieCell = React.createClass({
                 电话: {this.props.movie.telephone}
               </Text>
               <Text style={styles.movieYear} numberOfLines={1}>
-                评分: {this.props.movie.detail_info.overall_rating}  {' '}&bull;{' '}
+                评分: {this.props.movie.overall_rating}  {' '}&bull;{' '}
                 <Text style={styles.rating} numberOfLines={1}>
-                  {this.getrating(this.props.movie.detail_info.overall_rating)}
+                  {this.getrating(this.props.movie.overall_rating)}
                 </Text>
                 <Text   numberOfLines={1}>
-                  距离: {this.props.movie.detail_info.distance / 1000} km
+                  距离: {this.props.movie.distance / 1000} km
                 </Text>
               </Text>
               <Text style={styles.movieYear}numberOfLines={1}>

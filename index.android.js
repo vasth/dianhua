@@ -402,7 +402,17 @@ var dianhua = React.createClass({
  />
  </View>
  </TouchableElement>
- </View>*/
+ </View>
+ //搜索框
+<View style={styles.searchpress}>
+ <TextInput
+ ref='textInput'　
+ style={styles.textInput}　　
+ placeholder="搜索"
+ clearButtonMode="while-editing"
+ />
+ </View>
+ */
         switch (route.name) {
             case "home":
                 // <Image style={{ width: 160,height: 56,}} source={{uri: 'http://192.168.0.100/siipa/googlelogo.png'}} />
@@ -413,14 +423,6 @@ var dianhua = React.createClass({
                                 <Image style={{ width: 160,height: 56,}} source={require('./img/googlelogo.png')} />
                             </View>
                             <HomeAutocomplete nav={navigationOperations} />
-                            <View style={styles.searchpress}>
-                                <TextInput
-                                    ref='textInput'　
-                                    style={styles.textInput}　　
-                                    placeholder="搜索"
-                                    clearButtonMode="while-editing"
-                                    />
-                            </View>
                         </View>
                         <ScrollView contentContainerStyle={styles.contentContainer}>
                             <Text>{this.state.errortext}</Text>
@@ -464,7 +466,7 @@ var dianhua = React.createClass({
             <Navigator
                 style={styles.container}
                 initialRoute={initialRoute}
-                 configureScene={(route) => Navigator.SceneConfigs.FadeAndroid }
+                configureScene={(route) => Navigator.SceneConfigs.FadeAndroid }
                 //configureScene={(route) => Navigator.SceneConfigs.FloatFromRight}
                 renderScene={this.RouteMapper}
                 />
