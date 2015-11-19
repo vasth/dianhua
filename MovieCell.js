@@ -24,6 +24,7 @@ var {
   Text,
   TouchableHighlight,
   TouchableNativeFeedback,
+    IntentAndroid,
   View
 } = React;
 
@@ -49,6 +50,12 @@ var MovieCell = React.createClass({
     }
 
     return
+  },
+  calltel:function(){
+    if (Platform.OS === 'android') {
+          IntentAndroid.openURL("tel:"+this.props.movie.telephone);
+    }
+
   },
   render: function() {
     //var criticsScore = this.props.movie.detail_info.service_rating;
@@ -91,7 +98,9 @@ var MovieCell = React.createClass({
               </Text>
             </View>
             <View style={styles.cellTel}>
-              <View style={styles.telbtn}><Text style={{color:'#fff'}}>拨号</Text></View>
+              <TouchableElement onPress={this.calltel}>
+                   <View style={styles.telbtn}><Text style={{color:'#fff'}}>拨号</Text></View>
+              </TouchableElement>
             </View>
           </View>
         </TouchableElement>

@@ -33,7 +33,7 @@ var API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/';
 ];
 //var APP_URL = 'http://api.map.baidu.com/place/v2/eventsearch?';
 //var APP_URL = 'http://api.map.baidu.com/place/v2/search';
-var APP_URL = 'http://192.168.0.100:8080/sh';
+var APP_URL = 'http://182.92.1.8:8080/sh';
 
 // Results should be cached keyed by the query
 // with values of null meaning "being fetched"

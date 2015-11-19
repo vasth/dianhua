@@ -4,8 +4,8 @@
     <list default="true" id="cd0b9400-e2c9-4270-9b3e-abbfacd5fc8d" name="Default" comment="">
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DianhuaList.js" afterPath="$PROJECT_DIR$/DianhuaList.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HomeSearch.js" afterPath="$PROJECT_DIR$/HomeSearch.js" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MovieCell.js" afterPath="$PROJECT_DIR$/MovieCell.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.android.js" afterPath="$PROJECT_DIR$/index.android.js" />
     </list>
     <ignored path="dianhua.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -51,16 +51,16 @@
       <file leaf-file-name="DianhuaList.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DianhuaList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-12.555555">
+            <state vertical-scroll-proportion="0.0">
               <caret line="354" column="25" selection-start-line="354" selection-start-column="25" selection-end-line="354" selection-end-column="25" />
               <folding>
-                <marker date="1447842339703" expanded="false" signature="14232:14251" placeholder="..." />
-                <marker date="1447842339703" expanded="true" signature="14271:14437" placeholder="..." />
-                <marker date="1447842339703" expanded="false" signature="14321:14343" placeholder="..." />
-                <marker date="1447842339703" expanded="false" signature="14379:14400" placeholder="..." />
-                <marker date="1447842339703" expanded="false" signature="14520:14539" placeholder="..." />
-                <marker date="1447842339703" expanded="false" signature="14594:14630" placeholder="..." />
-                <marker date="1447842339703" expanded="false" signature="14744:14765" placeholder="..." />
+                <marker date="1447904569703" expanded="false" signature="14229:14248" placeholder="..." />
+                <marker date="1447904569703" expanded="true" signature="14268:14434" placeholder="..." />
+                <marker date="1447904569703" expanded="false" signature="14318:14340" placeholder="..." />
+                <marker date="1447904569703" expanded="false" signature="14376:14397" placeholder="..." />
+                <marker date="1447904569703" expanded="false" signature="14517:14536" placeholder="..." />
+                <marker date="1447904569703" expanded="false" signature="14591:14627" placeholder="..." />
+                <marker date="1447904569703" expanded="false" signature="14741:14762" placeholder="..." />
               </folding>
             </state>
           </provider>
@@ -69,8 +69,8 @@
       <file leaf-file-name="MovieCell.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/MovieCell.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.053380784">
-              <caret line="112" column="18" selection-start-line="112" selection-start-column="18" selection-end-line="112" selection-end-column="18" />
+            <state vertical-scroll-proportion="-1.5496454">
+              <caret line="71" column="35" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="35" />
               <folding />
             </state>
           </provider>
@@ -222,6 +222,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
@@ -243,7 +244,6 @@
           </PATH>
         </subPane>
       </pane>
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
@@ -345,9 +345,11 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.053846154" sideWeight="0.5477941" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0030721966" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -355,13 +357,11 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0030721966" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17384616" sideWeight="0.4522059" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -628,7 +628,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.0">
           <caret line="49" column="14" selection-start-line="49" selection-start-column="2" selection-end-line="49" selection-end-column="14" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -742,24 +741,24 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/DianhuaList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-12.555555">
+        <state vertical-scroll-proportion="0.0">
           <caret line="354" column="25" selection-start-line="354" selection-start-column="25" selection-end-line="354" selection-end-column="25" />
           <folding>
-            <marker date="1447842339703" expanded="false" signature="14232:14251" placeholder="..." />
-            <marker date="1447842339703" expanded="true" signature="14271:14437" placeholder="..." />
-            <marker date="1447842339703" expanded="false" signature="14321:14343" placeholder="..." />
-            <marker date="1447842339703" expanded="false" signature="14379:14400" placeholder="..." />
-            <marker date="1447842339703" expanded="false" signature="14520:14539" placeholder="..." />
-            <marker date="1447842339703" expanded="false" signature="14594:14630" placeholder="..." />
-            <marker date="1447842339703" expanded="false" signature="14744:14765" placeholder="..." />
+            <marker date="1447904569703" expanded="false" signature="14229:14248" placeholder="..." />
+            <marker date="1447904569703" expanded="true" signature="14268:14434" placeholder="..." />
+            <marker date="1447904569703" expanded="false" signature="14318:14340" placeholder="..." />
+            <marker date="1447904569703" expanded="false" signature="14376:14397" placeholder="..." />
+            <marker date="1447904569703" expanded="false" signature="14517:14536" placeholder="..." />
+            <marker date="1447904569703" expanded="false" signature="14591:14627" placeholder="..." />
+            <marker date="1447904569703" expanded="false" signature="14741:14762" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/MovieCell.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.053380784">
-          <caret line="112" column="18" selection-start-line="112" selection-start-column="18" selection-end-line="112" selection-end-column="18" />
+        <state vertical-scroll-proportion="-1.5496454">
+          <caret line="71" column="35" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="35" />
           <folding />
         </state>
       </provider>
