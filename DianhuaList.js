@@ -289,20 +289,24 @@ selectMovie: function(movie: Object) {
     //        passProps: {movie},
     //    });
     //} else {
-        dismissKeyboard();
-        this.props.navigator.push({
-            title: movie.title,
-            name: 'story',
-            story: movie.name,
-        });
+    dismissKeyboard();
+    this.props.navigator.push({
+        title: movie.title,
+        name: 'story',
+        story: movie.name,
+    });
     //this.props.navigator.push({
     //    title: movie.title,
     //    name: 'home',
     //    story: movie.name,
     //});
-   // }
+    // }
 },
-
+addshop: function() {
+    this.props.navigator.push({
+        name: 'addshop',
+    });
+},
 onSearchChange: function(event: Object) {
     var filter = event.nativeEvent.text.toLowerCase();
 
@@ -358,15 +362,20 @@ renderRow: function(
 },
 
 render: function() {
+    /*    <Text>{this.state.errortext}</Text>
+     <Text>{this.state.region}</Text>
+     <Text>{this.state.location}</Text>*/
+
     var content = this.state.dataSource.getRowCount() === 0 ?
         <View style={styles.container}>
             <View style={styles.searchbar}>
                 <TouchableHighlight  underlayColor="#d0d0d0" onPress={this.back}>
-                    <View style={styles.backText}  ><Text style={{color:'#fff'}}>返回</Text></View>
+                    <View style={styles.backText}  ><Text style={{color:'#fff',fontSize:20}}>  返回 </Text></View>
                 </TouchableHighlight>
-                <Text>{this.state.errortext}</Text>
-                <Text>{this.state.region}</Text>
-                <Text>{this.state.location}</Text>
+                <View style={{flex:1}}></View>
+                <TouchableHighlight  underlayColor="#d0d0d0" onPress={this.addshop}>
+                    <View style={styles.AddText}  ><Text style={{color:"#fff",fontSize:50,fontWeight:'300'}}> ＋</Text></View>
+                </TouchableHighlight>
             </View>
             <NoMovies
                 filter={this.state.filter}
@@ -377,7 +386,11 @@ render: function() {
         <View style={styles.container}>
             <View style={styles.searchbar}>
                 <TouchableHighlight  underlayColor="#d0d0d0" onPress={this.back}>
-                    <View style={styles.backText}  ><Text style={{color:'#fff'}}>返回</Text></View>
+                    <View style={styles.backText}  ><Text style={{color:'#fff',fontSize:20}}>  返回 </Text></View>
+                </TouchableHighlight>
+                <View style={{flex:1}}></View>
+                <TouchableHighlight  underlayColor="#d0d0d0" onPress={this.addshop}>
+                    <View style={styles.AddText}  ><Text style={{color:"#fff",fontSize:50,fontWeight:'300'}}> ＋</Text></View>
                 </TouchableHighlight>
             </View>
             <ListView
@@ -455,6 +468,20 @@ var styles = StyleSheet.create({
         backgroundColor: 'white',
         //  backgroundColor: 'rgba(0, 0, 0, 0.1)',
     },
+    searchbar:{
+        height: 56,
+        justifyContent: 'center',
+        flexDirection: 'row',
+        backgroundColor:'#00a2ed',
+    },
+    backText:{
+        height: 56,
+        justifyContent: 'center',
+    },
+    AddText:{
+        height: 56,
+        justifyContent: 'center',
+    },
     centerText: {
         alignItems: 'center',
     },
@@ -484,12 +511,7 @@ var styles = StyleSheet.create({
     rowSeparatorHide: {
         opacity: 0.0,
     },
-    searchbar:{
-        paddingTop:10,
-        height: 56,
-        flexDirection: 'row',
-        backgroundColor:'#00a2ed',
-    },
+
 });
 
 module.exports = DianhuaList;

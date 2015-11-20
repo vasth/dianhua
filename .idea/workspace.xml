@@ -2,10 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd0b9400-e2c9-4270-9b3e-abbfacd5fc8d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DianhuaList.js" afterPath="$PROJECT_DIR$/DianhuaList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HomeSearch.js" afterPath="$PROJECT_DIR$/HomeSearch.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/MovieCell.js" afterPath="$PROJECT_DIR$/MovieCell.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.android.js" afterPath="$PROJECT_DIR$/index.android.js" />
     </list>
     <ignored path="dianhua.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,8 +27,8 @@
       <file leaf-file-name="HomeSearch.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HomeSearch.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="283" column="40" selection-start-line="283" selection-start-column="40" selection-end-line="283" selection-end-column="40" />
+            <state vertical-scroll-proportion="-15.925926">
+              <caret line="54" column="10" selection-start-line="42" selection-start-column="8" selection-end-line="54" selection-end-column="10" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
               </folding>
@@ -38,11 +36,21 @@
           </provider>
         </entry>
       </file>
+      <file leaf-file-name="Autocomplate.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Autocomplate.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="295" column="32" selection-start-line="295" selection-start-column="32" selection-end-line="295" selection-end-column="32" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="index.android.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.android.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="471" column="18" selection-start-line="471" selection-start-column="18" selection-end-line="471" selection-end-column="18" />
+            <state vertical-scroll-proportion="-6.7777777">
+              <caret line="590" column="13" selection-start-line="590" selection-start-column="4" selection-end-line="590" selection-end-column="13" />
               <folding />
             </state>
           </provider>
@@ -51,36 +59,38 @@
       <file leaf-file-name="DianhuaList.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/DianhuaList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="354" column="25" selection-start-line="354" selection-start-column="25" selection-end-line="354" selection-end-column="25" />
+            <state vertical-scroll-proportion="-8.888889">
+              <caret line="483" column="6" selection-start-line="476" selection-start-column="4" selection-end-line="483" selection-end-column="6" />
               <folding>
-                <marker date="1447904569703" expanded="false" signature="14229:14248" placeholder="..." />
-                <marker date="1447904569703" expanded="true" signature="14268:14434" placeholder="..." />
-                <marker date="1447904569703" expanded="false" signature="14318:14340" placeholder="..." />
-                <marker date="1447904569703" expanded="false" signature="14376:14397" placeholder="..." />
-                <marker date="1447904569703" expanded="false" signature="14517:14536" placeholder="..." />
-                <marker date="1447904569703" expanded="false" signature="14591:14627" placeholder="..." />
-                <marker date="1447904569703" expanded="false" signature="14741:14762" placeholder="..." />
+                <marker date="1448023747796" expanded="false" signature="14892:14911" placeholder="..." />
+                <marker date="1448023747796" expanded="true" signature="14931:15097" placeholder="..." />
+                <marker date="1448023747796" expanded="false" signature="14981:15003" placeholder="..." />
+                <marker date="1448023747796" expanded="false" signature="15039:15060" placeholder="..." />
+                <marker date="1448023747796" expanded="false" signature="15180:15199" placeholder="..." />
+                <marker date="1448023747796" expanded="false" signature="15254:15290" placeholder="..." />
+                <marker date="1448023747796" expanded="false" signature="15404:15425" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MovieCell.js" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/MovieCell.js">
+      <file leaf-file-name="AddShop.js" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/AddShop.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-1.5496454">
-              <caret line="71" column="35" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="35" />
-              <folding />
+            <state vertical-scroll-proportion="0.74863386">
+              <caret line="81" column="43" selection-start-line="81" selection-start-column="43" selection-end-line="81" selection-end-column="43" />
+              <folding>
+                <element signature="e#0#48#0" expanded="false" />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Animated.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/react-native/Libraries/Animated/src/Animated.js">
+      <file leaf-file-name="MovieCell.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/MovieCell.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
+              <caret line="83" column="45" selection-start-line="83" selection-start-column="45" selection-end-line="83" selection-end-column="45" />
               <folding />
             </state>
           </provider>
@@ -96,21 +106,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AnimatedImplementation.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/react-native/Libraries/Animated/src/AnimatedImplementation.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="137" column="8" selection-start-line="137" selection-start-column="2" selection-end-line="137" selection-end-column="8" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="SearchScreen.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/SearchScreen.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="51" selection-end-column="3" />
+              <caret line="65" column="4" selection-start-line="0" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
               <folding />
             </state>
           </provider>
@@ -120,7 +120,7 @@
         <entry file="file://$PROJECT_DIR$/StoriesList.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="307" column="15" selection-start-line="307" selection-start-column="7" selection-end-line="307" selection-end-column="15" />
+              <caret line="185" column="31" selection-start-line="185" selection-start-column="14" selection-end-line="185" selection-end-column="31" />
               <folding />
             </state>
           </provider>
@@ -178,9 +178,10 @@
         <option value="$PROJECT_DIR$/node_modules/react-native/private-cli/src/server/runServer.js" />
         <option value="$PROJECT_DIR$/SearchScreen.js" />
         <option value="$PROJECT_DIR$/HomeSearch.js" />
+        <option value="$PROJECT_DIR$/MovieCell.js" />
         <option value="$PROJECT_DIR$/index.android.js" />
         <option value="$PROJECT_DIR$/DianhuaList.js" />
-        <option value="$PROJECT_DIR$/MovieCell.js" />
+        <option value="$PROJECT_DIR$/AddShop.js" />
       </list>
     </option>
   </component>
@@ -222,8 +223,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scratches" />
       <pane id="Scope" />
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -337,12 +338,13 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1368" height="746" extended-state="0" />
+    <frame x="-4" y="-4" width="1368" height="746" extended-state="1" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.175" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.053846154" sideWeight="0.5477941" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.073846154" sideWeight="0.5507353" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.073846154" sideWeight="0.4492647" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0030721966" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
@@ -360,7 +362,6 @@
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.17384616" sideWeight="0.4522059" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
@@ -380,13 +381,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/ThemesList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="125" column="18" selection-start-line="125" selection-start-column="18" selection-end-line="125" selection-end-column="18" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/StoriesList.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -698,68 +692,79 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/StoriesList.js">
+    <entry file="file://$PROJECT_DIR$/SearchScreen.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="307" column="15" selection-start-line="307" selection-start-column="7" selection-end-line="307" selection-end-column="15" />
+          <caret line="65" column="4" selection-start-line="0" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Autocomplate.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.67741936">
-          <caret line="235" column="34" selection-start-line="235" selection-start-column="34" selection-end-line="235" selection-end-column="34" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="295" column="32" selection-start-line="295" selection-start-column="32" selection-end-line="295" selection-end-column="32" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/SearchScreen.js">
+    <entry file="file://$PROJECT_DIR$/MovieCell.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="28" column="0" selection-start-line="28" selection-start-column="0" selection-end-line="51" selection-end-column="3" />
+          <caret line="83" column="45" selection-start-line="83" selection-start-column="45" selection-end-line="83" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/StoriesList.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="185" column="31" selection-start-line="185" selection-start-column="14" selection-end-line="185" selection-end-column="31" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/index.android.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-6.7777777">
+          <caret line="590" column="13" selection-start-line="590" selection-start-column="4" selection-end-line="590" selection-end-column="13" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HomeSearch.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="283" column="40" selection-start-line="283" selection-start-column="40" selection-end-line="283" selection-end-column="40" />
+        <state vertical-scroll-proportion="-15.925926">
+          <caret line="54" column="10" selection-start-line="42" selection-start-column="8" selection-end-line="54" selection-end-column="10" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.android.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="471" column="18" selection-start-line="471" selection-start-column="18" selection-end-line="471" selection-end-column="18" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/DianhuaList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="354" column="25" selection-start-line="354" selection-start-column="25" selection-end-line="354" selection-end-column="25" />
+        <state vertical-scroll-proportion="-8.888889">
+          <caret line="483" column="6" selection-start-line="476" selection-start-column="4" selection-end-line="483" selection-end-column="6" />
           <folding>
-            <marker date="1447904569703" expanded="false" signature="14229:14248" placeholder="..." />
-            <marker date="1447904569703" expanded="true" signature="14268:14434" placeholder="..." />
-            <marker date="1447904569703" expanded="false" signature="14318:14340" placeholder="..." />
-            <marker date="1447904569703" expanded="false" signature="14376:14397" placeholder="..." />
-            <marker date="1447904569703" expanded="false" signature="14517:14536" placeholder="..." />
-            <marker date="1447904569703" expanded="false" signature="14591:14627" placeholder="..." />
-            <marker date="1447904569703" expanded="false" signature="14741:14762" placeholder="..." />
+            <marker date="1448023747796" expanded="false" signature="14892:14911" placeholder="..." />
+            <marker date="1448023747796" expanded="true" signature="14931:15097" placeholder="..." />
+            <marker date="1448023747796" expanded="false" signature="14981:15003" placeholder="..." />
+            <marker date="1448023747796" expanded="false" signature="15039:15060" placeholder="..." />
+            <marker date="1448023747796" expanded="false" signature="15180:15199" placeholder="..." />
+            <marker date="1448023747796" expanded="false" signature="15254:15290" placeholder="..." />
+            <marker date="1448023747796" expanded="false" signature="15404:15425" placeholder="..." />
           </folding>
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/MovieCell.js">
+    <entry file="file://$PROJECT_DIR$/AddShop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-1.5496454">
-          <caret line="71" column="35" selection-start-line="71" selection-start-column="35" selection-end-line="71" selection-end-column="35" />
-          <folding />
+        <state vertical-scroll-proportion="0.74863386">
+          <caret line="81" column="43" selection-start-line="81" selection-start-column="43" selection-end-line="81" selection-end-column="43" />
+          <folding>
+            <element signature="e#0#48#0" expanded="false" />
+          </folding>
         </state>
       </provider>
     </entry>

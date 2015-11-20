@@ -50,6 +50,8 @@ var Storage = require('react-native-storage');
 //var MainScreen = require('./MainScreen.android');
 var DianhuaList = require('./DianhuaList');
 var SearchScreen = require('./SearchScreen');
+var AddShopScreen = require('./AddShop');
+
 var dismissKeyboard = require('dismissKeyboard');
 
 var TouchableElement = TouchableHighlight;
@@ -452,6 +454,16 @@ var dianhua = React.createClass({
                             navigator={navigationOperations}
                             story={route.story} />
                     </View>
+                );
+            case "addshop":
+                return(
+                    <View style={styles.container}>
+                        <AddShopScreen
+                            style={{flex: 1}}
+                            navigator={navigationOperations}
+                            story={route.story} />
+                    </View>
+
                 );
         }
     },
