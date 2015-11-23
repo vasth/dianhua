@@ -378,7 +378,11 @@ var dianhua = React.createClass({
             });
         });
     },
-
+    addshop:function(){
+        _navigator.push({
+            name: 'addshop',
+        });
+    },
     updatedkeyword:function(){//更新完成关键词
         console.log("updatedkeyword");
         this.setState({
@@ -420,6 +424,12 @@ var dianhua = React.createClass({
                 // <Image style={{ width: 160,height: 56,}} source={{uri: 'http://192.168.0.100/siipa/googlelogo.png'}} />
                 return (
                     <View style={styles.container}>
+                        <View style={styles.searchbar}> 
+                            <View style={{flex:1}}></View>
+                            <TouchableHighlight  underlayColor="#d0d0d0" onPress={this.addshop}>
+                                <View style={styles.AddText}  ><Text style={{color:"#5E5E5E",fontSize:50,fontWeight:'300'}}> ＋</Text></View>
+                            </TouchableHighlight>
+                        </View>
                         <View style={{backgroundColor:'#fff',paddingBottom:10}}>
                             <View style={styles.title}>
                                 <Image style={{ width: 160,height: 56,}} source={require('./img/googlelogo.png')} />
@@ -534,8 +544,12 @@ var styles = StyleSheet.create({
         width: 64,
         height: 64,
     },
+    AddText:{
+        height: 56,
+        justifyContent: 'center',
+    },
     title:{
-        marginTop:56,
+        marginTop:0,
         //backgroundColor: '#00a2ed',
         height: 80,
         alignItems: 'center',
@@ -560,7 +574,7 @@ var styles = StyleSheet.create({
     },
     searchbar:{
         height: 56,
-        paddingVertical: 20,
+        //paddingVertical: 20,
         flexDirection: 'row',
     },
     searchbox:{

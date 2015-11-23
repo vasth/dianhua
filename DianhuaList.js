@@ -191,6 +191,7 @@ searchMovies: function(query: string) {
             });
         })
         .then((responseData) => {
+            //if responseData.total > 
             LOADING[query] = false;
             resultsCache.totalForQuery[query] = responseData.total;
             resultsCache.dataForQuery[query] = responseData.results;
@@ -215,8 +216,7 @@ hasMore: function(): boolean {
         return true;
     }
     return (
-        resultsCache.totalForQuery[query] !==
-        resultsCache.dataForQuery[query].length
+        resultsCache.totalForQuery[query] !== resultsCache.dataForQuery[query].length
     );
 },
 

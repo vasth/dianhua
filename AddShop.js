@@ -9,6 +9,7 @@ var {
     StyleSheet,
     Text,
     View,
+    ToastAndroid,
     TouchableHighlight,
     Platform,
     WebView,
@@ -23,11 +24,16 @@ var InteractionManager = require('InteractionManager');
 
 
 var AddShopScreen = React.createClass({
+    shop_name:"",
+    shop_tel:"",
+    shop_adress:"",
+    shop_loc:"",
+    shop_details:"",
     getInitialState: function() {
         return {
             splashed: false,
             renderPlaceholderOnly:true,
-            searchtext:"",
+            
         };
     },
     back:function(){
@@ -45,6 +51,45 @@ var AddShopScreen = React.createClass({
             </View>
         );
     },
+    _urlForAddshop:function(){
+
+    },
+    updateText: function(text) {
+        this.setState((state) => {
+          return {
+            curText: text,
+            prevText: state.curText,
+            prev2Text: state.prevText,
+          };
+        });
+    },
+    addshop:function(){
+        //setNativeProps 
+        // ToastAndroid.show(this.shop_name, ToastAndroid.SHORT);
+        // ToastAndroid.show(this.shop_tel, ToastAndroid.SHORT);
+        // ToastAndroid.show(this.shop_details, ToastAndroid.SHORT);
+
+        //发送请求数据
+        fetch("http://192.168.0.100:8080/addshop?shop_name="+this.shop_name+"&shop_tel="+this.shop_tel+"&shop_details="+this.shop_details)
+
+        .then((response) => response.json())
+        .catch((error) => {
+            console.error(error);
+            ToastAndroid.show("连接服务器失败", ToastAndroid.SHORT);
+        })
+        .then((responseData) => { 
+            // We reached the end of the list before the expected number of results
+            if (responseData.status=="ok") {
+                ToastAndroid.show("提交成功", ToastAndroid.SHORT);
+                //resultsCache.totalForQuery[query] = moviesForQuery.length;
+            } else {
+                console.log(responseData);
+                ToastAndroid.show("提交失败", ToastAndroid.SHORT);
+            }
+  
+        })
+        .done();
+    },
     render: function() {
         if (this.state.renderPlaceholderOnly) {
             return this._renderPlaceholderView();
@@ -56,35 +101,41 @@ var AddShopScreen = React.createClass({
                         <View style={styles.backText}  ><Text style={{color:'#fff',fontSize:20}}>  返回 </Text></View>
                     </TouchableHighlight>
                     <View style={{flex:1}}></View>
-                    <TouchableHighlight  underlayColor="#d0d0d0" onPress={this.back}>
+                    <TouchableHighlight  underlayColor="#d0d0d0" onPress={this.addshop}>
                         <View style={styles.AddText}  ><Text style={{color:"#fff",fontSize:50,fontWeight:'300'}}> √  </Text></View>
                     </TouchableHighlight>
                 </View>
                 <ScrollView contentContainerStyle={styles.contentContainer}>
                     <View style={styles.searchpress}>
                         <TextInput
-                            ref='textInput'
+                            ref='shop_name'
+                            value={this.state.text}
                             style={styles.textInput}
                             placeholder="请输入店铺名称"
-                            clearButtonMode="while-editing"
+                            onChangeText={(text) =>  this.shop_name = text}//原来这里的参数不是event，而是文字
+                            clearButtonMode='while-editing'
+                            returnKeyType='next'
                         />
                     </View>
                     <View style={styles.searchpress}>
                         <TextInput
-                            ref='textInput'
+                            ref='shop_tel'
                             style={styles.textInput}
                             placeholder="请输入联系电话"
-                            clearButtonMode="while-editing"
+                            onChangeText={(text) =>  this.shop_tel = text}
+                            clearButtonMode='while-editing'
+                            returnKeyType='next'
                         />
                     </View>
                     <View style={styles.searchpressmuil}>
                         <TextInput
-                            ref='textInput'
+                            ref='shop_details'
                             style={styles.textInput}
                             placeholder="请输入服务内容和范围"
+                            onChangeText={(text) =>  this.shop_details = text}
                             multiline={true}
                             numberOfLines={5}
-                            clearButtonMode="while-editing"
+                            clearButtonMode='while-editing'
                         />
                     </View>
                 </ScrollView>
