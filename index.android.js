@@ -54,6 +54,8 @@ var AddShopScreen = require('./AddShop');
 
 var dismissKeyboard = require('dismissKeyboard');
 
+var ConsolePanel = require('react-native-console-panel').Panel;
+
 var TouchableElement = TouchableHighlight;
 if (Platform.OS === 'android') {
     TouchableElement = TouchableNativeFeedback;
@@ -357,18 +359,21 @@ var dianhua = React.createClass({
         console.log("dianhua-didmount");
         NRBaiduloc.Initloc();
         RCTDeviceEventEmitter.addListener('RNBaiduEvent', ev => {
-            //ToastAndroid.show(ev.locationdescribe, ToastAndroid.SHORT);
+            //ToastAndroid.show(ev.locationdescribe, ToastAndroid.SHORT);//语义化地理位置
             //ToastAndroid.show(ev.error, ToastAndroid.SHORT);
             //ToastAndroid.show(ev.city, ToastAndroid.SHORT);
             //ToastAndroid.show(ev.citycode, ToastAndroid.SHORT);
             //ToastAndroid.show(ev.latitude, ToastAndroid.SHORT);
             //ToastAndroid.show(ev.lontitude, ToastAndroid.SHORT);
+
             storage.save({
                 key: 'NRBaiduloc',
                 rawData: {
                     latitude: ev.latitude,
                     lontitude:ev.lontitude,
-                    citycode: ev.citycode
+                    citycode: ev.citycode,
+                    locationdescribe:ev.locationdescribe,
+                    addr:ev.addr
                 },
                 //if not specified, the defaultExpires will be applied instead.
                 //if set to null, then it will never expires.
@@ -442,6 +447,7 @@ var dianhua = React.createClass({
                                <KeywordsView navigator={navigationOperations} />
                             </View>
                         </ScrollView>
+                        <ConsolePanel limit={10} style={{left:20,top:20}}/>
                     </View>
                 );
             case "story":
@@ -454,6 +460,7 @@ var dianhua = React.createClass({
                             style={{flex: 1}}
                             navigator={navigationOperations}
                             story={route.story} />
+                        <ConsolePanel limit={10} style={{left:20,top:20}}/>
                     </View>
                 );
             case "search":
@@ -463,6 +470,7 @@ var dianhua = React.createClass({
                             style={{flex: 1}}
                             navigator={navigationOperations}
                             story={route.story} />
+                        <ConsolePanel limit={10} style={{left:20,top:20}}/>
                     </View>
                 );
             case "addshop":
@@ -472,6 +480,7 @@ var dianhua = React.createClass({
                             style={{flex: 1}}
                             navigator={navigationOperations}
                             story={route.story} />
+                        <ConsolePanel limit={30} style={{left:20,top:20}}/>
                     </View>
 
                 );

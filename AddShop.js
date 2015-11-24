@@ -20,7 +20,10 @@ var {
 
 var PIXELRATIO = PixelRatio.get();//暂时没有用
 
-var InteractionManager = require('InteractionManager');
+var InteractionManager = require('InteractionManager');//这个是延迟加载
+var DeviceInfo = require('react-native-device-info');
+
+
 
 
 var AddShopScreen = React.createClass({
@@ -33,16 +36,37 @@ var AddShopScreen = React.createClass({
         return {
             splashed: false,
             renderPlaceholderOnly:true,
-            
+            shop_adress:this.shop_adress,
         };
     },
     back:function(){
         this.props.navigator.pop();//这里应该处理销毁所有正在请求的资源
     },
     componentDidMount() {
+        this._loadInitialState().done();//获取地理位置信息
         InteractionManager.runAfterInteractions(() => {
             this.setState({renderPlaceholderOnly: false});
-        });
+        }); 
+
+        console.log("Device Unique ID:"+ DeviceInfo.getUniqueID());  // e.g. FCDBD8EF-62FC-4ECB-B2F5-92C9E79AC7F9
+
+        console.log("Device Manufacturer:"+ DeviceInfo.getManufacturer());  // e.g. Apple
+
+        console.log("Device Model:"+ DeviceInfo.getModel());  // e.g. iPhone 6
+
+        console.log("Device ID:"+DeviceInfo.getDeviceId());  // e.g. iPhone7,2 / or the board on Android e.g. goldfish
+
+        console.log("Device Name:"+ DeviceInfo.getSystemName());  // e.g. iPhone OS
+
+        console.log("Device Version:"+ DeviceInfo.getSystemVersion());  // e.g. 9.0
+
+        console.log("Bundle Id:"+ DeviceInfo.getBundleId());  // e.g. com.learnium.mobile
+
+        console.log("Build Number:"+ DeviceInfo.getBuildNumber());  // e.g. 89
+
+        console.log("App Version:"+ DeviceInfo.getVersion());  // e.g. 1.1.0
+
+        console.log("App Version (Readable) :"+ DeviceInfo.getReadableVersion());  // e.g. 1.1.0.89
     },
     _renderPlaceholderView() {
         return (
@@ -50,6 +74,35 @@ var AddShopScreen = React.createClass({
                 <Text>Loading...</Text>
             </View>
         );
+    },
+async _loadInitialState() {
+        console.log('_loadInitialState');
+        storage.load({
+            key: 'NRBaiduloc',
+            //autoSync(default true) means if data not found or expired,
+            //then invoke the corresponding sync method
+            //autoSync(默认为true)意味着在没有找到数据或数据过期时自动调用相应的同步方法
+            autoSync: true,
+            //syncInBackground(default true) means if data expired,
+            //return the outdated data first while invoke the sync method.
+            //It can be set to false to always return data provided by sync method when expired.(Of course it's slower)
+            //syncInBackground(默认为true)意味着如果数据过期，
+            //在调用同步方法的同时先返回已经过期的数据。
+            //设置为false的话，则始终强制返回同步方法提供的最新数据(当然会需要更多等待时间)。
+            syncInBackground: false
+        }).then( ret => {                   //found data goes to then()
+            this.shop_loc = ""+ret.latitude+","+ret.lontitude;
+            var adress = ret.addr+ret.locationdescribe;
+            this.shop_adress = adress.replace("中国","");  
+            this.setState({
+                shop_adress:this.shop_adress,
+            });
+ 
+        }).catch( err => {                  //any exception including data not found
+            console.warn(err);              //goes to catch()
+                                            //如果没有找到数据且没有同步方法，
+                                            //或者有其他异常，则在catch中返回
+        });
     },
     _urlForAddshop:function(){
 
@@ -68,27 +121,32 @@ var AddShopScreen = React.createClass({
         // ToastAndroid.show(this.shop_name, ToastAndroid.SHORT);
         // ToastAndroid.show(this.shop_tel, ToastAndroid.SHORT);
         // ToastAndroid.show(this.shop_details, ToastAndroid.SHORT);
+        if(this.shop_name!=""&&this.shop_tel!=""&&this.shop_details!=""){
+           //发送请求数据
+            fetch("http://192.168.0.100:8080/addshop?shop_name="+this.shop_name+"&shop_tel="+this.shop_tel+"&shop_details="+this.shop_details+"&shop_loc="+this.shop_loc+"&shop_adress="+this.state.shop_adress+"&uniqueid="+DeviceInfo.getUniqueID())
 
-        //发送请求数据
-        fetch("http://192.168.0.100:8080/addshop?shop_name="+this.shop_name+"&shop_tel="+this.shop_tel+"&shop_details="+this.shop_details)
+            .then((response) => response.json())
+            .catch((error) => {
+                console.error(error);
+                ToastAndroid.show("连接服务器失败", ToastAndroid.SHORT);
+            })
+            .then((responseData) => { 
+                // We reached the end of the list before the expected number of results
+                if (responseData.status=="ok") {
+                    ToastAndroid.show("提交成功", ToastAndroid.SHORT);
+                    //resultsCache.totalForQuery[query] = moviesForQuery.length;
+                } else {
+                    console.log(responseData);
+                    ToastAndroid.show("提交失败", ToastAndroid.SHORT);
+                }
+      
+            })
+            .done(); 
 
-        .then((response) => response.json())
-        .catch((error) => {
-            console.error(error);
-            ToastAndroid.show("连接服务器失败", ToastAndroid.SHORT);
-        })
-        .then((responseData) => { 
-            // We reached the end of the list before the expected number of results
-            if (responseData.status=="ok") {
-                ToastAndroid.show("提交成功", ToastAndroid.SHORT);
-                //resultsCache.totalForQuery[query] = moviesForQuery.length;
-            } else {
-                console.log(responseData);
-                ToastAndroid.show("提交失败", ToastAndroid.SHORT);
-            }
-  
-        })
-        .done();
+        }else{
+            ToastAndroid.show("所填资料不能为空", ToastAndroid.SHORT);
+        }
+        
     },
     render: function() {
         if (this.state.renderPlaceholderOnly) {
@@ -122,7 +180,19 @@ var AddShopScreen = React.createClass({
                             ref='shop_tel'
                             style={styles.textInput}
                             placeholder="请输入联系电话"
+                            keyboardType="numeric"
                             onChangeText={(text) =>  this.shop_tel = text}
+                            clearButtonMode='while-editing'
+                            returnKeyType='next'
+                        />
+                    </View>
+                    <View style={styles.searchpress}>
+                        <TextInput
+                            ref='shop_adress'
+                            style={styles.textInput}
+                            placeholder="地址" 
+                            onChangeText={(text) => this.setState({shop_adress:text})}
+                            value = {this.state.shop_adress}
                             clearButtonMode='while-editing'
                             returnKeyType='next'
                         />

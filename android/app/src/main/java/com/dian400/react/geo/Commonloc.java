@@ -95,6 +95,7 @@ public class Commonloc {
                 sb.append(location.getAddrStr());
                 sb.append("\ndescribe : ");
                 sb.append("gps定位成功");
+                params.putString("addr", location.getAddrStr());//定位地址
             } else if (location.getLocType() == BDLocation.TypeNetWorkLocation) {// 网络定位结果
                 sb.append("\naddr : ");
                 sb.append(location.getAddrStr());
@@ -103,7 +104,7 @@ public class Commonloc {
                 sb.append(location.getOperators());
                 sb.append("\ndescribe : ");
                 sb.append("网络定位成功");
-
+                params.putString("addr", location.getAddrStr());//定位地址
             } else if (location.getLocType() == BDLocation.TypeOffLineLocation) {// 离线定位结果
                 sb.append("\ndescribe : ");
                 sb.append("离线定位成功，离线定位结果也是有效的");

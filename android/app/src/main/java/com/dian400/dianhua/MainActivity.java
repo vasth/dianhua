@@ -14,6 +14,7 @@ import com.facebook.react.modules.core.DefaultHardwareBackBtnHandler;
 import com.facebook.react.shell.MainReactPackage;
 import com.dian400.react.MyReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.learnium.RNDeviceInfo.*;
 
 public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
 
@@ -30,8 +31,9 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
                 .setApplication(getApplication())
                 .setBundleAssetName("index.android.bundle")
                 .setJSMainModuleName("index.android")
-                .addPackage(new MainReactPackage())
-                .addPackage(new MyReactPackage())
+                .addPackage(new MainReactPackage()) 
+                .addPackage(new MyReactPackage())    //自定义程序包
+                .addPackage(new RNDeviceInfo())      //获取设备信息的包 <------ add here
                 .setUseDeveloperSupport(BuildConfig.DEBUG)
                 //.setUseDeveloperSupport(false)
                 .setInitialLifecycleState(LifecycleState.RESUMED)
