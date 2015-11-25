@@ -11,6 +11,7 @@ var {
     View,
     ToastAndroid,
     TouchableHighlight,
+    TouchableWithoutFeedback,
     Platform,
     WebView,
     TextInput,
@@ -23,7 +24,8 @@ var PIXELRATIO = PixelRatio.get();//暂时没有用
 var InteractionManager = require('InteractionManager');//这个是延迟加载
 var DeviceInfo = require('react-native-device-info');
 
-
+import { RadioButtons } from 'react-native-radio-buttons'
+import { SegmentedControls } from 'react-native-radio-buttons'
 
 
 var AddShopScreen = React.createClass({
@@ -121,9 +123,16 @@ async _loadInitialState() {
         // ToastAndroid.show(this.shop_name, ToastAndroid.SHORT);
         // ToastAndroid.show(this.shop_tel, ToastAndroid.SHORT);
         // ToastAndroid.show(this.shop_details, ToastAndroid.SHORT);
-        if(this.shop_name!=""&&this.shop_tel!=""&&this.shop_details!=""){
+        //this.state.selectedOption 选择的服务范围
+        if(this.shop_name!=""&&this.shop_tel!=""&&this.shop_details!=""&&this.state.selectedOption!=""){
+            var group = 0;
+            if(this.state.selectedOption=="本地"){
+                group = 0;
+            }else{
+                group = 1;
+            }
            //发送请求数据
-            fetch("http://192.168.0.100:8080/addshop?shop_name="+this.shop_name+"&shop_tel="+this.shop_tel+"&shop_details="+this.shop_details+"&shop_loc="+this.shop_loc+"&shop_adress="+this.state.shop_adress+"&uniqueid="+DeviceInfo.getUniqueID())
+            fetch("http://192.168.0.100:8080/addshop?shop_name="+this.shop_name+"&shop_tel="+this.shop_tel+"&shop_details="+this.shop_details+"&shop_loc="+this.shop_loc+"&shop_adress="+this.state.shop_adress+"&uniqueid="+DeviceInfo.getUniqueID()+"&group="+group)
 
             .then((response) => response.json())
             .catch((error) => {
@@ -149,6 +158,31 @@ async _loadInitialState() {
         
     },
     render: function() {
+        const options = [
+            "本地",
+            "全国"
+          ];
+
+          function setSelectedOption(selectedOption){
+            this.setState({
+              selectedOption
+            });
+          };
+
+          function renderOption(option, selected, onSelect, index){
+            const style = selected ? { fontWeight: 'bold'} : {}
+
+            return (
+              <TouchableWithoutFeedback onPress={onSelect} key={index}>
+                <Text style={style}>{option}</Text>
+              </TouchableWithoutFeedback>
+            );
+          }
+
+          function renderContainer(optionNodes){
+            return <View>{optionNodes}</View>;
+          }
+
         if (this.state.renderPlaceholderOnly) {
             return this._renderPlaceholderView();
         }
@@ -208,12 +242,41 @@ async _loadInitialState() {
                             clearButtonMode='while-editing'
                         />
                     </View>
+                  
+                    <View style={styles.segmentedControlsview}>
+                        <Text style={{fontSize: 15,marginBottom:10}}>选择服务区域:  {this.state.selectedOption || ''} </Text>
+                        <SegmentedControls 
+                              optionStyle= {{ 
+                                height:35 ,   
+                                fontSize: 20,                        
+                              }}
+                              options={options}
+                              onSelection={ setSelectedOption.bind(this) }
+                              selectedOption={this.state.selectedOption }
+                        />
+                        
+                    </View>                      
+
                 </ScrollView>
             </View>
         );
     }
 });
-
+/*
+<SegmentedControls
+  tint= {'#f80046'}
+  selectedTint= {'white'}
+  backTint= {'#1e2126'}
+  optionStyle= {{
+    fontSize: 30,
+    fontWeight: 'bold',
+    fontFamily: 'Snell Roundhand'
+  }}
+  options={ options }
+  onSelection={ setSelectedOption.bind(this) }
+  selectedOption={this.state.selectedOption }
+/>
+*/
 // {toolbar}
 var styles = StyleSheet.create({
     container: {
@@ -248,6 +311,16 @@ var styles = StyleSheet.create({
         flexDirection: 'column',
         borderColor:'#C2C2C2',
         borderWidth:0.5,
+    },
+    segmentedControlsview:{
+        marginLeft:15,
+        marginRight:15,
+        marginTop:10,
+        height:106,
+        //flexDirection: 'row',
+        //borderWidth:1,
+        //borderColor:'#007AFF',
+        //borderRadius:5
     },
     textInput: {
         flex: 1,
