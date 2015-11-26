@@ -2,8 +2,32 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd0b9400-e2c9-4270-9b3e-abbfacd5fc8d" name="Default" comment="">
+      <change type="DELETED" beforePath="$PROJECT_DIR$/android/.idea/libraries/react_native_0_14_0.xml" afterPath="" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/android/.gradle/2.4/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/android/.gradle/2.4/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.gradle/2.4/taskArtifacts/outputFileStates.bin" afterPath="$PROJECT_DIR$/android/.gradle/2.4/taskArtifacts/outputFileStates.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.flowconfig" afterPath="$PROJECT_DIR$/.flowconfig" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.gitignore" afterPath="$PROJECT_DIR$/.gitignore" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DianhuaList.js" afterPath="$PROJECT_DIR$/DianhuaList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.android.js" afterPath="$PROJECT_DIR$/index.android.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HomeSearch.js" afterPath="$PROJECT_DIR$/HomeSearch.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.idea/encodings.xml" afterPath="$PROJECT_DIR$/android/.idea/encodings.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.idea/libraries/drawee_0_6_1.xml" afterPath="$PROJECT_DIR$/android/.idea/libraries/drawee_0_6_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.idea/libraries/fresco_0_6_1.xml" afterPath="$PROJECT_DIR$/android/.idea/libraries/fresco_0_6_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.idea/libraries/imagepipeline_0_6_1.xml" afterPath="$PROJECT_DIR$/android/.idea/libraries/imagepipeline_0_6_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.idea/libraries/imagepipeline_okhttp_0_6_1.xml" afterPath="$PROJECT_DIR$/android/.idea/libraries/imagepipeline_okhttp_0_6_1.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/android/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/app/app.iml" afterPath="$PROJECT_DIR$/android/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/app/build.gradle" afterPath="$PROJECT_DIR$/android/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/app/proguard-rules.pro" afterPath="$PROJECT_DIR$/android/app/proguard-rules.pro" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/app/src/main/java/com/dian400/dianhua/MainActivity.java" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/dian400/dianhua/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/build.gradle" afterPath="$PROJECT_DIR$/android/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/settings.gradle" afterPath="$PROJECT_DIR$/android/settings.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ios/dianhua.xcodeproj/project.pbxproj" afterPath="$PROJECT_DIR$/ios/dianhua.xcodeproj/project.pbxproj" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/ios/dianhua/AppDelegate.m" afterPath="$PROJECT_DIR$/ios/dianhua/AppDelegate.m" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="dianhua.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -27,7 +51,7 @@
       <file leaf-file-name="HomeSearch.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/HomeSearch.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-15.925926">
+            <state vertical-scroll-proportion="0.0">
               <caret line="54" column="10" selection-start-line="42" selection-start-column="8" selection-end-line="54" selection-end-column="10" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
@@ -36,81 +60,92 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Autocomplate.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Autocomplate.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="295" column="32" selection-start-line="295" selection-start-column="32" selection-end-line="295" selection-end-column="32" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="index.android.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.android.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-6.7777777">
-              <caret line="590" column="13" selection-start-line="590" selection-start-column="4" selection-end-line="590" selection-end-column="13" />
+            <state vertical-scroll-proportion="-15.703704">
+              <caret line="230" column="17" selection-start-line="230" selection-start-column="12" selection-end-line="230" selection-end-column="17" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DianhuaList.js" pinned="false" current-in-tab="false">
+      <file leaf-file-name="DianhuaList.js" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/DianhuaList.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="-8.888889">
-              <caret line="483" column="6" selection-start-line="476" selection-start-column="4" selection-end-line="483" selection-end-column="6" />
+            <state vertical-scroll-proportion="0.3649374">
+              <caret line="180" column="2" selection-start-line="180" selection-start-column="2" selection-end-line="180" selection-end-column="2" />
               <folding>
-                <marker date="1448023747796" expanded="false" signature="14892:14911" placeholder="..." />
-                <marker date="1448023747796" expanded="true" signature="14931:15097" placeholder="..." />
-                <marker date="1448023747796" expanded="false" signature="14981:15003" placeholder="..." />
-                <marker date="1448023747796" expanded="false" signature="15039:15060" placeholder="..." />
-                <marker date="1448023747796" expanded="false" signature="15180:15199" placeholder="..." />
-                <marker date="1448023747796" expanded="false" signature="15254:15290" placeholder="..." />
-                <marker date="1448023747796" expanded="false" signature="15404:15425" placeholder="..." />
+                <marker date="1448533799281" expanded="false" signature="15002:15021" placeholder="..." />
+                <marker date="1448533799281" expanded="true" signature="15041:15207" placeholder="..." />
+                <marker date="1448533799281" expanded="false" signature="15091:15113" placeholder="..." />
+                <marker date="1448533799281" expanded="false" signature="15149:15170" placeholder="..." />
+                <marker date="1448533799281" expanded="false" signature="15290:15309" placeholder="..." />
+                <marker date="1448533799281" expanded="false" signature="15364:15400" placeholder="..." />
+                <marker date="1448533799281" expanded="false" signature="15514:15535" placeholder="..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="AddShop.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="AddShop.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/AddShop.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.74863386">
-              <caret line="81" column="43" selection-start-line="81" selection-start-column="43" selection-end-line="81" selection-end-column="43" />
+            <state vertical-scroll-proportion="0.0">
+              <caret line="251" column="32" selection-start-line="251" selection-start-column="32" selection-end-line="251" selection-end-column="32" />
               <folding>
                 <element signature="e#0#48#0" expanded="false" />
+                <marker date="1448447651909" expanded="true" signature="11495:11501" placeholder="{&quot;marginLeft&quot;: 15...}" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="MovieCell.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MovieCell.js">
+      <file leaf-file-name="tests.json" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/react-native/node_modules/joi/node_modules/isemail/test/tests.json">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="83" column="45" selection-start-line="83" selection-start-column="45" selection-end-line="83" selection-end-column="45" />
+            <state vertical-scroll-proportion="-8.142858">
+              <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="gulpfile.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/react-native/Libraries/Animated/release/gulpfile.js">
+      <file leaf-file-name="server.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/react-native/local-cli/server/server.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state vertical-scroll-proportion="-4.0">
+              <caret line="80" column="5" selection-start-line="80" selection-start-column="4" selection-end-line="80" selection-end-column="5" />
               <folding />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="SearchScreen.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/SearchScreen.js">
+      <file leaf-file-name="statusPageMiddleware.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/react-native/local-cli/server/middleware/statusPageMiddleware.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="65" column="4" selection-start-line="0" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
+              <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="runServer.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/react-native/local-cli/server/runServer.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="47" column="65" selection-start-line="47" selection-start-column="65" selection-end-line="47" selection-end-column="65" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="index.js" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/node_modules/react-native/packager/react-packager/src/FileWatcher/index.js">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
               <folding />
             </state>
           </provider>
@@ -121,16 +156,6 @@
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
               <caret line="185" column="31" selection-start-line="185" selection-start-column="14" selection-end-line="185" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="MenuList.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/MenuList.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="25" column="12" selection-start-line="25" selection-start-column="8" selection-end-line="25" selection-end-column="12" />
               <folding />
             </state>
           </provider>
@@ -180,8 +205,10 @@
         <option value="$PROJECT_DIR$/HomeSearch.js" />
         <option value="$PROJECT_DIR$/MovieCell.js" />
         <option value="$PROJECT_DIR$/index.android.js" />
-        <option value="$PROJECT_DIR$/DianhuaList.js" />
         <option value="$PROJECT_DIR$/AddShop.js" />
+        <option value="$PROJECT_DIR$/node_modules/react-native/local-cli/server/runServer.js" />
+        <option value="$PROJECT_DIR$/node_modules/react-native/packager/react-packager/src/FileWatcher/index.js" />
+        <option value="$PROJECT_DIR$/DianhuaList.js" />
       </list>
     </option>
   </component>
@@ -223,8 +250,8 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="Scratches" />
+      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -338,20 +365,18 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1368" height="746" extended-state="1" />
+    <frame x="-4" y="-4" width="1368" height="746" extended-state="0" />
     <editor active="false" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.175" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
-      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.073846154" sideWeight="0.5507353" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.073846154" sideWeight="0.4492647" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1" sideWeight="0.5654412" order="7" side_tool="true" content_ui="tabs" />
+      <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1" sideWeight="0.4345588" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0030721966" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -359,10 +384,12 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0030721966" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -381,14 +408,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/StoriesList.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="21" selection-start-line="26" selection-start-column="21" selection-end-line="26" selection-end-column="21" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/index.android.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -576,13 +595,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/react-native/packager/statusPageMiddleware.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="20" column="2" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/node_modules/react-native/local-cli/setup_env.bat">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-3.04">
@@ -590,31 +602,10 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/react-native/node_modules/joi/node_modules/isemail/test/tests.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-5.285714">
-          <caret line="81" column="43" selection-start-line="81" selection-start-column="43" selection-end-line="81" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/package.json">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-10.857142">
           <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/react-native/private-cli/src/server/server.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="26" column="1" selection-start-line="25" selection-start-column="5" selection-end-line="26" selection-end-column="1" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/node_modules/react-native/private-cli/src/server/runServer.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="46" column="41" selection-start-line="46" selection-start-column="41" selection-end-line="46" selection-end-column="41" />
         </state>
       </provider>
     </entry>
@@ -664,7 +655,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="15" column="26" selection-start-line="15" selection-start-column="26" selection-end-line="15" selection-end-column="26" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -672,7 +662,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="137" column="8" selection-start-line="137" selection-start-column="2" selection-end-line="137" selection-end-column="8" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -724,17 +713,60 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/index.android.js">
+    <entry file="file://$PROJECT_DIR$/AddShop.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-6.7777777">
-          <caret line="590" column="13" selection-start-line="590" selection-start-column="4" selection-end-line="590" selection-end-column="13" />
+        <state vertical-scroll-proportion="0.0">
+          <caret line="251" column="32" selection-start-line="251" selection-start-column="32" selection-end-line="251" selection-end-column="32" />
+          <folding>
+            <element signature="e#0#48#0" expanded="false" />
+            <marker date="1448447651909" expanded="true" signature="11495:11501" placeholder="{&quot;marginLeft&quot;: 15...}" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-native/node_modules/joi/node_modules/isemail/test/tests.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-8.142858">
+          <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-native/local-cli/server/server.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="-4.0">
+          <caret line="80" column="5" selection-start-line="80" selection-start-column="4" selection-end-line="80" selection-end-column="5" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-native/local-cli/server/middleware/statusPageMiddleware.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="12" column="14" selection-start-line="12" selection-start-column="14" selection-end-line="12" selection-end-column="14" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-native/local-cli/server/runServer.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="47" column="65" selection-start-line="47" selection-start-column="65" selection-end-line="47" selection-end-column="65" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/node_modules/react-native/packager/react-packager/src/FileWatcher/index.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="16" column="28" selection-start-line="16" selection-start-column="28" selection-end-line="16" selection-end-column="28" />
           <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/HomeSearch.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-15.925926">
+        <state vertical-scroll-proportion="0.0">
           <caret line="54" column="10" selection-start-line="42" selection-start-column="8" selection-end-line="54" selection-end-column="10" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
@@ -742,28 +774,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/DianhuaList.js">
+    <entry file="file://$PROJECT_DIR$/index.android.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-8.888889">
-          <caret line="483" column="6" selection-start-line="476" selection-start-column="4" selection-end-line="483" selection-end-column="6" />
-          <folding>
-            <marker date="1448023747796" expanded="false" signature="14892:14911" placeholder="..." />
-            <marker date="1448023747796" expanded="true" signature="14931:15097" placeholder="..." />
-            <marker date="1448023747796" expanded="false" signature="14981:15003" placeholder="..." />
-            <marker date="1448023747796" expanded="false" signature="15039:15060" placeholder="..." />
-            <marker date="1448023747796" expanded="false" signature="15180:15199" placeholder="..." />
-            <marker date="1448023747796" expanded="false" signature="15254:15290" placeholder="..." />
-            <marker date="1448023747796" expanded="false" signature="15404:15425" placeholder="..." />
-          </folding>
+        <state vertical-scroll-proportion="-15.703704">
+          <caret line="230" column="17" selection-start-line="230" selection-start-column="12" selection-end-line="230" selection-end-column="17" />
+          <folding />
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/AddShop.js">
+    <entry file="file://$PROJECT_DIR$/DianhuaList.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.74863386">
-          <caret line="81" column="43" selection-start-line="81" selection-start-column="43" selection-end-line="81" selection-end-column="43" />
+        <state vertical-scroll-proportion="0.3649374">
+          <caret line="180" column="2" selection-start-line="180" selection-start-column="2" selection-end-line="180" selection-end-column="2" />
           <folding>
-            <element signature="e#0#48#0" expanded="false" />
+            <marker date="1448533799281" expanded="false" signature="15002:15021" placeholder="..." />
+            <marker date="1448533799281" expanded="true" signature="15041:15207" placeholder="..." />
+            <marker date="1448533799281" expanded="false" signature="15091:15113" placeholder="..." />
+            <marker date="1448533799281" expanded="false" signature="15149:15170" placeholder="..." />
+            <marker date="1448533799281" expanded="false" signature="15290:15309" placeholder="..." />
+            <marker date="1448533799281" expanded="false" signature="15364:15400" placeholder="..." />
+            <marker date="1448533799281" expanded="false" signature="15514:15535" placeholder="..." />
           </folding>
         </state>
       </provider>

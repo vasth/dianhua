@@ -346,6 +346,7 @@ BackAndroid.addEventListener('hardwareBackPress', function() {
 });
 
 var dianhua = React.createClass({
+    watchID: (null: ?number),
     getInitialState: function() {
         return {
             splashed: false,
@@ -353,11 +354,35 @@ var dianhua = React.createClass({
             isbegin:'true',
             //timethumbs:THUMBS,
             isupdate:true,//关键词界面是否更新
+            initialPosition: 'unknown',
+            lastPosition: 'unknown',
         };
     },
     componentDidMount: function() {
         console.log("dianhua-didmount");
+
         NRBaiduloc.Initloc();
+        navigator.geolocation.getCurrentPosition(
+              (initialPosition) => this.setState({initialPosition}),
+              (error) => console.log(error.message),
+              {enableHighAccuracy: true, timeout: 20000, maximumAge: 1}
+            );
+
+        
+
+            this.watchID = navigator.geolocation.watchPosition((lastPosition) => {
+               this.setState({lastPosition});
+               console.log(this.watchID);
+               console.log("lastPosition");
+               console.log(JSON.stringify(lastPosition));
+               if(this.state.lastPosition!='unknown'){
+                 navigator.geolocation.stopObserving();
+               }
+              
+            });
+       
+            
+
         RCTDeviceEventEmitter.addListener('RNBaiduEvent', ev => {
             //ToastAndroid.show(ev.locationdescribe, ToastAndroid.SHORT);//语义化地理位置
             //ToastAndroid.show(ev.error, ToastAndroid.SHORT);
@@ -365,6 +390,12 @@ var dianhua = React.createClass({
             //ToastAndroid.show(ev.citycode, ToastAndroid.SHORT);
             //ToastAndroid.show(ev.latitude, ToastAndroid.SHORT);
             //ToastAndroid.show(ev.lontitude, ToastAndroid.SHORT);
+            console.log(ev.locationdescribe);
+            console.log(ev.error);
+            console.log(ev.city);
+            console.log(ev.citycode);
+            console.log(ev.latitude);
+            console.log(ev.lontitude);
 
             storage.save({
                 key: 'NRBaiduloc',
@@ -382,6 +413,9 @@ var dianhua = React.createClass({
                 expires: null
             });
         });
+    },
+    componentWillUnmount: function() {
+        navigator.geolocation.clearWatch(this.watchID);
     },
     addshop:function(){
         _navigator.push({

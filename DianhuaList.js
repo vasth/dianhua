@@ -33,7 +33,9 @@ var API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/';
 ];
 //var APP_URL = 'http://api.map.baidu.com/place/v2/eventsearch?';
 //var APP_URL = 'http://api.map.baidu.com/place/v2/search';
-var APP_URL = 'http://182.92.1.8:8080/sh';
+//var APP_URL = 'http://182.92.1.8:8080/sh';
+var APP_URL = 'http://192.168.0.100:8080/searchsh';
+
 
 // Results should be cached keyed by the query
 // with values of null meaning "being fetched"
@@ -145,7 +147,7 @@ _urlForQueryAndPage: function(query: string, pageNumber: number): string {
             '&page_size=20'
         );
     } else {
-        // With no query, load latest movies
+        // With no query, load latest movies =====这里是要改的
         return (
             API_URL + 'lists/movies/in_theaters.json?apikey=' + apiKey +
             '&page_limit=20&page=' + pageNumber
@@ -154,6 +156,7 @@ _urlForQueryAndPage: function(query: string, pageNumber: number): string {
 },
 
 searchMovies: function(query: string) {
+    console.log("search movies");
     this.timeoutID = null;
 
     this.setState({filter: query});
@@ -178,6 +181,7 @@ searchMovies: function(query: string) {
         queryNumber: this.state.queryNumber + 1,
         isLoadingTail: false,
     });
+    console.log(query);
     console.log(this._urlForQueryAndPage(query, 1));
     fetch(this._urlForQueryAndPage(query, 1))
         .then((response) => response.json())
@@ -278,6 +282,7 @@ onEndReached: function() {
 },
 
 getDataSource: function(movies: Array<any>): ListView.DataSource {
+    console.log(movies);
     return this.state.dataSource.cloneWithRows(movies);
 },
 

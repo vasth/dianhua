@@ -112,7 +112,7 @@ exports.create = function(options = {}) {
         },
         _enableRowLoader(rowData) {
             for (let i = 0; i < this._results.length; i++) {
-                if (this._results[i].place_id === rowData.place_id) {
+                if (this._results[i].place_id === rowData.id) {
                     this._results[i].isLoading = true;
                     this.setState({
                         dataSource: this.state.dataSource.cloneWithRows(this._results),
@@ -236,7 +236,7 @@ exports.create = function(options = {}) {
                             }
                         }else {
                             //this._results = []; ---这里修改了
-                            this._results = [{"keyword": text,"place_id": "0"}];
+                            this._results = [{"keyword": text,"id": "0"}];
                             this.setState({
                                 dataSource: this.state.dataSource.cloneWithRows(this._results),
                             });
@@ -247,7 +247,7 @@ exports.create = function(options = {}) {
                         }
                     } else {
                         //---这里新增默认关键字不为空
-                        this._results = [{"keyword": text,"place_id": "0"}];
+                        this._results = [{"keyword": text,"id": "0"}];
                         this.setState({
                             dataSource: this.state.dataSource.cloneWithRows(this._results),
                         });
@@ -262,7 +262,7 @@ exports.create = function(options = {}) {
                 //request.open('GET', 'http://192.168.0.100/siipa/baojia/json.php?country='+encodeURI(text));
                 console.warn(encodeURI(text));
                 console.warn(text);
-                request.open('GET', 'http://182.92.1.8:8080/sw?word='+encodeURI(text));
+                request.open('GET', 'http://192.168.0.100:8080/searchkw?word='+encodeURI(text));
 
                 request.send();
             } else {
