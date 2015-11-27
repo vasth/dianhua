@@ -262,7 +262,9 @@ exports.create = function(options = {}) {
                 //request.open('GET', 'http://192.168.0.100/siipa/baojia/json.php?country='+encodeURI(text));
                 console.warn(encodeURI(text));
                 console.warn(text);
+                //request.open('GET', 'http://182.92.1.8:8080/searchkw?word='+encodeURI(text));
                 request.open('GET', 'http://192.168.0.100:8080/searchkw?word='+encodeURI(text));
+               
 
                 request.send();
             } else {

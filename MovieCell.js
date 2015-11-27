@@ -60,9 +60,21 @@ var MovieCell = React.createClass({
   render: function() {
     //var criticsScore = this.props.movie.detail_info.service_rating;
     var TouchableElement = TouchableHighlight;
+    var distance = "";
     if (Platform.OS === 'android') {
       TouchableElement = TouchableNativeFeedback;
     }
+
+    if(this.props.movie.distance == 0){
+       if(this.props.movie.group == 0){
+         distance =  <Text numberOfLines={1}>  本地  </Text> 
+       }else{
+         distance =  <Text numberOfLines={1}>  全国  </Text> 
+       }
+    }else{
+        distance =  <Text numberOfLines={1}>  距离: {this.props.movie.distance / 1000} km </Text> ;
+    }
+
     return (
       <View>
         <TouchableElement
@@ -89,9 +101,7 @@ var MovieCell = React.createClass({
                 <Text style={styles.rating} numberOfLines={1}>
                   {this.getrating(this.props.movie.overall_rating)}
                 </Text>
-                <Text   numberOfLines={1}>
-                  距离: {this.props.movie.distance / 1000} km
-                </Text>
+                {distance}
               </Text>
               <Text style={styles.movieYear}numberOfLines={1}>
                 地址: {this.props.movie.address}

@@ -34,7 +34,8 @@ var API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/';
 //var APP_URL = 'http://api.map.baidu.com/place/v2/eventsearch?';
 //var APP_URL = 'http://api.map.baidu.com/place/v2/search';
 //var APP_URL = 'http://182.92.1.8:8080/sh';
-var APP_URL = 'http://192.168.0.100:8080/searchsh';
+//var APP_URL = 'http://192.168.0.100:8080/searchsh';
+var APP_URL = 'http://182.92.1.8:8080/searchsh';
 
 
 // Results should be cached keyed by the query
@@ -196,20 +197,37 @@ searchMovies: function(query: string) {
         })
         .then((responseData) => {
             //if responseData.total > 
-            LOADING[query] = false;
-            resultsCache.totalForQuery[query] = responseData.total;
-            resultsCache.dataForQuery[query] = responseData.results;
-            resultsCache.nextPageNumberForQuery[query] = 2;
+            console.log(JSON.stringify(responseData));
+            console.log(responseData.results);
+            if (typeof responseData.results !== 'undefined'&& responseData.total > 0) {
+                console.log("responseData.total>0");
+                console.log(responseData.total);
+                if (this.isMounted()) {//如果该界面已经被挂载
+                    LOADING[query] = false;
+                    resultsCache.totalForQuery[query] = responseData.total;
+                    resultsCache.dataForQuery[query] = responseData.results;
+                    resultsCache.nextPageNumberForQuery[query] = 2;
 
-            if (this.state.filter !== query) {
-                // do not update state if the query is stale
-                return;
+                    if (this.state.filter !== query) {
+                        // do not update state if the query is stale
+                        return;
+                    }
+
+                    this.setState({
+                        isLoading: false,
+                        dataSource: this.getDataSource(responseData.results),
+                    });
+                } 
+            }else {//没有找到数据
+                LOADING[query] = false;
+                resultsCache.dataForQuery[query] = undefined; 
+                this.setState({
+                    dataSource: this.getDataSource([]),
+                    isLoading: false,
+                });
             }
 
-            this.setState({
-                isLoading: false,
-                dataSource: this.getDataSource(responseData.results),
-            });
+            
         })
         .done();
 },
@@ -277,6 +295,34 @@ onEndReached: function() {
                 isLoadingTail: false,
                 dataSource: this.getDataSource(resultsCache.dataForQuery[query]),
             });
+
+            // if (typeof responseData.results !== 'undefined'&& responseData.total > 0) {
+            //     console.log(responseData.total);
+            //     if (this.isMounted()) {//如果该界面已经被挂载
+            //         LOADING[query] = false;
+            //         resultsCache.totalForQuery[query] = responseData.total;
+            //         resultsCache.dataForQuery[query] = responseData.results;
+            //         resultsCache.nextPageNumberForQuery[query] = 2;
+
+            //         if (this.state.filter !== query) {
+            //             // do not update state if the query is stale
+            //             return;
+            //         }
+
+            //         this.setState({
+            //             isLoading: false,
+            //             dataSource: this.getDataSource(responseData.results),
+            //         });
+            //     } 
+            // }else {//没有找到数据
+            //     LOADING[query] = false;
+            //     resultsCache.dataForQuery[query] = undefined; 
+            //     this.setState({
+            //         dataSource: this.getDataSource([]),
+            //         isLoading: false,
+            //     });
+            // }
+
         })
         .done();
 },
@@ -435,32 +481,43 @@ back: function() {
 var NoMovies = React.createClass({
     render: function() {
         var text = '正在加载中 ...';
-        if (this.props.filter) {
-            text = `No results for "${this.props.filter}"`;
-        } else if (!this.props.isLoading) {
+        //if (this.props.filter) {
+            //text = `No results for "${this.props.filter}"`;
+       // } else if (!this.props.isLoading) {
+        if (!this.props.isLoading) {
             // If we're looking at the latest movies, aren't currently loading, and
             // still have no results, show a message
-            text = 'No movies found';
+            text = '没有找到符合的店铺';
         }
 
         //这里没有判断是否是加载失败
         if (Platform.OS === 'ios') {
-            return (
-                <View style={[styles.container, styles.centerText]}>
+            var content = this.props.isLoading ?
+               <View style={[styles.container, styles.centerText]}>
                     <ActivityIndicatorIOS style={styles.scrollSpinner} />
                     <Text style={styles.noMoviesText}>{text}</Text>
                 </View>
-            );
+                :
+                <View style={[styles.container, styles.centerText]}> 
+                    <Text style={styles.noMoviesText}>{text}</Text>
+                </View>;
+
+            return content;
         } else {
-            return (
+            var content = this.props.isLoading ?
                 <View style={[styles.container, styles.centerText]}>
                     <View  style={[styles.noMoviecontent,{alignItems: 'center'}]}>
                         <ProgressBarAndroid styleAttr="Large"/>
                         <Text style={styles.noMoviesText}>{text}</Text>
-                    </View>
-
+                    </View> 
                 </View>
-            );
+                :
+                <View style={[styles.container, styles.centerText]}>
+                    <View  style={[styles.noMoviecontent,{alignItems: 'center'}]}> 
+                        <Text style={styles.noMoviesText}>{text}</Text>
+                    </View> 
+                </View>; 
+            return content;
         }
 
 

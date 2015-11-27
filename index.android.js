@@ -1,4 +1,4 @@
-/**
+/*
  * The examples provided by Facebook are for non-commercial testing and
  * evaluation purposes only.
  *
@@ -326,7 +326,7 @@ var KeywordsView = React.createClass({
         //return <View>{this.state.timethumbs.map(function(uri, index, array) {
         //    return <Thumb key={index}  item1={uri.item1} item2={uri.item2} navigator={navigator} />
         //})}</View>;
-    }
+    },
 });
 
 
@@ -346,7 +346,7 @@ BackAndroid.addEventListener('hardwareBackPress', function() {
 });
 
 var dianhua = React.createClass({
-    watchID: (null: ?number),
+    // watchID: (null: ?number),
     getInitialState: function() {
         return {
             splashed: false,
@@ -354,34 +354,30 @@ var dianhua = React.createClass({
             isbegin:'true',
             //timethumbs:THUMBS,
             isupdate:true,//关键词界面是否更新
-            initialPosition: 'unknown',
-            lastPosition: 'unknown',
+            // initialPosition: 'unknown',
+            // lastPosition: 'unknown',
         };
     },
     componentDidMount: function() {
         console.log("dianhua-didmount");
 
         NRBaiduloc.Initloc();
-        navigator.geolocation.getCurrentPosition(
-              (initialPosition) => this.setState({initialPosition}),
-              (error) => console.log(error.message),
-              {enableHighAccuracy: true, timeout: 20000, maximumAge: 1}
-            );
 
+        // navigator.geolocation.getCurrentPosition(
+        //       (initialPosition) => this.setState({initialPosition}),
+        //       (error) => console.log(error.message),
+        //       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1}
+        //     ); 
+        //     this.watchID = navigator.geolocation.watchPosition((lastPosition) => {
+        //        this.setState({lastPosition});
+        //        console.log(this.watchID);
+        //        console.log("lastPosition");
+        //        console.log(JSON.stringify(lastPosition));
+        //        if(this.state.lastPosition!='unknown'){
+        //          navigator.geolocation.stopObserving();
+        //        } 
+        //     });
         
-
-            this.watchID = navigator.geolocation.watchPosition((lastPosition) => {
-               this.setState({lastPosition});
-               console.log(this.watchID);
-               console.log("lastPosition");
-               console.log(JSON.stringify(lastPosition));
-               if(this.state.lastPosition!='unknown'){
-                 navigator.geolocation.stopObserving();
-               }
-              
-            });
-       
-            
 
         RCTDeviceEventEmitter.addListener('RNBaiduEvent', ev => {
             //ToastAndroid.show(ev.locationdescribe, ToastAndroid.SHORT);//语义化地理位置
@@ -414,9 +410,9 @@ var dianhua = React.createClass({
             });
         });
     },
-    componentWillUnmount: function() {
-        navigator.geolocation.clearWatch(this.watchID);
-    },
+    // componentWillUnmount: function() {
+    //     navigator.geolocation.clearWatch(this.watchID);
+    // },
     addshop:function(){
         _navigator.push({
             name: 'addshop',
@@ -884,7 +880,6 @@ AppRegistry.registerComponent('dianhua', () => dianhua);
  <View style={styles.searchbtn}><Text >搜索</Text></View>
  </View>
  */
-
 /********
  * getInitialState() {
  return { opacity: 0.2 }
@@ -948,4 +943,4 @@ AppRegistry.registerComponent('dianhua', () => dianhua);
         );
     }
 });
- */
+*/

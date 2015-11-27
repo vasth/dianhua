@@ -132,7 +132,7 @@ async _loadInitialState() {
                 group = 1;
             }
            //发送请求数据
-            fetch("http://192.168.0.100:8080/addshop?shop_name="+this.shop_name+"&shop_tel="+this.shop_tel+"&shop_details="+this.shop_details+"&shop_loc="+this.shop_loc+"&shop_adress="+this.state.shop_adress+"&uniqueid="+DeviceInfo.getUniqueID()+"&group="+group)
+            fetch("http://182.92.1.8:8080/addshop?shop_name="+this.shop_name+"&shop_tel="+this.shop_tel+"&shop_details="+this.shop_details+"&shop_loc="+this.shop_loc+"&shop_adress="+this.state.shop_adress+"&uniqueid="+DeviceInfo.getUniqueID()+"&group="+group)
 
             .then((response) => response.json())
             .catch((error) => {
