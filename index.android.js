@@ -44,8 +44,11 @@ var ToolbarAndroid = require('ToolbarAndroid');
 //var tweenState = require('react-tween-state');
 
 var NRBaiduloc = NativeModules.RNBaiduloc;
+var RNEasemob = NativeModules.RNEasemob;
+
 var RCTDeviceEventEmitter = require('RCTDeviceEventEmitter');
 var Storage = require('react-native-storage');
+var md5 = require('MD5');
 
 //var MainScreen = require('./MainScreen.android');
 var DianhuaList = require('./DianhuaList');
@@ -53,6 +56,7 @@ var SearchScreen = require('./SearchScreen');
 var AddShopScreen = require('./AddShop');
 
 var dismissKeyboard = require('dismissKeyboard');
+var DeviceInfo = require('react-native-device-info');//获取deviceinfo
 
 var ConsolePanel = require('react-native-console-panel').Panel;
 
@@ -60,6 +64,8 @@ var TouchableElement = TouchableHighlight;
 if (Platform.OS === 'android') {
     TouchableElement = TouchableNativeFeedback;
 }
+
+
 /**************************首页搜索框***************************/
 var HomeAutocomplete = require('./HomeSearch.js' ).create({
     placeholder: '在这里找你想要的',
@@ -125,6 +131,12 @@ var storage = new Storage({
 global.storage = storage;
 /**************************存储end**************************/
 
+/**************************全局变量的声明***************************/
+//global.storage = storage;
+var APP_URL = 'http://182.92.1.8:8080';
+//var APP_URL = 'http://192.168.0.100:8080'
+global.APP_URL = APP_URL;
+/**************************全局变量的声明end***************************/
 
 //关键字展示的控件
 var KeywordsView = React.createClass({
@@ -362,6 +374,7 @@ var dianhua = React.createClass({
         console.log("dianhua-didmount");
 
         NRBaiduloc.Initloc();
+        this._intim().done();
 
         // navigator.geolocation.getCurrentPosition(
         //       (initialPosition) => this.setState({initialPosition}),
@@ -409,6 +422,97 @@ var dianhua = React.createClass({
                 expires: null
             });
         });
+    },
+    async  _intim(){//异部执行创建用户或者登录环信服务器
+        RNEasemob.Initim();//初始化
+        var username = DeviceInfo.getUniqueID();
+        var pwd = md5(username+"pwd")
+        var imislogin = "";
+        var imiscreate = "";
+        storage.load({
+            key: 'RNEasemob',
+            //autoSync(默认为true)意味着在没有找到数据或数据过期时自动调用相应的同步方法
+            autoSync: true,
+            //syncInBackground(默认为true)意味着如果数据过期，
+            //在调用同步方法的同时先返回已经过期的数据。
+            //设置为false的话，则始终强制返回同步方法提供的最新数据(当然会需要更多等待时间)。
+            syncInBackground: false
+        }).then( ret => {                   //found data goes to then()
+            //this.setState({region: ret.citycode});
+            imislogin = ret.islogin;
+            imiscreate = ret.imiscreate;
+            if(imislogin==="true"){
+
+            }else{
+                if(imiscreate=="true"){
+                    RNEasemob.Login(username,pwd);
+                    RCTDeviceEventEmitter.addListener('RNEasemobEvent', ev => { ////////================这里需要更改监听的key
+                        //ToastAndroid.show(ev.lontitude, ToastAndroid.SHORT);
+                        console.log(ev.login_err);
+                      
+                        if(ev.login_err == "success"){
+                            storage.save({
+                                key: 'RNEasemob',
+                                rawData: {
+                                    imislogin: "true" 
+                                },
+                                //if not specified, the defaultExpires will be applied instead.
+                                //if set to null, then it will never expires.
+                                //如果不指定过期时间，则会使用defaultExpires参数
+                                //如果设为null，则永不过期
+                                expires: null
+                            });
+                        }else{ 
+                            ToastAndroid.show(ev.login_err, ToastAndroid.SHORT);
+                        }   
+                    });   
+                }else{
+                    RNEasemob.Create(username,pwd);//这里缺少一步登录 
+                    RCTDeviceEventEmitter.addListener('RNEasemobEvent', ev => { 
+                        //ToastAndroid.show(ev.lontitude, ToastAndroid.SHORT);
+                        console.log(ev.create_err); 
+                        if(ev.create_err == "nil"){
+                            storage.save({
+                                key: 'RNEasemob',
+                                rawData: {
+                                    imiscreate: "true" 
+                                },
+                                //if not specified, the defaultExpires will be applied instead.
+                                //if set to null, then it will never expires.
+                                //如果不指定过期时间，则会使用defaultExpires参数
+                                //如果设为null，则永不过期
+                                expires: null
+                            });
+                        }else if(ev.create_err == "NONETWORK_ERROR"){ 
+                            ToastAndroid.show("网络异常，请检查网络！", ToastAndroid.SHORT);
+                        }else if(ev.create_err == "USER_ALREADY_EXISTS"){ 
+                            ToastAndroid.show("用户已存在！", ToastAndroid.SHORT);
+                            storage.save({
+                                key: 'RNEasemob',
+                                rawData: {
+                                    imiscreate: "true" 
+                                },
+                                //if not specified, the defaultExpires will be applied instead.
+                                //if set to null, then it will never expires.
+                                //如果不指定过期时间，则会使用defaultExpires参数
+                                //如果设为null，则永不过期
+                                expires: null
+                            });
+                        }else if(ev.create_err == "UNAUTHORIZED"){ 
+                            ToastAndroid.show("注册失败，无权限！", ToastAndroid.SHORT);
+                        }else{ 
+                            ToastAndroid.show(ev.create_err, ToastAndroid.SHORT);
+                        }  
+                    });  
+                }
+            }
+        }).catch( err => {                  //any exception including data not found
+            console.warn(err);              //goes to catch()
+                                            //如果没有找到数据且没有同步方法，
+                                            //或者有其他异常，则在catch中返回
+        });
+        
+
     },
     // componentWillUnmount: function() {
     //     navigator.geolocation.clearWatch(this.watchID);

@@ -82,5 +82,6 @@ dependencies {
     compile "com.android.support:appcompat-v7:23.0.1"
     compile "com.facebook.react:react-native:0.15.+"
     compile files('libs/locSDK_6.13.jar')
+    compile files('libs/easemobchat_2.2.4.jar')
     compile project(':RNDeviceInfo')
 }

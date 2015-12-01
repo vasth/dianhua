@@ -263,7 +263,7 @@ exports.create = function(options = {}) {
                 console.warn(encodeURI(text));
                 console.warn(text);
                 //request.open('GET', 'http://182.92.1.8:8080/searchkw?word='+encodeURI(text));
-                request.open('GET', 'http://192.168.0.100:8080/searchkw?word='+encodeURI(text));
+                request.open('GET', APP_URL+'/searchkw?word='+encodeURI(text));
                
 
                 request.send();

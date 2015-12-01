@@ -15,6 +15,7 @@ import com.facebook.react.shell.MainReactPackage;
 import com.dian400.react.MyReactPackage;
 import com.facebook.soloader.SoLoader;
 import com.learnium.RNDeviceInfo.*;
+import com.easemob.chat.EMChat;
 
 public class MainActivity extends Activity implements DefaultHardwareBackBtnHandler {
 
@@ -47,6 +48,9 @@ public class MainActivity extends Activity implements DefaultHardwareBackBtnHand
         commonloc.Initloc(getApplicationContext());
         //commonloc.Initloc(getApplicationContext());
         /***/
+
+        /*运行环信服务*/
+        EMChat.getInstance().init(getApplicationContext());
 
         setContentView(mReactRootView);
     }

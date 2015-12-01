@@ -18,15 +18,18 @@
 var React = require('react-native');
 var {
   Image,
+  NativeModules,
   PixelRatio,
   Platform,
   StyleSheet,
   Text,
   TouchableHighlight,
   TouchableNativeFeedback,
-    IntentAndroid,
+  IntentAndroid,
   View
 } = React;
+
+var RNEasemob = NativeModules.RNEasemob;
 
 //var getStyleFromScore = require('./getStyleFromScore');
 //var getImageSource = require('./getImageSource');
@@ -56,6 +59,12 @@ var MovieCell = React.createClass({
           IntentAndroid.openURL("tel:"+this.props.movie.telephone);
     }
 
+  },
+  freecalltel:function(){
+      console.log(this.props.movie.uid);
+      if (this.props.movie.uid != '') {
+         RNEasemob.Call(this.props.movie.uid);
+      }
   },
   render: function() {
     //var criticsScore = this.props.movie.detail_info.service_rating;
@@ -110,6 +119,9 @@ var MovieCell = React.createClass({
             <View style={styles.cellTel}>
               <TouchableElement onPress={this.calltel}>
                    <View style={styles.telbtn}><Text style={{color:'#fff'}}>拨号</Text></View>
+              </TouchableElement>
+              <TouchableElement onPress={this.freecalltel}>
+                   <View style={styles.telbtn}><Text style={{color:'#fff'}}>免费通话</Text></View>
               </TouchableElement>
             </View>
           </View>

@@ -2,9 +2,19 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="cd0b9400-e2c9-4270-9b3e-abbfacd5fc8d" name="Default" comment="">
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/DianhuaList.js" afterPath="$PROJECT_DIR$/DianhuaList.js" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/HomeSearch.js" afterPath="$PROJECT_DIR$/HomeSearch.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.gradle/2.4/taskArtifacts/cache.properties.lock" afterPath="$PROJECT_DIR$/android/.gradle/2.4/taskArtifacts/cache.properties.lock" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.gradle/2.4/taskArtifacts/fileHashes.bin" afterPath="$PROJECT_DIR$/android/.gradle/2.4/taskArtifacts/fileHashes.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin" afterPath="$PROJECT_DIR$/android/.gradle/2.4/taskArtifacts/fileSnapshots.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin" afterPath="$PROJECT_DIR$/android/.gradle/2.4/taskArtifacts/taskArtifacts.bin" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/.idea/workspace.xml" afterPath="$PROJECT_DIR$/android/.idea/workspace.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/app/app.iml" afterPath="$PROJECT_DIR$/android/app/app.iml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/app/build.gradle" afterPath="$PROJECT_DIR$/android/app/build.gradle" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" afterPath="$PROJECT_DIR$/android/app/src/main/AndroidManifest.xml" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/app/src/main/java/com/dian400/dianhua/MainActivity.java" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/dian400/dianhua/MainActivity.java" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/android/app/src/main/java/com/dian400/react/MyReactPackage.java" afterPath="$PROJECT_DIR$/android/app/src/main/java/com/dian400/react/MyReactPackage.java" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/index.android.js" afterPath="$PROJECT_DIR$/index.android.js" />
+      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/package.json" afterPath="$PROJECT_DIR$/package.json" />
     </list>
     <ignored path="dianhua.iws" />
     <ignored path=".idea/workspace.xml" />
@@ -29,19 +39,92 @@
         <entry file="file://$PROJECT_DIR$/HomeSearch.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="54" column="10" selection-start-line="42" selection-start-column="8" selection-end-line="54" selection-end-column="10" />
+              <caret line="56" column="10" selection-start-line="42" selection-start-column="8" selection-end-line="54" selection-end-column="10" />
               <folding>
                 <element signature="n#!!doc" expanded="true" />
+                <marker date="1448604796312" expanded="true" signature="49:83" placeholder="/*...*/" />
+                <marker date="1448604796312" expanded="true" signature="966:1152" placeholder="//..." />
+                <marker date="1448604796312" expanded="true" signature="1178:2560" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="1199:1211" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="1241:1499" placeholder="{&quot;marginLeft&quot;: 15...}" />
+                <marker date="1448604796312" expanded="true" signature="1520:1849" placeholder="{&quot;flex&quot;: 1...}" />
+                <marker date="1448604796312" expanded="true" signature="1877:1960" placeholder="{&quot;justifyContent&quot;: 'center'...}" />
+                <marker date="1448604796312" expanded="true" signature="1979:2017" placeholder="{&quot;marginTop&quot;: 15...}" />
+                <marker date="1448604796312" expanded="true" signature="2037:2106" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="2121:2215" placeholder="{&quot;padding&quot;: 13...}" />
+                <marker date="1448604796312" expanded="true" signature="2236:2310" placeholder="{&quot;height&quot;: 1...}" />
+                <marker date="1448604796312" expanded="true" signature="2329:2340" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="2358:2488" placeholder="{&quot;flex&quot;: 1...}" />
+                <marker date="1448604796312" expanded="true" signature="2513:2553" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="2686:15093" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="2714:3143" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="2761:2954" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="2794:2953" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="2853:2905" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="2976:3132" placeholder="{&quot;listViewDisplayed&quot;: false...}" />
+                <marker date="1448604796312" expanded="true" signature="3170:3333" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="3232:3290" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="3366:3412" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="3448:3846" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="3509:3836" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="3573:3822" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="3664:3775" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="3877:4337" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="3913:4327" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="4013:4177" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="4076:4159" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="4208:4311" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="4360:4489" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="4518:8005" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="4576:7597" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="4577:7583" placeholder="//..." />
+                <marker date="1448604796312" expanded="true" signature="7603:7995" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="7635:7743" placeholder="{&quot;listViewDisplayed&quot;: false...}" />
+                <marker date="1448604796312" expanded="true" signature="7815:7882" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="8075:11235" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="8162:11043" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="8420:10151" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="8472:8527" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="8576:9709" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="8762:9140" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="8814:9114" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="8936:9082" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="9145:9478" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="9323:9450" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="9559:9687" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="9715:10133" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="9868:9987" placeholder="{...}" />
+                <marker date="1448604796312" expanded="true" signature="10170:10704" placeholder="//..." />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="index.android.js" pinned="false" current-in-tab="true">
+      <file leaf-file-name="index.android.js" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/index.android.js">
           <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.7960644">
-              <caret line="945" column="2" selection-start-line="945" selection-start-column="2" selection-end-line="945" selection-end-column="2" />
+            <state vertical-scroll-proportion="-13.592592">
+              <caret line="442" column="45" selection-start-line="442" selection-start-column="45" selection-end-line="442" selection-end-column="45" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="package.json" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/package.json">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.4274953">
+              <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="RNEasemobModule.java" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/dian400/react/easemob/RNEasemobModule.java">
+          <provider selected="true" editor-type-id="text-editor">
+            <state vertical-scroll-proportion="0.0">
+              <caret line="61" column="49" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="49" />
               <folding />
             </state>
           </provider>
@@ -51,18 +134,8 @@
         <entry file="file://$PROJECT_DIR$/DianhuaList.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="182" column="2" selection-start-line="182" selection-start-column="2" selection-end-line="182" selection-end-column="2" />
-              <folding>
-                <marker date="1448596320531" expanded="true" signature="493:691" placeholder="/** This is for demo purposes only, and rate limited. ...*/" />
-                <marker date="1448596320531" expanded="true" signature="9776:9834" placeholder="{...}" />
-                <marker date="1448596320531" expanded="false" signature="15124:15143" placeholder="..." />
-                <marker date="1448596320531" expanded="true" signature="15163:15329" placeholder="..." />
-                <marker date="1448596320531" expanded="false" signature="15213:15235" placeholder="..." />
-                <marker date="1448596320531" expanded="false" signature="15271:15292" placeholder="..." />
-                <marker date="1448596320531" expanded="false" signature="15412:15431" placeholder="..." />
-                <marker date="1448596320531" expanded="false" signature="15486:15522" placeholder="..." />
-                <marker date="1448596320531" expanded="false" signature="15636:15657" placeholder="..." />
-              </folding>
+              <caret line="127" column="7" selection-start-line="99" selection-start-column="4" selection-end-line="127" selection-end-column="7" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -71,21 +144,11 @@
         <entry file="file://$PROJECT_DIR$/AddShop.js">
           <provider selected="true" editor-type-id="text-editor">
             <state vertical-scroll-proportion="0.0">
-              <caret line="251" column="32" selection-start-line="251" selection-start-column="32" selection-end-line="251" selection-end-column="32" />
+              <caret line="134" column="218" selection-start-line="134" selection-start-column="218" selection-end-line="134" selection-end-column="242" />
               <folding>
                 <element signature="e#0#48#0" expanded="false" />
-                <marker date="1448447651909" expanded="true" signature="11495:11501" placeholder="{&quot;marginLeft&quot;: 15...}" />
+                <marker date="1448604385343" expanded="true" signature="11492:11498" placeholder="{&quot;marginLeft&quot;: 15...}" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="tests.json" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/node_modules/react-native/node_modules/joi/node_modules/isemail/test/tests.json">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="12" column="12" selection-start-line="12" selection-start-column="12" selection-end-line="12" selection-end-column="12" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -130,16 +193,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="StoriesList.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/StoriesList.js">
-          <provider selected="true" editor-type-id="text-editor">
-            <state vertical-scroll-proportion="0.0">
-              <caret line="185" column="31" selection-start-line="185" selection-start-column="14" selection-end-line="185" selection-end-column="31" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -178,7 +231,6 @@
         <option value="$PROJECT_DIR$/android/app/src/main/java/com/dian400/react/geo/Commonloc.java" />
         <option value="$PROJECT_DIR$/node_modules/react-native/private-cli/src/server/server.js" />
         <option value="$PROJECT_DIR$/index.android_old1.js" />
-        <option value="$PROJECT_DIR$/package.json" />
         <option value="$PROJECT_DIR$/node_modules/react-native/private-cli/src/server/runServer.js" />
         <option value="$PROJECT_DIR$/SearchScreen.js" />
         <option value="$PROJECT_DIR$/HomeSearch.js" />
@@ -188,6 +240,7 @@
         <option value="$PROJECT_DIR$/node_modules/react-native/packager/react-packager/src/FileWatcher/index.js" />
         <option value="$PROJECT_DIR$/DianhuaList.js" />
         <option value="$PROJECT_DIR$/index.android.js" />
+        <option value="$PROJECT_DIR$/package.json" />
       </list>
     </option>
   </component>
@@ -229,6 +282,7 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
+      <pane id="Scratches" />
       <pane id="ProjectPane">
         <subPane>
           <PATH>
@@ -247,10 +301,227 @@
               <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
             </PATH_ELEMENT>
           </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dianhua" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dianhua" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dianhua" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dianhua" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dianhua" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dianhua" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dianhua" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dianhua" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dianhua" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dianhua" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dian400" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="react" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dianhua" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dianhua" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dian400" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="react" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="easemob" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
+          <PATH>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dianhua" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.ProjectViewProjectNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dianhua" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="android" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="app" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="src" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="main" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="java" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="com" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+            <PATH_ELEMENT>
+              <option name="myItemId" value="dian400" />
+              <option name="myItemType" value="com.intellij.ide.projectView.impl.nodes.PsiDirectoryNode" />
+            </PATH_ELEMENT>
+          </PATH>
         </subPane>
       </pane>
       <pane id="Scope" />
-      <pane id="Scratches" />
       <pane id="PackagesPane" />
       <pane id="AndroidView" />
     </panes>
@@ -344,17 +615,19 @@
     <servers />
   </component>
   <component name="ToolWindowManager">
-    <frame x="-4" y="-4" width="1368" height="746" extended-state="0" />
-    <editor active="false" />
+    <frame x="-4" y="-4" width="1368" height="746" extended-state="1" />
+    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.175" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1" sideWeight="0.5654412" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="npm" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0030721966" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="SLIDING" type="SLIDING" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -362,13 +635,11 @@
       <window_info id="Application Servers" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.0030721966" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Gradle Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.1" sideWeight="0.4345588" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
     </layout>
   </component>
   <component name="Vcs.Log.UiProperties">
@@ -387,14 +658,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/index.android.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/App/Views/Posts/index.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
@@ -581,13 +844,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/package.json">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="-10.857142">
-          <caret line="16" column="33" selection-start-line="16" selection-start-column="33" selection-end-line="16" selection-end-column="33" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/ThemesList.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="-2.0">
@@ -662,7 +918,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="65" column="4" selection-start-line="0" selection-start-column="0" selection-end-line="252" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -670,7 +925,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
           <caret line="295" column="32" selection-start-line="295" selection-start-column="32" selection-end-line="295" selection-end-column="32" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -686,17 +940,6 @@
         <state vertical-scroll-proportion="0.0">
           <caret line="185" column="31" selection-start-line="185" selection-start-column="14" selection-end-line="185" selection-end-column="31" />
           <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/AddShop.js">
-      <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.0">
-          <caret line="251" column="32" selection-start-line="251" selection-start-column="32" selection-end-line="251" selection-end-column="32" />
-          <folding>
-            <element signature="e#0#48#0" expanded="false" />
-            <marker date="1448447651909" expanded="true" signature="11495:11501" placeholder="{&quot;marginLeft&quot;: 15...}" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -743,9 +986,73 @@
     <entry file="file://$PROJECT_DIR$/HomeSearch.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="54" column="10" selection-start-line="42" selection-start-column="8" selection-end-line="54" selection-end-column="10" />
+          <caret line="56" column="10" selection-start-line="42" selection-start-column="8" selection-end-line="54" selection-end-column="10" />
           <folding>
             <element signature="n#!!doc" expanded="true" />
+            <marker date="1448604796312" expanded="true" signature="49:83" placeholder="/*...*/" />
+            <marker date="1448604796312" expanded="true" signature="966:1152" placeholder="//..." />
+            <marker date="1448604796312" expanded="true" signature="1178:2560" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="1199:1211" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="1241:1499" placeholder="{&quot;marginLeft&quot;: 15...}" />
+            <marker date="1448604796312" expanded="true" signature="1520:1849" placeholder="{&quot;flex&quot;: 1...}" />
+            <marker date="1448604796312" expanded="true" signature="1877:1960" placeholder="{&quot;justifyContent&quot;: 'center'...}" />
+            <marker date="1448604796312" expanded="true" signature="1979:2017" placeholder="{&quot;marginTop&quot;: 15...}" />
+            <marker date="1448604796312" expanded="true" signature="2037:2106" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="2121:2215" placeholder="{&quot;padding&quot;: 13...}" />
+            <marker date="1448604796312" expanded="true" signature="2236:2310" placeholder="{&quot;height&quot;: 1...}" />
+            <marker date="1448604796312" expanded="true" signature="2329:2340" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="2358:2488" placeholder="{&quot;flex&quot;: 1...}" />
+            <marker date="1448604796312" expanded="true" signature="2513:2553" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="2686:15093" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="2714:3143" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="2761:2954" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="2794:2953" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="2853:2905" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="2976:3132" placeholder="{&quot;listViewDisplayed&quot;: false...}" />
+            <marker date="1448604796312" expanded="true" signature="3170:3333" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="3232:3290" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="3366:3412" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="3448:3846" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="3509:3836" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="3573:3822" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="3664:3775" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="3877:4337" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="3913:4327" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="4013:4177" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="4076:4159" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="4208:4311" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="4360:4489" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="4518:8005" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="4576:7597" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="4577:7583" placeholder="//..." />
+            <marker date="1448604796312" expanded="true" signature="7603:7995" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="7635:7743" placeholder="{&quot;listViewDisplayed&quot;: false...}" />
+            <marker date="1448604796312" expanded="true" signature="7815:7882" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="8075:11235" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="8162:11043" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="8420:10151" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="8472:8527" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="8576:9709" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="8762:9140" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="8814:9114" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="8936:9082" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="9145:9478" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="9323:9450" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="9559:9687" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="9715:10133" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="9868:9987" placeholder="{...}" />
+            <marker date="1448604796312" expanded="true" signature="10170:10704" placeholder="//..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/AddShop.js">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="134" column="218" selection-start-line="134" selection-start-column="218" selection-end-line="134" selection-end-column="242" />
+          <folding>
+            <element signature="e#0#48#0" expanded="false" />
+            <marker date="1448604385343" expanded="true" signature="11492:11498" placeholder="{&quot;marginLeft&quot;: 15...}" />
           </folding>
         </state>
       </provider>
@@ -753,25 +1060,31 @@
     <entry file="file://$PROJECT_DIR$/DianhuaList.js">
       <provider selected="true" editor-type-id="text-editor">
         <state vertical-scroll-proportion="0.0">
-          <caret line="182" column="2" selection-start-line="182" selection-start-column="2" selection-end-line="182" selection-end-column="2" />
-          <folding>
-            <marker date="1448596320531" expanded="true" signature="493:691" placeholder="/** This is for demo purposes only, and rate limited. ...*/" />
-            <marker date="1448596320531" expanded="true" signature="9776:9834" placeholder="{...}" />
-            <marker date="1448596320531" expanded="false" signature="15124:15143" placeholder="..." />
-            <marker date="1448596320531" expanded="true" signature="15163:15329" placeholder="..." />
-            <marker date="1448596320531" expanded="false" signature="15213:15235" placeholder="..." />
-            <marker date="1448596320531" expanded="false" signature="15271:15292" placeholder="..." />
-            <marker date="1448596320531" expanded="false" signature="15412:15431" placeholder="..." />
-            <marker date="1448596320531" expanded="false" signature="15486:15522" placeholder="..." />
-            <marker date="1448596320531" expanded="false" signature="15636:15657" placeholder="..." />
-          </folding>
+          <caret line="127" column="7" selection-start-line="99" selection-start-column="4" selection-end-line="127" selection-end-column="7" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/android/app/src/main/java/com/dian400/react/easemob/RNEasemobModule.java">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.0">
+          <caret line="61" column="49" selection-start-line="61" selection-start-column="23" selection-end-line="61" selection-end-column="49" />
+          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/index.android.js">
       <provider selected="true" editor-type-id="text-editor">
-        <state vertical-scroll-proportion="0.7960644">
-          <caret line="945" column="2" selection-start-line="945" selection-start-column="2" selection-end-line="945" selection-end-column="2" />
+        <state vertical-scroll-proportion="-13.592592">
+          <caret line="442" column="45" selection-start-line="442" selection-start-column="45" selection-end-line="442" selection-end-column="45" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/package.json">
+      <provider selected="true" editor-type-id="text-editor">
+        <state vertical-scroll-proportion="0.4274953">
+          <caret line="12" column="42" selection-start-line="12" selection-start-column="42" selection-end-line="12" selection-end-column="42" />
           <folding />
         </state>
       </provider>

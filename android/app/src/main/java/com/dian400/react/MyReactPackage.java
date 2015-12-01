@@ -1,5 +1,6 @@
 package com.dian400.react;
 
+import com.dian400.react.easemob.RNEasemobModule;
 import com.facebook.react.bridge.NativeModule;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.shell.MainReactPackage;
@@ -15,6 +16,7 @@ public class MyReactPackage extends MainReactPackage {
     public List<NativeModule> createNativeModules(ReactApplicationContext reactContext) {
         List<NativeModule> modules = new ArrayList<>();
         modules.add(new RNBaidulocModule(reactContext));
+        modules.add(new RNEasemobModule(reactContext));
         return modules;
     }
 }

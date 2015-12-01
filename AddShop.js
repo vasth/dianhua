@@ -23,6 +23,8 @@ var PIXELRATIO = PixelRatio.get();//暂时没有用
 
 var InteractionManager = require('InteractionManager');//这个是延迟加载
 var DeviceInfo = require('react-native-device-info');
+var md5 = require('MD5');
+
 
 import { RadioButtons } from 'react-native-radio-buttons'
 import { SegmentedControls } from 'react-native-radio-buttons'
@@ -125,14 +127,17 @@ async _loadInitialState() {
         // ToastAndroid.show(this.shop_details, ToastAndroid.SHORT);
         //this.state.selectedOption 选择的服务范围
         if(this.shop_name!=""&&this.shop_tel!=""&&this.shop_details!=""&&this.state.selectedOption!=""){
+            var umd5 = md5(DeviceInfo.getUniqueID());
+            var sign = md5(this.shop_name+this.shop_tel+umd5);
             var group = 0;
             if(this.state.selectedOption=="本地"){
                 group = 0;
             }else{
                 group = 1;
             }
+
            //发送请求数据
-            fetch("http://182.92.1.8:8080/addshop?shop_name="+this.shop_name+"&shop_tel="+this.shop_tel+"&shop_details="+this.shop_details+"&shop_loc="+this.shop_loc+"&shop_adress="+this.state.shop_adress+"&uniqueid="+DeviceInfo.getUniqueID()+"&group="+group)
+            fetch(APP_URL+"/addshop?shop_name="+this.shop_name+"&shop_tel="+this.shop_tel+"&shop_details="+this.shop_details+"&shop_loc="+this.shop_loc+"&shop_adress="+this.state.shop_adress+"&uniqueid="+DeviceInfo.getUniqueID()+"&group="+group+"&sign="+sign)
 
             .then((response) => response.json())
             .catch((error) => {

@@ -35,7 +35,7 @@ var API_URL = 'http://api.rottentomatoes.com/api/public/v1.0/';
 //var APP_URL = 'http://api.map.baidu.com/place/v2/search';
 //var APP_URL = 'http://182.92.1.8:8080/sh';
 //var APP_URL = 'http://192.168.0.100:8080/searchsh';
-var APP_URL = 'http://182.92.1.8:8080/searchsh';
+//var APP_URL = 'http://182.92.1.8:8080/searchsh';
 
 
 // Results should be cached keyed by the query
@@ -143,7 +143,7 @@ _urlForQueryAndPage: function(query: string, pageNumber: number): string {
         return (
             //API_URL + 'movies.json?apikey=' + apiKey + '&q=' +
             //encodeURIComponent(query) + '&page_limit=20&page=' + pageNumber
-            APP_URL + '?query='+ encodeURIComponent(query) + '&region=' + this.state.region +
+            APP_URL + '/searchsh?query='+ encodeURIComponent(query) + '&region=' + this.state.region +
             '&location='+this.state.location + '&page_num='+ pageNumber +
             '&page_size=20'
         );
