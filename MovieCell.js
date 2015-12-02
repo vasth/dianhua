@@ -69,19 +69,35 @@ var MovieCell = React.createClass({
   render: function() {
     //var criticsScore = this.props.movie.detail_info.service_rating;
     var TouchableElement = TouchableHighlight;
-    var distance = "";
+    // var distance = ""; 
+    // var telbtn = "";
+    var distance ;
+    var telbtn ; //这里不能用''或者""，会报错的
     if (Platform.OS === 'android') {
       TouchableElement = TouchableNativeFeedback;
     }
 
     if(this.props.movie.distance == 0){
        if(this.props.movie.group == 0){
-         distance =  <Text numberOfLines={1}>  本地  </Text> 
+         distance =  <Text numberOfLines={1}> 服务范围: 本地  </Text> 
        }else{
-         distance =  <Text numberOfLines={1}>  全国  </Text> 
+         distance =  <Text numberOfLines={1}> 服务范围: 全国  </Text> 
        }
+
+//这里的telbtn也可以用数组替代 var list=[],list.push(<View></View>)
+       telbtn = <View>
+                 <TouchableElement onPress={this.calltel}>
+                     <View style={styles.telbtn}><Text style={{color:'#fff'}}>拨号</Text></View>
+                </TouchableElement>
+                <TouchableElement onPress={this.freecalltel}>
+                     <View style={styles.freetelbtn}><Text style={{color:'#fff'}}>免费通话</Text></View>
+                </TouchableElement>
+              </View>
     }else{
         distance =  <Text numberOfLines={1}>  距离: {this.props.movie.distance / 1000} km </Text> ;
+        telbtn =  <TouchableElement onPress={this.calltel}>
+                   <View style={styles.telbtn}><Text style={{color:'#fff'}}>拨号</Text></View>
+                 </TouchableElement>  
     }
 
     return (
@@ -117,12 +133,7 @@ var MovieCell = React.createClass({
               </Text>
             </View>
             <View style={styles.cellTel}>
-              <TouchableElement onPress={this.calltel}>
-                   <View style={styles.telbtn}><Text style={{color:'#fff'}}>拨号</Text></View>
-              </TouchableElement>
-              <TouchableElement onPress={this.freecalltel}>
-                   <View style={styles.telbtn}><Text style={{color:'#fff'}}>免费通话</Text></View>
-              </TouchableElement>
+              {telbtn}
             </View>
           </View>
         </TouchableElement>
@@ -173,6 +184,16 @@ var styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     backgroundColor: '#43CD80',
+    borderRadius: 3,
+  },
+  freetelbtn:{
+    height: 36,
+    width:80,
+    margin : 5,
+    padding: 5,
+    alignItems: 'center',
+    justifyContent: 'center',
+    backgroundColor: '#EEC900',
     borderRadius: 3,
   },
   cellImage: {

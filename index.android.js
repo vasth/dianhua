@@ -133,10 +133,36 @@ global.storage = storage;
 
 /**************************全局变量的声明***************************/
 //global.storage = storage;
+var debug = "true1";//这里应该自动判断如何获取开发模式
+var conspanel  ;
 var APP_URL = 'http://182.92.1.8:8080';
 //var APP_URL = 'http://192.168.0.100:8080'
 global.APP_URL = APP_URL;
 /**************************全局变量的声明end***************************/
+
+
+// var THUMBS1 = [
+//     {"item1": "美甲", "item2": "SPA"},
+//     {"item1": "美容", "item2": "按摩"},
+//     {"item1": "桑拿", "item2": "洗浴"},
+//     {"item1": "桑拿", "item2": "洗浴"}
+// ];
+// netht.push(THUMBS1);
+// var THUMBS2 = [
+//     {"item1": "保养", "item2": "微整形"},
+//     {"item1": "宠物医院", "item2": "狗粮"},
+//     {"item1": "工商注册", "item2": "商标"},
+//     {"item1": "桑拿", "item2": "洗浴"}
+// ];
+// netht.push(THUMBS2);
+// var THUMBS3 = [
+//     {"item1": "专利", "item2": "版权"},
+//     {"item1": "设计", "item2": "汽车美容"},
+//     {"item1": "上门服务", "item2": "商标国际"},
+//     {"item1": "桑拿", "item2": "洗浴"}
+// ];
+// netht.push(THUMBS3);
+ 
 
 //关键字展示的控件
 var KeywordsView = React.createClass({
@@ -146,6 +172,26 @@ var KeywordsView = React.createClass({
         return {
             timethumbs:new ListView.DataSource({rowHasChanged: (r1, r2) => r1 !== r2}),
             fadeAnim: new Animated.Value(1), // opacity 0
+            netht:[
+                    [
+                        {"item1": "美甲", "item2": "SPA"},
+                        {"item1": "美容", "item2": "按摩"},
+                        {"item1": "桑拿", "item2": "洗浴"},
+                        {"item1": "桑拿", "item2": "洗浴"}
+                    ],
+                    [
+                        {"item1": "保养", "item2": "微整形"},
+                        {"item1": "宠物医院", "item2": "狗粮"},
+                        {"item1": "工商注册", "item2": "商标"},
+                        {"item1": "桑拿", "item2": "洗浴"}
+                    ],
+                    [
+                        {"item1": "专利", "item2": "版权"},
+                        {"item1": "设计", "item2": "汽车美容"},
+                        {"item1": "上门服务", "item2": "商标国际"},
+                        {"item1": "桑拿", "item2": "洗浴"}
+                    ] 
+                  ],
         }
     },
     getDataSource: function(keywords: Array<any>): ListView.DataSource {
@@ -184,8 +230,9 @@ var KeywordsView = React.createClass({
     componentDidMount: function() {
         console.log("Keywordsdidmount");
         this.setState({
-            timethumbs:this.getDataSource(THUMBS1),
+            timethumbs:this.getDataSource(this.state.netht[0]),
         });
+        this.requestkeyword();
         //Animated.timing(       // Uses easing functions
         //    this.state.fadeAnim, // The value to drive
         //    {
@@ -195,19 +242,56 @@ var KeywordsView = React.createClass({
         //).start(0);             // Don't forget start!
 
     },
+    requestkeyword:function(){
+        fetch(APP_URL+ "/getkw")
+        .then((response) => response.json())
+        .catch((error) => {//服务器失败，就先从本地读取吧
+             
+            resultsCache.dataForQuery[query] = undefined;
+
+            this.setState({
+                dataSource: this.getDataSource([]),
+                isLoading: false,
+            });
+        })
+        .then((responseData) => {
+            //if responseData.total > 
+            console.log(JSON.stringify(responseData));
+            console.log(responseData.result);
+            if (typeof responseData.result !== 'undefined'&& responseData.status == "ok") {
+                console.log("status  ok"); 
+                if (this.isMounted()) {//如果该界面已经被挂载
+                     var items = [];
+                      responseData.result.map(function (item) {
+                             items.push(item);
+                      });
+                      
+                    this.setState({
+                        netht: items, 
+                    });
+                } 
+
+            }else {//没有找到数据
+                 
+            } 
+            
+        })
+        .done();
+    },
     updatekeyword:function(){//更新关键词
         //ToastAndroid.show("更新关键词"+this._press, ToastAndroid.SHORT);
         var datasource ;
-        if (this._press==1) {
-            datasource = this.getDataSource(THUMBS2);
-            this._press = 2;
-        }else if(this._press==2) {
-            datasource = this.getDataSource(THUMBS3);
-            this._press = 3;
-        }else{
-            datasource = this.getDataSource(THUMBS1);
-            this._press = 1;
+        var press = this._press;
+        
+        if(this._press >= this.state.netht.length ){
+            this._press = 0;
+            press = 0;
         }
+        console.log(this._press);
+        datasource = this.getDataSource(this.state.netht[this._press]);
+
+        this._press = press + 1;
+        console.log(this._press);
 
         this.setState({//也许接入网络就好多了，就不会感觉到跳动了
             fadeAnim:new Animated.Value(0),
@@ -439,9 +523,13 @@ var dianhua = React.createClass({
             syncInBackground: false
         }).then( ret => {                   //found data goes to then()
             //this.setState({region: ret.citycode});
-            imislogin = ret.islogin;
+            imislogin = ret.imislogin;
             imiscreate = ret.imiscreate;
-            if(imislogin==="true"){
+            console.log("imislogin--start");
+            console.log(imislogin);
+            console.log(imiscreate);
+            console.log("imislogin--end");
+            if(imislogin=="true"){
 
             }else{
                 if(imiscreate=="true"){
@@ -454,7 +542,8 @@ var dianhua = React.createClass({
                             storage.save({
                                 key: 'RNEasemob',
                                 rawData: {
-                                    imislogin: "true" 
+                                    imislogin: "true",
+                                    imiscreate: "true" 
                                 },
                                 //if not specified, the defaultExpires will be applied instead.
                                 //if set to null, then it will never expires.
@@ -486,17 +575,28 @@ var dianhua = React.createClass({
                         }else if(ev.create_err == "NONETWORK_ERROR"){ 
                             ToastAndroid.show("网络异常，请检查网络！", ToastAndroid.SHORT);
                         }else if(ev.create_err == "USER_ALREADY_EXISTS"){ 
-                            ToastAndroid.show("用户已存在！", ToastAndroid.SHORT);
-                            storage.save({
-                                key: 'RNEasemob',
-                                rawData: {
-                                    imiscreate: "true" 
-                                },
-                                //if not specified, the defaultExpires will be applied instead.
-                                //if set to null, then it will never expires.
-                                //如果不指定过期时间，则会使用defaultExpires参数
-                                //如果设为null，则永不过期
-                                expires: null
+                            //ToastAndroid.show("用户已存在！", ToastAndroid.SHORT);
+                            RNEasemob.Login(username,pwd);
+                            RCTDeviceEventEmitter.addListener('RNEasemobEvent', ev => { ////////================这里需要更改监听的key
+                                //ToastAndroid.show(ev.lontitude, ToastAndroid.SHORT);
+                                console.log(ev.login_err);
+                              
+                                if(ev.login_err == "success"){
+                                    storage.save({
+                                        key: 'RNEasemob',
+                                        rawData: {
+                                            imislogin: "true",
+                                            imiscreate: "true" 
+                                        },
+                                        //if not specified, the defaultExpires will be applied instead.
+                                        //if set to null, then it will never expires.
+                                        //如果不指定过期时间，则会使用defaultExpires参数
+                                        //如果设为null，则永不过期
+                                        expires: null
+                                    });
+                                }else{ 
+                                    ToastAndroid.show(ev.login_err, ToastAndroid.SHORT);
+                                }   
                             });
                         }else if(ev.create_err == "UNAUTHORIZED"){ 
                             ToastAndroid.show("注册失败，无权限！", ToastAndroid.SHORT);
@@ -556,8 +656,11 @@ var dianhua = React.createClass({
  placeholder="搜索"
  clearButtonMode="while-editing"
  />
- </View>
+ </View> 
  */
+        if(debug=="true"){
+            conspanel =  <ConsolePanel limit={10} style={{left:20,top:20}}/>
+        } 
         switch (route.name) {
             case "home":
                 // <Image style={{ width: 160,height: 56,}} source={{uri: 'http://192.168.0.100/siipa/googlelogo.png'}} />
@@ -581,7 +684,7 @@ var dianhua = React.createClass({
                                <KeywordsView navigator={navigationOperations} />
                             </View>
                         </ScrollView>
-                        <ConsolePanel limit={10} style={{left:20,top:20}}/>
+                        {conspanel}
                     </View>
                 );
             case "story":
@@ -594,7 +697,7 @@ var dianhua = React.createClass({
                             style={{flex: 1}}
                             navigator={navigationOperations}
                             story={route.story} />
-                        <ConsolePanel limit={10} style={{left:20,top:20}}/>
+                        {conspanel}
                     </View>
                 );
             case "search":
@@ -604,7 +707,7 @@ var dianhua = React.createClass({
                             style={{flex: 1}}
                             navigator={navigationOperations}
                             story={route.story} />
-                        <ConsolePanel limit={10} style={{left:20,top:20}}/>
+                        {conspanel}
                     </View>
                 );
             case "addshop":
@@ -614,7 +717,7 @@ var dianhua = React.createClass({
                             style={{flex: 1}}
                             navigator={navigationOperations}
                             story={route.story} />
-                        <ConsolePanel limit={30} style={{left:20,top:20}}/>
+                        {conspanel}
                     </View>
 
                 );
@@ -640,28 +743,7 @@ var dianhua = React.createClass({
 });
 //<KeywordsView timethumbs={this.state.timethumbs} isupdate={this.state.isupdate} navigator={navigationOperations} updatedkeyword={this.updatedkeyword}/>
 
-
-var THUMBS1 = [
-    {item1: "美甲", "item2": "SPA"},
-    {item1: "美容", "item2": "按摩"},
-    {item1: "桑拿", "item2": "洗浴"},
-    {item1: "桑拿", "item2": "洗浴"}
-];
-
-var THUMBS2 = [
-    {item1: "保养", "item2": "微整形"},
-    {item1: "宠物医院", "item2": "狗粮"},
-    {item1: "工商注册", "item2": "商标"},
-    {item1: "桑拿", "item2": "洗浴"}
-];
-
-var THUMBS3 = [
-    {item1: "专利", "item2": "版权"},
-    {item1: "设计", "item2": "汽车美容"},
-    {item1: "上门服务", "item2": "商标国际"},
-    {item1: "桑拿", "item2": "洗浴"}
-];
-
+ 
 
 //var THUMBS = ['https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.1997/p128x128/851549_767334479959628_274486868_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851561_767334496626293_1958532586_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.1997/p128x128/851579_767334503292959_179092627_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851589_767334513292958_1747022277_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851563_767334559959620_1193692107_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851593_767334566626286_1953955109_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851591_767334523292957_797560749_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851567_767334529959623_843148472_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851548_767334489959627_794462220_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851575_767334539959622_441598241_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-ash3/t39.1997/p128x128/851573_767334549959621_534583464_n.png', 'https://fbcdn-dragon-a.akamaihd.net/hphotos-ak-prn1/t39.1997/p128x128/851583_767334573292952_1519550680_n.png'];
 // THUMBS = THUMBS.concat(THUMBS); // double length of THUMBS
