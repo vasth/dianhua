@@ -101,6 +101,7 @@ public class Commonim {
 
     //注册实时通话监听
     public void Initim(Context context) {
+        Log.d("RNEasemob", "Initim");
         IntentFilter callFilter = new IntentFilter(EMChatManager.getInstance().getIncomingCallBroadcastAction());
         context.registerReceiver(new CallReceiver(), callFilter);
     }

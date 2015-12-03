@@ -458,23 +458,7 @@ var dianhua = React.createClass({
         console.log("dianhua-didmount");
 
         NRBaiduloc.Initloc();
-        this._intim().done();
-
-        // navigator.geolocation.getCurrentPosition(
-        //       (initialPosition) => this.setState({initialPosition}),
-        //       (error) => console.log(error.message),
-        //       {enableHighAccuracy: true, timeout: 20000, maximumAge: 1}
-        //     ); 
-        //     this.watchID = navigator.geolocation.watchPosition((lastPosition) => {
-        //        this.setState({lastPosition});
-        //        console.log(this.watchID);
-        //        console.log("lastPosition");
-        //        console.log(JSON.stringify(lastPosition));
-        //        if(this.state.lastPosition!='unknown'){
-        //          navigator.geolocation.stopObserving();
-        //        } 
-        //     });
-        
+        this._intim().done(); 
 
         RCTDeviceEventEmitter.addListener('RNBaiduEvent', ev => {
             //ToastAndroid.show(ev.locationdescribe, ToastAndroid.SHORT);//语义化地理位置
@@ -552,18 +536,102 @@ var dianhua = React.createClass({
                                 expires: null
                             });
                         }else{ 
-                            ToastAndroid.show(ev.login_err, ToastAndroid.SHORT);
+                            ToastAndroid.show("错误"+ev.login_err, ToastAndroid.SHORT);
                         }   
                     });   
                 }else{
-                    RNEasemob.Create(username,pwd);//这里缺少一步登录 
-                    RCTDeviceEventEmitter.addListener('RNEasemobEvent', ev => { 
+                    this.createandlogin(username,pwd);
+                    // RNEasemob.Create(username,pwd);//这里缺少一步登录 
+                    // RCTDeviceEventEmitter.addListener('RNEasemobEvent', ev => { 
+                    //     //ToastAndroid.show(ev.lontitude, ToastAndroid.SHORT);
+                    //     console.log(ev.create_err); 
+                    //     if(ev.create_err == "nil"){
+                    //         storage.save({
+                    //             key: 'RNEasemob',
+                    //             rawData: {
+                    //                 imiscreate: "true" 
+                    //             },
+                    //             //if not specified, the defaultExpires will be applied instead.
+                    //             //if set to null, then it will never expires.
+                    //             //如果不指定过期时间，则会使用defaultExpires参数
+                    //             //如果设为null，则永不过期
+                    //             expires: null
+                    //         });
+                    //     }else if(ev.create_err == "NONETWORK_ERROR"){ 
+                    //         ToastAndroid.show("网络异常，请检查网络！", ToastAndroid.SHORT);
+                    //     }else if(ev.create_err == "USER_ALREADY_EXISTS"){ 
+                    //         //ToastAndroid.show("用户已存在！", ToastAndroid.SHORT);
+                    //         RNEasemob.Login(username,pwd);
+                    //         RCTDeviceEventEmitter.addListener('RNEasemobEvent', ev => { ////////================这里需要更改监听的key
+                    //             //ToastAndroid.show(ev.lontitude, ToastAndroid.SHORT);
+                    //             console.log(ev.login_err);
+                              
+                    //             if(ev.login_err == "success"){
+                    //                 storage.save({
+                    //                     key: 'RNEasemob',
+                    //                     rawData: {
+                    //                         imislogin: "true",
+                    //                         imiscreate: "true" 
+                    //                     },
+                    //                     //if not specified, the defaultExpires will be applied instead.
+                    //                     //if set to null, then it will never expires.
+                    //                     //如果不指定过期时间，则会使用defaultExpires参数
+                    //                     //如果设为null，则永不过期
+                    //                     expires: null
+                    //                 });
+                    //             }else{ 
+                    //                 ToastAndroid.show(ev.login_err, ToastAndroid.SHORT);
+                    //             }   
+                    //         });
+                    //     }else if(ev.create_err == "UNAUTHORIZED"){ 
+                    //         ToastAndroid.show("注册失败，无权限！", ToastAndroid.SHORT);
+                    //     }else{ 
+                    //         ToastAndroid.show(ev.create_err, ToastAndroid.SHORT);
+                    //     }  
+                    // });  
+                }
+            }
+        }).catch( err => {                  //any exception including data not found
+            this.createandlogin(username,pwd);
+            console.warn("_intim-storage-load-err "); 
+            console.warn(err);              //goes to catch()
+                                            //如果没有找到数据且没有同步方法，
+                                            //或者有其他异常，则在catch中返回  
+        });
+        
+
+    },
+    createandlogin:function(username,pwd){
+        RNEasemob.Create(username,pwd);//如果没有找到数据
+            RCTDeviceEventEmitter.addListener('RNEasemobEvent', ev => { 
+                //ToastAndroid.show(ev.lontitude, ToastAndroid.SHORT);
+                console.log(ev.create_err); 
+                if(ev.create_err == "nil"){
+                    storage.save({
+                        key: 'RNEasemob',
+                        rawData: {
+                            imiscreate: "true" 
+                        },
+                        //if not specified, the defaultExpires will be applied instead.
+                        //if set to null, then it will never expires.
+                        //如果不指定过期时间，则会使用defaultExpires参数
+                        //如果设为null，则永不过期
+                        expires: null
+                    });
+                }else if(ev.create_err == "NONETWORK_ERROR"){ 
+                    ToastAndroid.show("网络异常，请检查网络！", ToastAndroid.SHORT);
+                }else if(ev.create_err == "USER_ALREADY_EXISTS"){ 
+                    //ToastAndroid.show("用户已存在！", ToastAndroid.SHORT);
+                    RNEasemob.Login(username,pwd);
+                    RCTDeviceEventEmitter.addListener('RNEasemobEvent', ev => { ////////================这里需要更改监听的key
                         //ToastAndroid.show(ev.lontitude, ToastAndroid.SHORT);
-                        console.log(ev.create_err); 
-                        if(ev.create_err == "nil"){
+                        console.log(ev.login_err);
+                      
+                        if(ev.login_err == "success" || ev.login_err == ""){
                             storage.save({
                                 key: 'RNEasemob',
                                 rawData: {
+                                    imislogin: "true",
                                     imiscreate: "true" 
                                 },
                                 //if not specified, the defaultExpires will be applied instead.
@@ -572,50 +640,19 @@ var dianhua = React.createClass({
                                 //如果设为null，则永不过期
                                 expires: null
                             });
-                        }else if(ev.create_err == "NONETWORK_ERROR"){ 
-                            ToastAndroid.show("网络异常，请检查网络！", ToastAndroid.SHORT);
-                        }else if(ev.create_err == "USER_ALREADY_EXISTS"){ 
-                            //ToastAndroid.show("用户已存在！", ToastAndroid.SHORT);
-                            RNEasemob.Login(username,pwd);
-                            RCTDeviceEventEmitter.addListener('RNEasemobEvent', ev => { ////////================这里需要更改监听的key
-                                //ToastAndroid.show(ev.lontitude, ToastAndroid.SHORT);
-                                console.log(ev.login_err);
-                              
-                                if(ev.login_err == "success"){
-                                    storage.save({
-                                        key: 'RNEasemob',
-                                        rawData: {
-                                            imislogin: "true",
-                                            imiscreate: "true" 
-                                        },
-                                        //if not specified, the defaultExpires will be applied instead.
-                                        //if set to null, then it will never expires.
-                                        //如果不指定过期时间，则会使用defaultExpires参数
-                                        //如果设为null，则永不过期
-                                        expires: null
-                                    });
-                                }else{ 
-                                    ToastAndroid.show(ev.login_err, ToastAndroid.SHORT);
-                                }   
-                            });
-                        }else if(ev.create_err == "UNAUTHORIZED"){ 
-                            ToastAndroid.show("注册失败，无权限！", ToastAndroid.SHORT);
                         }else{ 
-                            ToastAndroid.show(ev.create_err, ToastAndroid.SHORT);
-                        }  
-                    });  
-                }
-            }
-        }).catch( err => {                  //any exception including data not found
-            console.warn(err);              //goes to catch()
-                                            //如果没有找到数据且没有同步方法，
-                                            //或者有其他异常，则在catch中返回
-        });
-        
-
-    },
+                            ToastAndroid.show("登录失败"+ev.login_err, ToastAndroid.SHORT);
+                        }   
+                    });
+                }else if(ev.create_err == "UNAUTHORIZED"){ 
+                    ToastAndroid.show("注册失败，无权限！", ToastAndroid.SHORT);
+                }else{ 
+                    //ToastAndroid.show(ev.create_err, ToastAndroid.SHORT);//这里面会出错，其一次安装会走这一步
+                }  
+            }); 
+    }, 
     // componentWillUnmount: function() {
-    //     navigator.geolocation.clearWatch(this.watchID);
+    //    
     // },
     addshop:function(){
         _navigator.push({

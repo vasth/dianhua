@@ -17,7 +17,7 @@ public class BaseActivity extends FragmentActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        // onresume时，取消notification显示
+        // onresume鏃讹紝鍙栨秷notification鏄剧ず
         //HXSDKHelper.getInstance().getNotifier().reset();
 
     }
@@ -28,7 +28,7 @@ public class BaseActivity extends FragmentActivity {
     } 
 
     /**
-     * 返回
+     * 杩斿洖
      *
      * @param view
      */
