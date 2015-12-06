@@ -135,7 +135,7 @@ global.storage = storage;
 //global.storage = storage;
 var debug = "true1";//这里应该自动判断如何获取开发模式
 var conspanel  ;
-var APP_URL = 'http://182.92.1.8:8080';
+var APP_URL = 'http://shop.dian400.com:8080';
 //var APP_URL = 'http://192.168.0.100:8080'
 global.APP_URL = APP_URL;
 /**************************全局变量的声明end***************************/
